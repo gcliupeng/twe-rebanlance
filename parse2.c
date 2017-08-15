@@ -223,19 +223,23 @@ int loadType(int fd) {
     }
 
     if(!checkType(t)){
-    	Log(LOG_ERROR, "Unknown type");
+    	Log(LOG_ERROR, "Unknown type, %d",t);
     	return -1;
     }
+    //Log(LOG_NOTICE, "type  %d\n", t);
     return t;
 }
 
 int processTime(int fd,int type,int32_t* expiretime, int64_t* expiretimeM) {
 
+    int i;
     if(type == REDIS_EXPIRETIME_MS){
     	if(!readBytes(fd,(char*)expiretimeM,8))
     		return 0;
-    	else
+    	else{
+
     		return 8;
+        }
     }else{
     	if(!readBytes(fd,(char*)expiretime,4))
     		return 0;
@@ -278,16 +282,20 @@ char* loadLzfStringObject(int fd) {
     if ((slen = loadLength(fd,NULL)) == REDIS_RDB_LENERR) return NULL;
 
     c = malloc(clen);
+
     if (!readBytes(fd,c, clen)) {
         free(c);
         return NULL;
     }
 
+
     s = malloc(slen+1);
+
     if (lzf_decompress(c,clen,s,slen) == 0) {
         free(c); free(s);
         return NULL;
     }
+    s[slen] = '\0';
 
     free(c);
     return s;
@@ -320,7 +328,8 @@ char *loadIntegerObject(int fd, int enctype) {
     /* convert val into string */
     char *buf;
     buf = malloc(sizeof(char) * 128);
-    sprintf(buf, "%lld", val);
+    int n = sprintf(buf, "%lld", val);
+    buf[n] = '\0';
     return buf;
 }
 
@@ -376,6 +385,7 @@ char* loadStringObject(int fd) {
 
     len = loadLength(fd, &isencoded);
     //printf("%d\n",len );
+    //Log(LOG_NOTICE,"length %d",len);
     if (isencoded) {
         switch(len) {
         case REDIS_RDB_ENC_INT8:
@@ -392,7 +402,7 @@ char* loadStringObject(int fd) {
     }
 
     if (len == REDIS_RDB_LENERR) return NULL;
-
+    Log(LOG_NOTICE,"malloc length %d",len);
     char *buf = malloc(sizeof(char) * (len+1));
     if (buf == NULL) return NULL;
     buf[len] = '\0';
@@ -445,7 +455,7 @@ int loadPair(thread_contex * th) {
         return 0;
     }
 
-    //Log("[notice] the key is %s",th->key);
+    Log(LOG_NOTICE, "the key is %s",th->key);
 
     if (th->type == REDIS_LIST ||
         th->type == REDIS_SET  ||
@@ -454,6 +464,7 @@ int loadPair(thread_contex * th) {
         if ((length = loadLength(th->fd,NULL)) == REDIS_RDB_LENERR) {
             Log(LOG_ERROR ,"Error reading %d length, server %s:%d", th->type,th->sc->pname,th->sc->port);
             return 0;
+
         }
     }
 
@@ -557,6 +568,7 @@ int loadPair(thread_contex * th) {
         }
         free(zl);
         return 1;
+        break;
     case REDIS_HASH_ZIPLIST:
     	if (!processStringObject(th->fd, (char **)&zl)) {
             Log(LOG_ERROR, "Error reading entry value , type %d, server %s:%d",th->type,th->sc->pname,th->sc->port);
@@ -595,14 +607,17 @@ int loadPair(thread_contex * th) {
             Log(LOG_DEBUG, "REDIS_HASH_ZIPLIST  key :%s , value %s , server %s:%d",th->key,hnode->value,th->sc->pname,th->sc->port);
             zi=ziplistNext(zl,zi);
         }
+        free(zl);
     	return 1;
     	break;
     case REDIS_STRING:
-    if (!processStringObject(th->fd, &th->value->str)) {
+    if (!processStringObject(th->fd,&key)) {
             Log(LOG_ERROR, "Error reading entry value , type %d, server %s:%d",th->type,th->sc->pname,th->sc->port);
             return 0;
         }
-        Log(LOG_DEBUG, "REDIS_STRING  key : %s ,value is %s , server %s:%d" ,th->key , th->value->str,th->sc->pname,th->sc->port);
+        th->value->str = key;
+        Log(LOG_DEBUG, "REDIS_STRING  key : %s ,value is %s,valuelength %d , server %s:%d" ,th->key , th->value->str,strlen(th->value->str), th->sc->pname,th->sc->port);
+        
         return 1;
     break;
         
@@ -615,7 +630,7 @@ int loadPair(thread_contex * th) {
                 Log(LOG_ERROR, "Error reading element at index %d (length: %d), server %s:%d", i, length, th->sc->pname,th->sc->port);
                 return 0;
             }
-            Log(LOG_NOTICE, "REDIS_LIST/SET key is %s , value %s , server %s:%d",th->key, lnode->str,th->sc->pname,th->sc->port);
+            Log(LOG_DEBUG, "REDIS_LIST/SET key is %s , value %s , server %s:%d",th->key, lnode->str,th->sc->pname,th->sc->port);
             //Log("[notice] listset node value is %s",lnode->str);
         }
         return 1;
@@ -637,7 +652,6 @@ int loadPair(thread_contex * th) {
             }
             Log(LOG_DEBUG, "REDIS_ZSET_ZIPLIST key : %s , score %f ,server %s:%d",th->key, znode->score,th->sc->pname,th->sc->port);
         }
-        //Log("[notice] zset parse ok");
         return 1;
     break;
 
@@ -761,7 +775,7 @@ int responseSize(thread_contex *th){
 			cmd_length = 11;
 			cmd_length += lengthSize(strlen(th->key))+5+strlen(th->key);
 			while(listset){
-				printf("%s\n", listset->str);
+				//printf("%s\n", listset->str);
 				line++;
 				cmd_length += lengthSize(strlen(listset->str))+5+strlen(listset->str);
 				listset = listset->next;
@@ -842,6 +856,8 @@ void freeMem(thread_contex * th){
 		free(th->key);
 		switch(th->type){
 			case REDIS_STRING:
+                //Log(LOG_NOTICE,"%x",th->value->str);
+                //Log(LOG_NOTICE,"%s",th->value->str);
 				free(th->value->str);
 				break;
 			case REDIS_LIST:
@@ -879,8 +895,9 @@ void processPair(thread_contex *th){
 	}
 
 	//send to new redis
+    
 	int size = responseSize(th);
-	buf_t *output = getBuf(size);
+	buf_t *output = getBuf(size+10);
 	if(!output){
         Log(LOG_ERROR,"getBuf error , server %s:%d",th->sc->pname,th->sc->port);
         exit(1);
@@ -888,9 +905,10 @@ void processPair(thread_contex *th){
 	}
 	formatResponse(th, output);
 	appendToOutBuf(to->contex, output);
+    //freeBuf(output);
 	freeMem(th);
 	//printf("%s\n",output->start);
-	th->processed ++;
+	th->processed++;
 	return;
 }
 
@@ -913,10 +931,12 @@ int parseRdb(thread_contex * th){
 
     	//parse type
     	th->type = loadType(fd);
-    	if(type == -1){
+    	if(th->type == -1){
+            Log(LOG_ERROR,"loadType error");
     		return 0;
     	}
     	nread++;
+        // Log(LOG_NOTICE,"type is %d",th->type);
     	//printf("type is %d\n",type );
     	if (th->type == REDIS_SELECTDB) {
     		//printf("here \n");
@@ -934,11 +954,22 @@ int parseRdb(thread_contex * th){
         		return 1;
         }else{
         	if (th->type == REDIS_EXPIRETIME ||th->type == REDIS_EXPIRETIME_MS) {
-        		if (n = processTime(fd,th->type,&expiretime,&expiretimeM) ==0) return 0;
+        		//Log(LOG_NOTICE,"the type %d",th->type);
+
+                if (n = processTime(fd,th->type,&expiretime,&expiretimeM) ==0) {
+                    Log(LOG_ERROR,"processTime error");
+                    return 0;
+                };
+                //Log(LOG_NOTICE,"time is %ld",expiretimeM);
         		nread+=n;
-        		if (th->type = loadType(fd)) return 0;
+        		if ((th->type = loadType(fd) )== -1){
+                    //Log(LOG_NOTICE,"type 2 %d",th->type);
+                    Log(LOG_ERROR,"loadType error");
+                    return 0;
+                } 
         		nread++;
         	}
+            //Log(LOG_NOTICE,"the type is %d",th->type);
         	//printf("type is %d\n",type );
         	if (n = loadPair(th) ==0) {
         		Log(LOG_ERROR, "server %s:%d parse error",th->sc->pname,th->sc->port);

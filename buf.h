@@ -13,20 +13,7 @@ struct buf_s{
 
 typedef struct buf_s buf_t;
 
-static buf_t * createBuf(int size){
-	buf_t * b =malloc(sizeof(*b));
-	if(!b){
-		return NULL;
-	}
-	char *p = malloc(sizeof(char)*size);
-	if(!p){
-		free(b);
-		return NULL;
-	}
-	b->start=b->position=b->last=p;
-	b->end = p+size*sizeof(char);
-	return b;
-}
+buf_t * createBuf(int size);
 
 static int bufSize(buf_t *b){
 	if(!b){

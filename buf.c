@@ -41,3 +41,20 @@ buf_t * getBuf(int size){
 	pthread_mutex_unlock(&pool_lock);
 	return createBuf(size);
 }
+
+buf_t * createBuf(int size){
+	void * t = malloc(2000);
+	buf_t * b = (buf_t *)malloc(sizeof(buf_t));
+	if(!b){
+		return NULL;
+	}
+	char *p = malloc(sizeof(char)*size);
+	if(!p){
+		free(b);
+		return NULL;
+	}
+	b->start=b->position=b->last=p;
+	b->end = p+size*sizeof(char);
+	b->next = b->pre = NULL;
+	return b;
+}

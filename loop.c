@@ -3,6 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <malloc.h>
+#include <fcntl.h>
 #include "network.h"
 #include "config.h"
 #include "main.h"
@@ -215,6 +216,9 @@ void * transferFromServer(void * data){
 
 	Log(LOG_NOTICE, "send sync to server %s:%d ok",sc->pname,sc->port);
 
+	//th->fd = open("/home/work/redis-limited/dump.rdb4",O_RDWR);
+	//th->fd = open("/home/work/twe-rebanlance/data",O_RDWR);
+
 	if(!parseSize(th)){
 		//printf("parse size error \n");
 		Log(LOG_ERROR, "parse size error from server %s:%d",sc->pname,sc->port);
@@ -222,8 +226,10 @@ void * transferFromServer(void * data){
 	}
 	Log(LOG_NOTICE, "parse size from server %s:%d ok, the size is %llu",sc->pname,sc->port ,th->transfer_size);
 
+
+
 	if(!processHeader(th)){
-		//printf("parseHeader error\n");
+
 		Log(LOG_ERROR, "parse header error from server %s:%d",sc->pname,sc->port);
 		exit(1);
 	}

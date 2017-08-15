@@ -10,7 +10,7 @@ void logRaw(const char * function, int line, int level, const char * fmt, ...){
 	if(level<logLeve){												
 		return;														
 	}																
-	char msg[200];													
+	char msg[500];													
 	int n;																	
 	time_t cur;																		
 	struct tm cur_tm = {0};										
