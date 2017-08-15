@@ -157,9 +157,14 @@ int parseSize(thread_contex *th){
 		Log(LOG_ERROR, "MASTER %s:%d aborted replication : %s",th->sc->pname,th->sc->port ,buf+1);
         return 0;
     } else if (buf[0] == '\0') {
-    	if(readLine(fd,buf,1024) ==-1){
-			return 0;
-		}
+        while(1){
+            if(readLine(fd,buf,1024) ==-1){
+                break;
+            }
+            if(buf[0]!='\0'){
+                break;
+            }
+        }
     }
     if (buf[0] != '$') {
     	Log(LOG_ERROR, "Bad protocol from MASTER %s:%d, the first byte is not '$' (we received '%d')",th->sc->pname,th->sc->port, buf[0]);
