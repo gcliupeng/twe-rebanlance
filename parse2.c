@@ -406,6 +406,10 @@ char* loadStringObject(int fd) {
     char *buf = malloc(sizeof(char) * (len+1));
     if (buf == NULL) return NULL;
     buf[len] = '\0';
+    //处理空字符串的情况
+    if(len == 0){
+        return buf;
+    }
     if (!readBytes(fd,buf, len)) {
         free(buf);
         return NULL;
