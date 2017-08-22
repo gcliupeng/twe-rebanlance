@@ -263,6 +263,7 @@ void * transferFromServer(void * data){
 	th->bucknum = -1;
 	th->lineSize = -1;
 	th->inputMode = -1;
+	th->step = 0;
 
 	eventCycle(th->loop);
 }
