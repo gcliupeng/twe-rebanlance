@@ -187,12 +187,13 @@ int  saveRdb(thread_contex * th){
 	}
 	char buf[1024];
 	int n;
-	while(th->transfer_size){
+	while(th->transfer_size>0){
 		n = read(fd,buf,1024);
 		write(filefd,buf,n);
 		th->transfer_size-=n;
 	}
 	Log(LOG_NOTICE, "save the rdb from server %s:%d done, the file is %s",sc->pname,sc->port ,th->rdbfile);
+	close(filefd);
 	return 1;
 }
 
@@ -272,7 +273,8 @@ void * transferFromServer(void * data){
 	}
 
 	Log(LOG_NOTICE, "parse rdb from the master %s:%d done",sc->pname,sc->port);
-
+	close(th->fd);
+	unlink(th->rdbfile);
 	//sync done, next is relication 
 
 	th->fd = backfd;
