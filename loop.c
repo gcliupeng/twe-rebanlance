@@ -97,6 +97,7 @@ void  replicationWithServer(void * data){
 	int fd = ev->fd;
 	int n , i;
 	int left;
+	int extra;
 	while(1){
 		left = th->replicationBufSize-(th->replicationBufLast - th->replicationBuf);
 		if(left == 0){
@@ -155,15 +156,21 @@ void  replicationWithServer(void * data){
 			}
 
 			//send to new
-			buf_t * output = getBuf(th->replicationBufPos - th->replicationBuf);
+			//add del
+			extra = 11;
+    		extra += lengthSize(strlen(t))+5+strlen(t);
+			buf_t * output = getBuf(extra + th->replicationBufPos - th->replicationBuf);
 			if(!output){
 				//printf("getBuf error\n");
 				Log(LOG_ERROR,"get buf error");
 				exit(1);
 			}
-			memcpy(output->start, th->replicationBuf, th->replicationBufPos-th->replicationBuf);
-			output->start[th->replicationBufPos-th->replicationBuf] = '\0';
-			output->position = output->start+(th->replicationBufPos - th->replicationBuf);
+			output->position += sprintf(output->position,"*2\r\n$3\r\ndel\r\n");
+    		output->position += formatStr(output->position,t);
+			
+			memcpy(output->position, th->replicationBuf, th->replicationBufPos-th->replicationBuf);
+			output->position[th->replicationBufPos-th->replicationBuf] = '\0';
+			output->position += (th->replicationBufPos - th->replicationBuf);
 			appendToOutBuf(to->contex, output);
 			resetState(th);
 		}

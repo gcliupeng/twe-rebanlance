@@ -695,6 +695,9 @@ void formatResponse(thread_contex *th, buf_t * out){
 	struct rlistset * listset;
 	struct rzset * zset;
 	struct rhash * hash;
+    //del
+    out->position += sprintf(out->position,"*2\r\n$3\r\ndel\r\n");
+    out->position+=formatStr(out->position,th->key);
 	switch(th->type){
 		case REDIS_STRING:
 			//*3\r\n
@@ -765,10 +768,14 @@ int responseSize(thread_contex *th){
 	struct rlistset * listset;
 	struct rzset * zset;
 	struct rhash * hash;
+    //delete first
+    // *2\r\n$3del\r\n
+    cmd_length = 11;
+    cmd_length += lengthSize(strlen(th->key))+5+strlen(th->key);
 	switch(th->type){
 		case REDIS_STRING:
 			//*3\r\n
-			cmd_length = 4;
+			cmd_length += 4;
 			//$3\r\nset\r\n
 			cmd_length += 9;
 			//$keylength\r\nkey\r\n
@@ -781,7 +788,7 @@ int responseSize(thread_contex *th){
 			listset = th->value->listset;
 			listset = listset->next;
 			//$5\r\nrpush\r\n
-			cmd_length = 11;
+			cmd_length += 11;
 			cmd_length += lengthSize(strlen(th->key))+5+strlen(th->key);
 			while(listset){
 				//printf("%s\n", listset->str);
@@ -797,7 +804,7 @@ int responseSize(thread_contex *th){
 			listset = th->value->listset;
 			listset = listset->next;
 			//$4\r\nsadd\r\n
-			cmd_length = 10;
+			cmd_length += 10;
 			cmd_length += lengthSize(strlen(th->key))+5+strlen(th->key);
 			while(listset){
 				line++;
@@ -812,7 +819,7 @@ int responseSize(thread_contex *th){
 			zset = th->value->zset;
 			zset = zset->next;
 			//$4\r\nzadd\r\n;
-			cmd_length = 10;
+			cmd_length += 10;
 			cmd_length += lengthSize(strlen(th->key))+5+strlen(th->key);
 			while(zset){
 				line++;
@@ -830,7 +837,7 @@ int responseSize(thread_contex *th){
 			hash = th->value->hash;
 			hash = hash->next;
 			//$5\r\nhmset\r\n;
-			cmd_length = 11;
+			cmd_length += 11;
 			cmd_length += lengthSize(strlen(th->key))+5+strlen(th->key);
 			while(hash){
 				line++;

@@ -48,6 +48,8 @@ int parseSize(thread_contex * th);
 int processHeader(thread_contex * th);
 int parseRdb(thread_contex * th);
 void appendToOutBuf(thread_contex *th, buf_t * b);
+int lengthSize(int length);
+int formatStr(char *p,char * str);
 
 static int string2ll(const char *s, size_t slen, long long *value) {
     const char *p = s;
