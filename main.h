@@ -43,6 +43,7 @@ struct thread_contex_s{
 	pthread_t pid;
 	pthread_mutex_t mutex;
 	int fd;
+	char rdbfile[100];
 	char * key;
 	rvalue * value;
 	long processed;

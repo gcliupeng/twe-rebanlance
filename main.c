@@ -99,7 +99,7 @@ void initThreads(){
 		sc->contex = (struct thread_contex_s *)th;
 		th->sc = sc;
 		pthread_mutex_init(&th->mutex,NULL);
-		th->bufout=th->bufoutLast = NULL;
+		th->bufout = th->bufoutLast = NULL;
 		pthread_create(&th->pid,NULL,outPutLoop,th);
 	}
 }

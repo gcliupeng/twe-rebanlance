@@ -174,6 +174,27 @@ void  replicationWithServer(void * data){
 
 }
 
+int  saveRdb(thread_contex * th){
+	int fd = th->fd;
+	server_conf * sc = th->sc;
+	//char fileName [100]={0};
+	memset(th->rdbfile,0,100);
+	sprintf(th->rdbfile,"rdb-%d-%p.rdb",getpid(),pthread_self());
+	Log(LOG_NOTICE, "begin save the rdb from server %s:%d , the file is %s",sc->pname,sc->port ,th->rdbfile);
+	int filefd = open(th->rdbfile,O_RDWR|O_CREAT,0644);
+	if(filefd <0){
+		return 0;
+	}
+	char buf[1024];
+	int n;
+	while(th->transfer_size){
+		n = read(fd,buf,1024);
+		write(filefd,buf,n);
+		th->transfer_size-=n;
+	}
+	Log(LOG_NOTICE, "save the rdb from server %s:%d done, the file is %s",sc->pname,sc->port ,th->rdbfile);
+	return 1;
+}
 
 
 void * transferFromServer(void * data){
@@ -225,12 +246,17 @@ void * transferFromServer(void * data){
 	if(!parseSize(th)){
 		//printf("parse size error \n");
 		Log(LOG_ERROR, "parse size error from server %s:%d",sc->pname,sc->port);
-		return NULL;;
+		exit(1);
 	}
 	Log(LOG_NOTICE, "parse size from server %s:%d ok, the size is %llu",sc->pname,sc->port ,th->transfer_size);
 
-
-
+	if(!saveRdb(th)){
+		Log(LOG_ERROR, "save the rdb error %s:%d",sc->pname,sc->port);
+		exit(1);
+	}
+	
+	int backfd = th->fd;
+	th->fd = open(th->rdbfile,O_RDWR);
 	if(!processHeader(th)){
 
 		Log(LOG_ERROR, "parse header error from server %s:%d",sc->pname,sc->port);
@@ -240,13 +266,16 @@ void * transferFromServer(void * data){
 	if(!parseRdb(th)){
 		//printf("parse the rdb error");
 		Log(LOG_ERROR, "parse rdb error from server %s:%d",sc->pname,sc->port);
+		//Log(LOG_NOTICE, "redo with the server %s:%d in 10s ",sc->pname,sc->port);
+
 		exit(1);
 	}
 
-	Log(LOG_NOTICE, "receive rdb from the master %s:%d done",sc->pname,sc->port);
+	Log(LOG_NOTICE, "parse rdb from the master %s:%d done",sc->pname,sc->port);
 
 	//sync done, next is relication 
 
+	th->fd = backfd;
 	// change to nonblocking
 	nonBlock(th->fd);
 
@@ -277,13 +306,15 @@ void  sendData(void * data){
 	//get one buf
 	pthread_mutex_lock(&th->mutex);
 	buf_t * buf = th->bufout;
+	//printf("%p \n",buf );
 	//delEvent(th->loop ,ev, EVENT_WRITE);
 	if(!buf){
+		//printf("no buf\n");
 		delEvent(th->loop ,ev, EVENT_WRITE);
 		pthread_mutex_unlock(&th->mutex);
 		return;
 	} 
-	
+	//printf("come here\n");
 	th->bufout = buf->next;
 	pthread_mutex_unlock(&th->mutex);
 
@@ -330,12 +361,11 @@ void * outPutLoop(void * data){
 	th->write = w;
 
 	event * r =malloc(sizeof(*r));
-	if(!w){
+	if(!r){
 		Log(LOG_ERROR, "create event error");
 		exit(1);
 	}
 	th->read = r;
-
 	w->type = EVENT_WRITE;
 	w->fd = th->fd;
 	w->wcall = sendData;

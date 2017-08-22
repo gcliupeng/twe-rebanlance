@@ -9,6 +9,7 @@
 #include <sys/time.h>
 #include <float.h>
 #include <pthread.h>
+#include <errno.h>
 
 #include "main.h"
 #include "config.h"
@@ -191,7 +192,7 @@ int processHeader(thread_contex * th) {
     int dump_version;
 
     if (!readBytes(fd,buf, 9)) {
-        Log(LOG_ERROR, "Cannot read header, server %s:%d",th->sc->pname,th->sc->port);
+        Log(LOG_ERROR, "Cannot read header, server %s:%d, errno %s",th->sc->pname,th->sc->port,strerror(errno));
         return 0;
     }
 
