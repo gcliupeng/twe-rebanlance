@@ -407,7 +407,7 @@ char* loadStringObject(int fd) {
     }
 
     if (len == REDIS_RDB_LENERR) return NULL;
-    Log(LOG_NOTICE,"malloc length %d",len);
+    Log(LOG_DEBUG,"malloc length %d",len);
     char *buf = malloc(sizeof(char) * (len+1));
     if (buf == NULL) return NULL;
     buf[len] = '\0';
@@ -464,7 +464,7 @@ int loadPair(thread_contex * th) {
         return 0;
     }
 
-    Log(LOG_NOTICE, "the key is %s",th->key);
+    Log(LOG_DEBUG, "the key is %s",th->key);
 
     if (th->type == REDIS_LIST ||
         th->type == REDIS_SET  ||
