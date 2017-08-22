@@ -43,7 +43,6 @@ buf_t * getBuf(int size){
 }
 
 buf_t * createBuf(int size){
-	void * t = malloc(2000);
 	buf_t * b = (buf_t *)malloc(sizeof(buf_t));
 	if(!b){
 		return NULL;

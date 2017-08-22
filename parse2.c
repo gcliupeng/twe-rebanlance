@@ -25,7 +25,7 @@ uint32_t dispatch(config * sc, uint32_t hash);
 extern rebance_server server;
 
 int formatStr(char *p,char * str){
-	sprintf(p,"$%d\r\n%s\r\n",strlen(str),str);
+	sprintf(p,"$%ld\r\n%s\r\n",strlen(str),str);
 } 
 int formatDouble(char *p , double d){
     char dbuf[128], sbuf[128];
@@ -41,7 +41,7 @@ int formatDouble(char *p , double d){
     }
 }
 
-int lengthSize(int length){
+int lengthSize(long long length){
 	int n = 0;
 	while(length){
 		n++;
@@ -760,6 +760,14 @@ void formatResponse(thread_contex *th, buf_t * out){
 			}
 			break;
 	}
+
+    //del
+    if(th->expiretime != -1 || th->expiretimeM != -1){
+        //*3\r\n$8\r\nexpireat\r\n$n\r\nkey\r\n
+        out->position += sprintf(out->position,"*3\r\n$8pexpireat\r\n");
+        out->position+=formatStr(out->position,th->key);
+        out->position += sprintf(out->position,"$%lld\r\n%lld\r\n",lengthSize(th->expiretimeM),th->expiretimeM);
+    }
 }
 
 int responseSize(thread_contex *th){
@@ -772,6 +780,17 @@ int responseSize(thread_contex *th){
     // *2\r\n$3del\r\n
     cmd_length = 11;
     cmd_length += lengthSize(strlen(th->key))+5+strlen(th->key);
+
+    //expire
+    if(th->expiretime != -1 || th->expiretimeM != -1){
+        if(th->expiretime != -1){
+            th->expiretimeM = th->expiretime * 1000;
+        }
+        //*3\r\n$8\r\npexpireat\r\n$n\r\nkey\r\n
+        cmd_length += 19;
+        cmd_length += lengthSize(strlen(th->key))+5+strlen(th->key);
+        cmd_length += lengthSize(lengthSize(th->expiretimeM))+5+lengthSize(th->expiretimeM);
+    }
 	switch(th->type){
 		case REDIS_STRING:
 			//*3\r\n
@@ -913,7 +932,7 @@ void processPair(thread_contex *th){
 	//send to new redis
     
 	int size = responseSize(th);
-	buf_t *output = getBuf(size+10);
+	buf_t *output = getBuf(size+20);
 	if(!output){
         Log(LOG_ERROR,"getBuf error , server %s:%d",th->sc->pname,th->sc->port);
         exit(1);
@@ -943,7 +962,7 @@ int parseRdb(thread_contex * th){
     	return 0;
     }
     while(nread < th->transfer_size){
-    	expiretime = expiretimeM = 0;
+    	th->expiretime = th->expiretimeM = -1;
 
     	//parse type
     	th->type = loadType(fd);
@@ -972,7 +991,7 @@ int parseRdb(thread_contex * th){
         	if (th->type == REDIS_EXPIRETIME ||th->type == REDIS_EXPIRETIME_MS) {
         		//Log(LOG_NOTICE,"the type %d",th->type);
 
-                if (n = processTime(fd,th->type,&expiretime,&expiretimeM) ==0) {
+                if (n = processTime(fd,th->type,&th->expiretime,&th->expiretimeM) ==0) {
                     Log(LOG_ERROR,"processTime error");
                     return 0;
                 };
