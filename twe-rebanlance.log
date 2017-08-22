@@ -1,0 +1,1662 @@
+[NOTICE]2017/08/22 16:14:32  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 16:14:32   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 217
+[NOTICE]2017/08/22 16:14:32  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 224
+[NOTICE]2017/08/22 16:14:32  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 151 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 16:14:32  parse size from server 127.0.0.1:6379 ok, the size is 151 Functon: transferFromServer Line: 234
+[NOTICE]2017/08/22 16:14:32  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 16:14:32  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:14:32  the key is set Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:14:32  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:14:32  REDIS_LIST/SET key is set , value bb , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:14:32  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:14:32  REDIS_LIST/SET key is set , value gg , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:14:32  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:14:32  REDIS_LIST/SET key is set , value ff , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:14:32  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:14:32  REDIS_LIST/SET key is set , value ee , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:14:32  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:14:32  REDIS_LIST/SET key is set , value ll , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:14:32  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:14:32  REDIS_LIST/SET key is set , value aa , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:14:32  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:14:32  REDIS_LIST/SET key is set , value dd , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:14:32  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:14:32  REDIS_LIST/SET key is set , value kk , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:14:32  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:14:32  REDIS_LIST/SET key is set , value cc , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[DEBUG]2017/08/22 16:14:32  the key set from 127.0.0.1:6379 Functon: processPair Line: 922
+[DEBUG]2017/08/22 16:14:32  the key set should goto 127.0.0.1:6380 Functon: processPair Line: 923
+[NOTICE]2017/08/22 16:14:32  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:14:32  the key is zset Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:14:32  malloc length 36 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:14:32  REDIS_ZSET_ZIPLIST key : zset , value a , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:14:32  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:14:32  REDIS_ZSET_ZIPLIST key : zset , value b , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:14:32  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:14:32  REDIS_ZSET_ZIPLIST key : zset , value c , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:14:32  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:14:32  REDIS_ZSET_ZIPLIST key : zset , value d , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:14:32  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:14:32  REDIS_ZSET_ZIPLIST key : zset , value e , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:14:32  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:14:32  the key zset from 127.0.0.1:6379 Functon: processPair Line: 922
+[DEBUG]2017/08/22 16:14:32  the key zset should goto 127.0.0.1:6380 Functon: processPair Line: 923
+[NOTICE]2017/08/22 16:14:32  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:14:32  the key is name Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:14:32  malloc length 7 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:14:32  REDIS_STRING  key : name ,value is liupeng,valuelength 7 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:14:32  the key name from 127.0.0.1:6379 Functon: processPair Line: 922
+[DEBUG]2017/08/22 16:14:32  the key name should goto 127.0.0.1:6380 Functon: processPair Line: 923
+[NOTICE]2017/08/22 16:14:32  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:14:32  the key is list Functon: loadPair Line: 467
+[DEBUG]2017/08/22 16:14:32  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:14:32  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:14:32  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:14:32  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:14:32  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:14:32  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:14:32  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:14:32  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:14:32  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:14:32  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:14:32  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:14:32  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:14:32  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:14:32  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:14:32  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:14:32  the key list from 127.0.0.1:6379 Functon: processPair Line: 922
+[DEBUG]2017/08/22 16:14:32  the key list should goto 127.0.0.1:6380 Functon: processPair Line: 923
+[NOTICE]2017/08/22 16:14:32  server 127.0.0.1:6379, processed 4 keys Functon: parseRdb Line: 986
+[NOTICE]2017/08/22 16:14:32  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 250
+[NOTICE]2017/08/22 16:15:09  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 16:15:09   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 217
+[NOTICE]2017/08/22 16:15:09  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 224
+[NOTICE]2017/08/22 16:15:09  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 151 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 16:15:09  parse size from server 127.0.0.1:6379 ok, the size is 151 Functon: transferFromServer Line: 234
+[NOTICE]2017/08/22 16:15:09  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 16:15:09  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:15:09  the key is set Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:15:09  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:15:09  REDIS_LIST/SET key is set , value bb , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:15:09  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:15:09  REDIS_LIST/SET key is set , value gg , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:15:09  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:15:09  REDIS_LIST/SET key is set , value ff , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:15:09  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:15:09  REDIS_LIST/SET key is set , value ee , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:15:09  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:15:09  REDIS_LIST/SET key is set , value ll , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:15:09  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:15:09  REDIS_LIST/SET key is set , value aa , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:15:09  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:15:09  REDIS_LIST/SET key is set , value dd , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:15:09  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:15:09  REDIS_LIST/SET key is set , value kk , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:15:09  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:15:09  REDIS_LIST/SET key is set , value cc , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[DEBUG]2017/08/22 16:15:09  the key set from 127.0.0.1:6379 Functon: processPair Line: 922
+[DEBUG]2017/08/22 16:15:09  the key set should goto 127.0.0.1:6380 Functon: processPair Line: 923
+[NOTICE]2017/08/22 16:15:09  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:15:09  the key is zset Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:15:09  malloc length 36 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:15:09  REDIS_ZSET_ZIPLIST key : zset , value a , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:15:09  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:15:09  REDIS_ZSET_ZIPLIST key : zset , value b , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:15:09  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:15:09  REDIS_ZSET_ZIPLIST key : zset , value c , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:15:09  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:15:09  REDIS_ZSET_ZIPLIST key : zset , value d , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:15:09  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:15:09  REDIS_ZSET_ZIPLIST key : zset , value e , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:15:09  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:15:09  the key zset from 127.0.0.1:6379 Functon: processPair Line: 922
+[DEBUG]2017/08/22 16:15:09  the key zset should goto 127.0.0.1:6380 Functon: processPair Line: 923
+[NOTICE]2017/08/22 16:15:09  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:15:09  the key is name Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:15:09  malloc length 7 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:15:09  REDIS_STRING  key : name ,value is liupeng,valuelength 7 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:15:09  the key name from 127.0.0.1:6379 Functon: processPair Line: 922
+[DEBUG]2017/08/22 16:15:09  the key name should goto 127.0.0.1:6380 Functon: processPair Line: 923
+[NOTICE]2017/08/22 16:15:09  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:15:09  the key is list Functon: loadPair Line: 467
+[DEBUG]2017/08/22 16:15:09  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:15:09  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:15:09  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:15:09  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:15:09  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:15:09  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:15:09  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:15:09  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:15:09  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:15:09  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:15:09  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:15:09  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:15:09  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:15:09  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:15:09  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:15:09  the key list from 127.0.0.1:6379 Functon: processPair Line: 922
+[DEBUG]2017/08/22 16:15:09  the key list should goto 127.0.0.1:6380 Functon: processPair Line: 923
+[NOTICE]2017/08/22 16:15:09  server 127.0.0.1:6379, processed 4 keys Functon: parseRdb Line: 986
+[NOTICE]2017/08/22 16:15:09  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 250
+[DEBUG]2017/08/22 16:16:01  the key name2, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:16:01  the key name2 should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[NOTICE]2017/08/22 16:16:41  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 16:16:41   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 212
+[NOTICE]2017/08/22 16:16:41  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 219
+[NOTICE]2017/08/22 16:16:41  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 162 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 16:16:41  parse size from server 127.0.0.1:6379 ok, the size is 162 Functon: transferFromServer Line: 229
+[NOTICE]2017/08/22 16:16:41  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 16:16:41  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:16:41  the key is set Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:16:41  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:16:41  REDIS_LIST/SET key is set , value bb , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:16:41  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:16:41  REDIS_LIST/SET key is set , value gg , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:16:41  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:16:41  REDIS_LIST/SET key is set , value ff , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:16:41  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:16:41  REDIS_LIST/SET key is set , value ee , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:16:41  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:16:41  REDIS_LIST/SET key is set , value ll , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:16:41  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:16:41  REDIS_LIST/SET key is set , value aa , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:16:41  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:16:41  REDIS_LIST/SET key is set , value dd , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:16:41  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:16:41  REDIS_LIST/SET key is set , value kk , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:16:41  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:16:41  REDIS_LIST/SET key is set , value cc , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[DEBUG]2017/08/22 16:16:41  the key set from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:16:41  the key set should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:16:41  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:16:41  the key is zset Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:16:41  malloc length 36 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:16:41  REDIS_ZSET_ZIPLIST key : zset , value a , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:16:41  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:16:41  REDIS_ZSET_ZIPLIST key : zset , value b , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:16:41  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:16:41  REDIS_ZSET_ZIPLIST key : zset , value c , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:16:41  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:16:41  REDIS_ZSET_ZIPLIST key : zset , value d , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:16:41  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:16:41  REDIS_ZSET_ZIPLIST key : zset , value e , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:16:41  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:16:41  the key zset from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:16:41  the key zset should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:16:41  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:16:41  the key is name Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:16:41  malloc length 7 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:16:41  REDIS_STRING  key : name ,value is liupeng,valuelength 7 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:16:41  the key name from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:16:41  the key name should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:16:41  malloc length 5 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:16:41  the key is name2 Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:16:41  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:16:41  REDIS_STRING  key : name2 ,value is ddd,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:16:41  the key name2 from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:16:41  the key name2 should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:16:41  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:16:41  the key is list Functon: loadPair Line: 467
+[DEBUG]2017/08/22 16:16:41  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:16:41  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:16:41  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:16:41  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:16:41  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:16:41  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:16:41  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:16:41  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:16:41  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:16:41  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:16:41  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:16:41  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:16:41  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:16:41  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:16:41  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:16:41  the key list from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:16:41  the key list should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:16:41  server 127.0.0.1:6379, processed 5 keys Functon: parseRdb Line: 988
+[NOTICE]2017/08/22 16:16:41  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 245
+[DEBUG]2017/08/22 16:16:52  the key name2, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:16:52  the key name2 should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:17:30  the key name2, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:17:30  the key name2 should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[NOTICE]2017/08/22 16:17:49  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 16:17:49   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 212
+[NOTICE]2017/08/22 16:17:49  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 219
+[NOTICE]2017/08/22 16:17:49  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 163 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 16:17:49  parse size from server 127.0.0.1:6379 ok, the size is 163 Functon: transferFromServer Line: 229
+[NOTICE]2017/08/22 16:17:49  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 16:17:49  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:17:49  the key is set Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:17:49  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:17:49  REDIS_LIST/SET key is set , value bb , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:17:49  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:17:49  REDIS_LIST/SET key is set , value gg , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:17:49  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:17:49  REDIS_LIST/SET key is set , value ff , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:17:49  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:17:49  REDIS_LIST/SET key is set , value ee , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:17:49  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:17:49  REDIS_LIST/SET key is set , value ll , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:17:49  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:17:49  REDIS_LIST/SET key is set , value aa , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:17:49  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:17:49  REDIS_LIST/SET key is set , value dd , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:17:49  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:17:49  REDIS_LIST/SET key is set , value kk , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:17:49  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:17:49  REDIS_LIST/SET key is set , value cc , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[DEBUG]2017/08/22 16:17:49  the key set from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:17:49  the key set should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:17:49  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:17:49  the key is zset Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:17:49  malloc length 36 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:17:49  REDIS_ZSET_ZIPLIST key : zset , value a , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:17:49  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:17:49  REDIS_ZSET_ZIPLIST key : zset , value b , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:17:49  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:17:49  REDIS_ZSET_ZIPLIST key : zset , value c , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:17:49  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:17:49  REDIS_ZSET_ZIPLIST key : zset , value d , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:17:49  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:17:49  REDIS_ZSET_ZIPLIST key : zset , value e , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:17:49  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:17:49  the key zset from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:17:49  the key zset should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:17:49  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:17:49  the key is name Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:17:49  malloc length 7 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:17:49  REDIS_STRING  key : name ,value is liupeng,valuelength 7 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:17:49  the key name from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:17:49  the key name should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:17:49  malloc length 5 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:17:49  the key is name2 Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:17:49  malloc length 4 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:17:49  REDIS_STRING  key : name2 ,value is ssss,valuelength 4 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:17:49  the key name2 from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:17:49  the key name2 should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:17:49  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:17:49  the key is list Functon: loadPair Line: 467
+[DEBUG]2017/08/22 16:17:49  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:17:49  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:17:49  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:17:49  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:17:49  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:17:49  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:17:49  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:17:49  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:17:49  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:17:49  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:17:49  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:17:49  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:17:49  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:17:49  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:17:49  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:17:49  the key list from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:17:49  the key list should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:17:49  server 127.0.0.1:6379, processed 5 keys Functon: parseRdb Line: 988
+[NOTICE]2017/08/22 16:17:49  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 245
+[DEBUG]2017/08/22 16:18:03  the key name2, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:18:03  the key name2 should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[NOTICE]2017/08/22 16:19:21  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 16:19:21   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 16:19:21  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 16:19:21  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 162 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 16:19:21  parse size from server 127.0.0.1:6379 ok, the size is 162 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 16:19:21  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 16:19:21  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:19:21  the key is set Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:19:21  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:19:21  REDIS_LIST/SET key is set , value bb , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:19:21  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:19:21  REDIS_LIST/SET key is set , value gg , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:19:21  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:19:21  REDIS_LIST/SET key is set , value ff , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:19:21  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:19:21  REDIS_LIST/SET key is set , value ee , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:19:21  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:19:21  REDIS_LIST/SET key is set , value ll , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:19:21  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:19:21  REDIS_LIST/SET key is set , value aa , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:19:21  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:19:21  REDIS_LIST/SET key is set , value dd , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:19:21  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:19:21  REDIS_LIST/SET key is set , value kk , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:19:21  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:19:21  REDIS_LIST/SET key is set , value cc , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[DEBUG]2017/08/22 16:19:21  the key set from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:19:21  the key set should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:19:21  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:19:21  the key is zset Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:19:21  malloc length 36 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:19:21  REDIS_ZSET_ZIPLIST key : zset , value a , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:19:21  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:19:21  REDIS_ZSET_ZIPLIST key : zset , value b , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:19:21  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:19:21  REDIS_ZSET_ZIPLIST key : zset , value c , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:19:21  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:19:21  REDIS_ZSET_ZIPLIST key : zset , value d , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:19:21  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:19:21  REDIS_ZSET_ZIPLIST key : zset , value e , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:19:21  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:19:21  the key zset from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:19:21  the key zset should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:19:21  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:19:21  the key is name Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:19:21  malloc length 7 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:19:21  REDIS_STRING  key : name ,value is liupeng,valuelength 7 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:19:21  the key name from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:19:21  the key name should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:19:21  malloc length 5 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:19:21  the key is name2 Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:19:21  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:19:21  REDIS_STRING  key : name2 ,value is aaa,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:19:21  the key name2 from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:19:21  the key name2 should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:19:21  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:19:21  the key is list Functon: loadPair Line: 467
+[DEBUG]2017/08/22 16:19:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:19:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:19:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:19:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:19:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:19:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:19:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:19:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:19:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:19:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:19:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:19:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:19:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:19:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:19:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:19:21  the key list from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:19:21  the key list should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:19:21  server 127.0.0.1:6379, processed 5 keys Functon: parseRdb Line: 988
+[NOTICE]2017/08/22 16:19:21  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[DEBUG]2017/08/22 16:19:31  the key name2, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:19:31  the key name2 should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[NOTICE]2017/08/22 16:20:23  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 16:20:23   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 16:20:23  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 16:20:23  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 162 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 16:20:23  parse size from server 127.0.0.1:6379 ok, the size is 162 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 16:20:23  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 16:20:23  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:20:23  the key is set Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:20:23  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:20:23  REDIS_LIST/SET key is set , value bb , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:20:23  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:20:23  REDIS_LIST/SET key is set , value gg , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:20:23  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:20:23  REDIS_LIST/SET key is set , value ff , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:20:23  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:20:23  REDIS_LIST/SET key is set , value ee , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:20:23  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:20:23  REDIS_LIST/SET key is set , value ll , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:20:23  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:20:23  REDIS_LIST/SET key is set , value aa , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:20:23  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:20:23  REDIS_LIST/SET key is set , value dd , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:20:23  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:20:23  REDIS_LIST/SET key is set , value kk , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:20:23  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:20:23  REDIS_LIST/SET key is set , value cc , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[DEBUG]2017/08/22 16:20:23  the key set from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:20:23  the key set should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:20:23  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:20:23  the key is zset Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:20:23  malloc length 36 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:20:23  REDIS_ZSET_ZIPLIST key : zset , value a , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:20:23  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:20:23  REDIS_ZSET_ZIPLIST key : zset , value b , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:20:23  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:20:23  REDIS_ZSET_ZIPLIST key : zset , value c , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:20:23  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:20:23  REDIS_ZSET_ZIPLIST key : zset , value d , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:20:23  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:20:23  REDIS_ZSET_ZIPLIST key : zset , value e , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:20:23  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:20:23  the key zset from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:20:23  the key zset should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:20:23  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:20:23  the key is name Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:20:23  malloc length 7 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:20:23  REDIS_STRING  key : name ,value is liupeng,valuelength 7 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:20:23  the key name from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:20:23  the key name should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:20:23  malloc length 5 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:20:23  the key is name2 Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:20:23  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:20:23  REDIS_STRING  key : name2 ,value is aaa,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:20:23  the key name2 from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:20:23  the key name2 should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:20:23  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:20:23  the key is list Functon: loadPair Line: 467
+[DEBUG]2017/08/22 16:20:23  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:20:23  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:20:23  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:20:23  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:20:23  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:20:23  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:20:23  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:20:23  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:20:23  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:20:23  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:20:23  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:20:23  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:20:23  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:20:23  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:20:23  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:20:23  the key list from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:20:23  the key list should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:20:23  server 127.0.0.1:6379, processed 5 keys Functon: parseRdb Line: 988
+[NOTICE]2017/08/22 16:20:23  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[DEBUG]2017/08/22 16:21:22  the key name2, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:21:22  the key name2 should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:23:45  the key ss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:23:45  the key ss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[NOTICE]2017/08/22 16:24:28  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 16:24:28   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 16:24:28  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 16:24:28  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 170 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 16:24:28  parse size from server 127.0.0.1:6379 ok, the size is 170 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 16:24:28  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 16:24:28  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:24:28  the key is set Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:24:28  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:24:28  REDIS_LIST/SET key is set , value bb , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:24:28  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:24:28  REDIS_LIST/SET key is set , value gg , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:24:28  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:24:28  REDIS_LIST/SET key is set , value ff , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:24:28  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:24:28  REDIS_LIST/SET key is set , value ee , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:24:28  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:24:28  REDIS_LIST/SET key is set , value ll , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:24:28  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:24:28  REDIS_LIST/SET key is set , value aa , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:24:28  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:24:28  REDIS_LIST/SET key is set , value dd , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:24:28  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:24:28  REDIS_LIST/SET key is set , value kk , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:24:28  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:24:28  REDIS_LIST/SET key is set , value cc , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[DEBUG]2017/08/22 16:24:28  the key set from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:24:28  the key set should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:24:28  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:24:28  the key is zset Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:24:28  malloc length 36 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:24:28  REDIS_ZSET_ZIPLIST key : zset , value a , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:24:28  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:24:28  REDIS_ZSET_ZIPLIST key : zset , value b , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:24:28  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:24:28  REDIS_ZSET_ZIPLIST key : zset , value c , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:24:28  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:24:28  REDIS_ZSET_ZIPLIST key : zset , value d , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:24:28  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:24:28  REDIS_ZSET_ZIPLIST key : zset , value e , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:24:28  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:24:28  the key zset from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:24:28  the key zset should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:24:28  malloc length 2 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:24:28  the key is ss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:24:28  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:24:28  REDIS_STRING  key : ss ,value is sdf,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:24:28  the key ss from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:24:28  the key ss should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:24:28  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:24:28  the key is name Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:24:28  malloc length 7 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:24:28  REDIS_STRING  key : name ,value is liupeng,valuelength 7 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:24:28  the key name from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:24:28  the key name should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:24:28  malloc length 5 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:24:28  the key is name2 Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:24:28  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:24:28  REDIS_STRING  key : name2 ,value is aaa,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:24:28  the key name2 from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:24:28  the key name2 should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:24:28  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:24:28  the key is list Functon: loadPair Line: 467
+[DEBUG]2017/08/22 16:24:28  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:24:28  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:24:28  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:24:28  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:24:28  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:24:28  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:24:28  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:24:28  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:24:28  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:24:28  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:24:28  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:24:28  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:24:28  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:24:28  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:24:28  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:24:28  the key list from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:24:28  the key list should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:24:28  server 127.0.0.1:6379, processed 6 keys Functon: parseRdb Line: 988
+[NOTICE]2017/08/22 16:24:28  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[DEBUG]2017/08/22 16:24:36  the key ss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:24:36  the key ss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:24:37  the key ss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:24:37  the key ss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[NOTICE]2017/08/22 16:25:21  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 16:25:21   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 16:25:21  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 16:25:21  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 170 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 16:25:21  parse size from server 127.0.0.1:6379 ok, the size is 170 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 16:25:21  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 16:25:21  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:25:21  the key is set Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:25:21  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:25:21  REDIS_LIST/SET key is set , value bb , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:25:21  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:25:21  REDIS_LIST/SET key is set , value gg , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:25:21  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:25:21  REDIS_LIST/SET key is set , value ff , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:25:21  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:25:21  REDIS_LIST/SET key is set , value ee , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:25:21  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:25:21  REDIS_LIST/SET key is set , value ll , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:25:21  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:25:21  REDIS_LIST/SET key is set , value aa , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:25:21  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:25:21  REDIS_LIST/SET key is set , value dd , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:25:21  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:25:21  REDIS_LIST/SET key is set , value kk , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:25:21  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:25:21  REDIS_LIST/SET key is set , value cc , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[DEBUG]2017/08/22 16:25:21  the key set from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:25:21  the key set should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:25:21  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:25:21  the key is zset Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:25:21  malloc length 36 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:25:21  REDIS_ZSET_ZIPLIST key : zset , value a , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:25:21  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:25:21  REDIS_ZSET_ZIPLIST key : zset , value b , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:25:21  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:25:21  REDIS_ZSET_ZIPLIST key : zset , value c , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:25:21  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:25:21  REDIS_ZSET_ZIPLIST key : zset , value d , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:25:21  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:25:21  REDIS_ZSET_ZIPLIST key : zset , value e , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:25:21  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:25:21  the key zset from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:25:21  the key zset should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:25:21  malloc length 2 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:25:21  the key is ss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:25:21  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:25:21  REDIS_STRING  key : ss ,value is sdf,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:25:21  the key ss from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:25:21  the key ss should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:25:21  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:25:21  the key is name Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:25:21  malloc length 7 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:25:21  REDIS_STRING  key : name ,value is liupeng,valuelength 7 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:25:21  the key name from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:25:21  the key name should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:25:21  malloc length 5 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:25:21  the key is name2 Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:25:21  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:25:21  REDIS_STRING  key : name2 ,value is aaa,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:25:21  the key name2 from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:25:21  the key name2 should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:25:21  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:25:21  the key is list Functon: loadPair Line: 467
+[DEBUG]2017/08/22 16:25:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:25:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:25:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:25:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:25:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:25:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:25:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:25:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:25:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:25:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:25:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:25:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:25:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:25:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:25:21  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:25:21  the key list from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:25:21  the key list should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:25:21  server 127.0.0.1:6379, processed 6 keys Functon: parseRdb Line: 988
+[NOTICE]2017/08/22 16:25:21  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[DEBUG]2017/08/22 16:25:24  the key ss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:25:24  the key ss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:25:24  the key ss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:25:24  the key ss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[NOTICE]2017/08/22 16:26:00  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 16:26:00   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 16:26:00  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 16:26:00  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 170 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 16:26:00  parse size from server 127.0.0.1:6379 ok, the size is 170 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 16:26:00  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 16:26:00  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:26:00  the key is set Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:26:00  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:00  REDIS_LIST/SET key is set , value bb , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:26:00  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:00  REDIS_LIST/SET key is set , value gg , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:26:00  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:00  REDIS_LIST/SET key is set , value ff , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:26:00  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:00  REDIS_LIST/SET key is set , value ee , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:26:00  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:00  REDIS_LIST/SET key is set , value ll , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:26:00  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:00  REDIS_LIST/SET key is set , value aa , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:26:00  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:00  REDIS_LIST/SET key is set , value dd , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:26:00  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:00  REDIS_LIST/SET key is set , value kk , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:26:00  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:00  REDIS_LIST/SET key is set , value cc , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[DEBUG]2017/08/22 16:26:00  the key set from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:26:00  the key set should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:26:00  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:26:00  the key is zset Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:26:00  malloc length 36 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:00  REDIS_ZSET_ZIPLIST key : zset , value a , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:26:00  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:26:00  REDIS_ZSET_ZIPLIST key : zset , value b , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:26:00  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:26:00  REDIS_ZSET_ZIPLIST key : zset , value c , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:26:00  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:26:00  REDIS_ZSET_ZIPLIST key : zset , value d , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:26:00  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:26:00  REDIS_ZSET_ZIPLIST key : zset , value e , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:26:00  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:26:00  the key zset from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:26:00  the key zset should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:26:00  malloc length 2 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:26:00  the key is ss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:26:00  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:00  REDIS_STRING  key : ss ,value is sdf,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:26:00  the key ss from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:26:00  the key ss should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:26:00  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:26:00  the key is name Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:26:00  malloc length 7 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:00  REDIS_STRING  key : name ,value is liupeng,valuelength 7 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:26:00  the key name from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:26:00  the key name should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:26:00  malloc length 5 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:26:00  the key is name2 Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:26:00  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:00  REDIS_STRING  key : name2 ,value is aaa,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:26:00  the key name2 from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:26:00  the key name2 should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:26:00  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:26:00  the key is list Functon: loadPair Line: 467
+[DEBUG]2017/08/22 16:26:00  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:00  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:00  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:00  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:00  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:00  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:00  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:00  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:00  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:00  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:00  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:00  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:00  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:00  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:00  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:00  the key list from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:26:00  the key list should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:26:00  server 127.0.0.1:6379, processed 6 keys Functon: parseRdb Line: 988
+[NOTICE]2017/08/22 16:26:00  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[DEBUG]2017/08/22 16:26:02  the key ss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:26:02  the key ss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:26:03  the key ss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:26:03  the key ss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[NOTICE]2017/08/22 16:26:38  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 16:26:38   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 16:26:38  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 16:26:38  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 170 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 16:26:38  parse size from server 127.0.0.1:6379 ok, the size is 170 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 16:26:38  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 16:26:38  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:26:38  the key is set Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:26:38  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:38  REDIS_LIST/SET key is set , value bb , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:26:38  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:38  REDIS_LIST/SET key is set , value gg , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:26:38  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:38  REDIS_LIST/SET key is set , value ff , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:26:38  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:38  REDIS_LIST/SET key is set , value ee , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:26:38  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:38  REDIS_LIST/SET key is set , value ll , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:26:38  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:38  REDIS_LIST/SET key is set , value aa , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:26:38  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:38  REDIS_LIST/SET key is set , value dd , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:26:38  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:38  REDIS_LIST/SET key is set , value kk , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:26:38  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:38  REDIS_LIST/SET key is set , value cc , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[DEBUG]2017/08/22 16:26:38  the key set from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:26:38  the key set should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:26:38  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:26:38  the key is zset Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:26:38  malloc length 36 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:38  REDIS_ZSET_ZIPLIST key : zset , value a , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:26:38  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:26:38  REDIS_ZSET_ZIPLIST key : zset , value b , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:26:38  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:26:38  REDIS_ZSET_ZIPLIST key : zset , value c , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:26:38  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:26:38  REDIS_ZSET_ZIPLIST key : zset , value d , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:26:38  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:26:38  REDIS_ZSET_ZIPLIST key : zset , value e , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:26:38  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:26:38  the key zset from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:26:38  the key zset should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:26:38  malloc length 2 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:26:38  the key is ss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:26:38  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:38  REDIS_STRING  key : ss ,value is sdf,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:26:38  the key ss from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:26:38  the key ss should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:26:38  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:26:38  the key is name Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:26:38  malloc length 7 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:38  REDIS_STRING  key : name ,value is liupeng,valuelength 7 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:26:38  the key name from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:26:38  the key name should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:26:38  malloc length 5 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:26:38  the key is name2 Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:26:38  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:26:38  REDIS_STRING  key : name2 ,value is aaa,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:26:38  the key name2 from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:26:38  the key name2 should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:26:38  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:26:38  the key is list Functon: loadPair Line: 467
+[DEBUG]2017/08/22 16:26:38  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:38  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:38  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:38  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:38  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:38  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:38  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:38  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:38  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:38  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:38  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:38  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:38  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:38  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:38  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:26:38  the key list from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:26:38  the key list should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:26:38  server 127.0.0.1:6379, processed 6 keys Functon: parseRdb Line: 988
+[NOTICE]2017/08/22 16:26:38  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[DEBUG]2017/08/22 16:26:40  the key ss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:26:40  the key ss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:26:42  the key ssd, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:26:42  the key ssd should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[NOTICE]2017/08/22 16:30:52  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 16:30:52   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 16:30:52  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 16:30:52  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 156 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 16:30:52  parse size from server 127.0.0.1:6379 ok, the size is 156 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 16:30:52  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 16:30:52  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:30:52  the key is set Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:30:52  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:30:52  REDIS_LIST/SET key is set , value bb , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:30:52  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:30:52  REDIS_LIST/SET key is set , value gg , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:30:52  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:30:52  REDIS_LIST/SET key is set , value ff , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:30:52  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:30:52  REDIS_LIST/SET key is set , value ee , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:30:52  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:30:52  REDIS_LIST/SET key is set , value ll , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:30:52  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:30:52  REDIS_LIST/SET key is set , value aa , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:30:52  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:30:52  REDIS_LIST/SET key is set , value dd , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:30:52  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:30:52  REDIS_LIST/SET key is set , value kk , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:30:52  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:30:52  REDIS_LIST/SET key is set , value cc , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[DEBUG]2017/08/22 16:30:52  the key set from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:30:52  the key set should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:30:52  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:30:52  the key is zset Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:30:52  malloc length 36 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:30:52  REDIS_ZSET_ZIPLIST key : zset , value a , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:30:52  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:30:52  REDIS_ZSET_ZIPLIST key : zset , value b , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:30:52  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:30:52  REDIS_ZSET_ZIPLIST key : zset , value c , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:30:52  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:30:52  REDIS_ZSET_ZIPLIST key : zset , value d , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:30:52  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:30:52  REDIS_ZSET_ZIPLIST key : zset , value e , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:30:52  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:30:52  the key zset from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:30:52  the key zset should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:30:52  malloc length 2 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:30:52  the key is ss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:30:52  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:30:52  REDIS_STRING  key : ss ,value is sdf,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:30:52  the key ss from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:30:52  the key ss should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:30:52  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:30:52  the key is ssd Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:30:52  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:30:52  REDIS_STRING  key : ssd ,value is sdf,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:30:52  the key ssd from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:30:52  the key ssd should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:30:52  malloc length 5 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:30:52  the key is name2 Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:30:52  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:30:52  REDIS_STRING  key : name2 ,value is aaa,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:30:52  the key name2 from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:30:52  the key name2 should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:30:52  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:30:52  the key is list Functon: loadPair Line: 467
+[DEBUG]2017/08/22 16:30:52  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:30:52  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:30:52  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:30:52  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:30:52  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:30:52  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:30:52  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:30:52  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:30:52  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:30:52  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:30:52  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:30:52  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:30:52  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:30:52  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:30:52  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:30:52  the key list from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:30:52  the key list should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:30:52  server 127.0.0.1:6379, processed 6 keys Functon: parseRdb Line: 988
+[NOTICE]2017/08/22 16:30:52  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[DEBUG]2017/08/22 16:30:58  the key ssd, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:30:58  the key ssd should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:31:02  the key ssd, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:31:02  the key ssd should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[NOTICE]2017/08/22 16:32:17  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 16:32:17   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 16:32:17  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 16:32:17  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 156 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 16:32:17  parse size from server 127.0.0.1:6379 ok, the size is 156 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 16:32:17  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 16:32:17  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:32:17  the key is set Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:32:17  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:32:17  REDIS_LIST/SET key is set , value bb , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:32:17  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:32:17  REDIS_LIST/SET key is set , value gg , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:32:17  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:32:17  REDIS_LIST/SET key is set , value ff , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:32:17  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:32:17  REDIS_LIST/SET key is set , value ee , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:32:17  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:32:17  REDIS_LIST/SET key is set , value ll , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:32:17  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:32:17  REDIS_LIST/SET key is set , value aa , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:32:17  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:32:17  REDIS_LIST/SET key is set , value dd , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:32:17  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:32:17  REDIS_LIST/SET key is set , value kk , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:32:17  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:32:17  REDIS_LIST/SET key is set , value cc , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[DEBUG]2017/08/22 16:32:17  the key set from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:32:17  the key set should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:32:17  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:32:17  the key is zset Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:32:17  malloc length 36 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:32:17  REDIS_ZSET_ZIPLIST key : zset , value a , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:32:17  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:32:17  REDIS_ZSET_ZIPLIST key : zset , value b , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:32:17  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:32:17  REDIS_ZSET_ZIPLIST key : zset , value c , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:32:17  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:32:17  REDIS_ZSET_ZIPLIST key : zset , value d , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:32:17  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:32:17  REDIS_ZSET_ZIPLIST key : zset , value e , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:32:17  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:32:17  the key zset from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:32:17  the key zset should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:32:17  malloc length 2 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:32:17  the key is ss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:32:17  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:32:17  REDIS_STRING  key : ss ,value is sdf,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:32:17  the key ss from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:32:17  the key ss should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:32:17  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:32:17  the key is ssd Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:32:17  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:32:17  REDIS_STRING  key : ssd ,value is sdf,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:32:17  the key ssd from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:32:17  the key ssd should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:32:17  malloc length 5 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:32:17  the key is name2 Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:32:17  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:32:17  REDIS_STRING  key : name2 ,value is aaa,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:32:17  the key name2 from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:32:17  the key name2 should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:32:17  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:32:17  the key is list Functon: loadPair Line: 467
+[DEBUG]2017/08/22 16:32:17  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:32:17  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:32:17  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:32:17  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:32:17  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:32:17  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:32:17  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:32:17  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:32:17  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:32:17  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:32:17  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:32:17  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:32:17  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:32:17  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:32:17  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:32:17  the key list from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:32:17  the key list should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:32:17  server 127.0.0.1:6379, processed 6 keys Functon: parseRdb Line: 988
+[NOTICE]2017/08/22 16:32:17  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[DEBUG]2017/08/22 16:32:20  the key ssd, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:32:20  the key ssd should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:32:21  the key ssd, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:32:21  the key ssd should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[NOTICE]2017/08/22 16:34:53  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 16:34:53   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 16:34:53  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 16:34:53  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 156 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 16:34:53  parse size from server 127.0.0.1:6379 ok, the size is 156 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 16:34:53  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 16:34:53  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:34:53  the key is set Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:34:53  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:34:53  REDIS_LIST/SET key is set , value bb , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:34:53  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:34:53  REDIS_LIST/SET key is set , value gg , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:34:53  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:34:53  REDIS_LIST/SET key is set , value ff , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:34:53  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:34:53  REDIS_LIST/SET key is set , value ee , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:34:53  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:34:53  REDIS_LIST/SET key is set , value ll , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:34:53  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:34:53  REDIS_LIST/SET key is set , value aa , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:34:53  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:34:53  REDIS_LIST/SET key is set , value dd , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:34:53  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:34:53  REDIS_LIST/SET key is set , value kk , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:34:53  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:34:53  REDIS_LIST/SET key is set , value cc , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[DEBUG]2017/08/22 16:34:53  the key set from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:34:53  the key set should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:34:53  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:34:53  the key is zset Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:34:53  malloc length 36 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:34:53  REDIS_ZSET_ZIPLIST key : zset , value a , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:34:53  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:34:53  REDIS_ZSET_ZIPLIST key : zset , value b , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:34:53  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:34:53  REDIS_ZSET_ZIPLIST key : zset , value c , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:34:53  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:34:53  REDIS_ZSET_ZIPLIST key : zset , value d , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:34:53  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:34:53  REDIS_ZSET_ZIPLIST key : zset , value e , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:34:53  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:34:53  the key zset from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:34:53  the key zset should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:34:53  malloc length 2 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:34:53  the key is ss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:34:53  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:34:53  REDIS_STRING  key : ss ,value is sdf,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:34:53  the key ss from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:34:53  the key ss should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:34:53  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:34:53  the key is ssd Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:34:53  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:34:53  REDIS_STRING  key : ssd ,value is sdf,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:34:53  the key ssd from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:34:53  the key ssd should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:34:53  malloc length 5 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:34:53  the key is name2 Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:34:53  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:34:53  REDIS_STRING  key : name2 ,value is aaa,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:34:53  the key name2 from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:34:53  the key name2 should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:34:53  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:34:53  the key is list Functon: loadPair Line: 467
+[DEBUG]2017/08/22 16:34:53  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:34:53  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:34:53  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:34:53  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:34:53  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:34:53  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:34:53  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:34:53  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:34:53  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:34:53  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:34:53  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:34:53  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:34:53  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:34:53  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:34:53  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:34:53  the key list from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:34:53  the key list should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:34:53  server 127.0.0.1:6379, processed 6 keys Functon: parseRdb Line: 988
+[NOTICE]2017/08/22 16:34:53  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[NOTICE]2017/08/22 16:41:06  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 16:41:06   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 16:41:06  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 16:41:06  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 156 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 16:41:06  parse size from server 127.0.0.1:6379 ok, the size is 156 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 16:41:06  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 16:41:06  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:41:06  the key is set Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:41:06  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:06  REDIS_LIST/SET key is set , value bb , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:41:06  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:06  REDIS_LIST/SET key is set , value gg , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:41:06  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:06  REDIS_LIST/SET key is set , value ff , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:41:06  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:06  REDIS_LIST/SET key is set , value ee , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:41:06  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:06  REDIS_LIST/SET key is set , value ll , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:41:06  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:06  REDIS_LIST/SET key is set , value aa , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:41:06  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:06  REDIS_LIST/SET key is set , value dd , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:41:06  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:06  REDIS_LIST/SET key is set , value kk , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:41:06  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:06  REDIS_LIST/SET key is set , value cc , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[DEBUG]2017/08/22 16:41:06  the key set from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:41:06  the key set should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:41:06  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:41:06  the key is zset Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:41:06  malloc length 36 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:06  REDIS_ZSET_ZIPLIST key : zset , value a , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:41:06  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:41:06  REDIS_ZSET_ZIPLIST key : zset , value b , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:41:06  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:41:06  REDIS_ZSET_ZIPLIST key : zset , value c , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:41:06  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:41:06  REDIS_ZSET_ZIPLIST key : zset , value d , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:41:06  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:41:06  REDIS_ZSET_ZIPLIST key : zset , value e , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:41:06  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:41:06  the key zset from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:41:06  the key zset should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:41:06  malloc length 2 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:41:06  the key is ss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:41:06  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:06  REDIS_STRING  key : ss ,value is sdf,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:41:06  the key ss from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:41:06  the key ss should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:41:06  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:41:06  the key is ssd Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:41:06  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:06  REDIS_STRING  key : ssd ,value is sdf,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:41:06  the key ssd from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:41:06  the key ssd should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:41:06  malloc length 5 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:41:06  the key is name2 Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:41:06  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:06  REDIS_STRING  key : name2 ,value is aaa,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:41:06  the key name2 from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:41:06  the key name2 should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:41:06  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:41:06  the key is list Functon: loadPair Line: 467
+[DEBUG]2017/08/22 16:41:06  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:06  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:06  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:06  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:06  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:06  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:06  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:06  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:06  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:06  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:06  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:06  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:06  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:06  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:06  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:06  the key list from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:41:06  the key list should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:41:06  server 127.0.0.1:6379, processed 6 keys Functon: parseRdb Line: 988
+[NOTICE]2017/08/22 16:41:06  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[NOTICE]2017/08/22 16:41:22  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 16:41:22   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 16:41:22  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 16:41:22  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 156 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 16:41:22  parse size from server 127.0.0.1:6379 ok, the size is 156 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 16:41:22  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 16:41:22  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:41:22  the key is set Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:41:22  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:22  REDIS_LIST/SET key is set , value bb , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:41:22  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:22  REDIS_LIST/SET key is set , value gg , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:41:22  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:22  REDIS_LIST/SET key is set , value ff , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:41:22  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:22  REDIS_LIST/SET key is set , value ee , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:41:22  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:22  REDIS_LIST/SET key is set , value ll , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:41:22  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:22  REDIS_LIST/SET key is set , value aa , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:41:22  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:22  REDIS_LIST/SET key is set , value dd , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:41:22  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:22  REDIS_LIST/SET key is set , value kk , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:41:22  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:22  REDIS_LIST/SET key is set , value cc , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[DEBUG]2017/08/22 16:41:22  the key set from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:41:22  the key set should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:41:22  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:41:22  the key is zset Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:41:22  malloc length 36 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:22  REDIS_ZSET_ZIPLIST key : zset , value a , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:41:22  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:41:22  REDIS_ZSET_ZIPLIST key : zset , value b , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:41:22  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:41:22  REDIS_ZSET_ZIPLIST key : zset , value c , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:41:22  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:41:22  REDIS_ZSET_ZIPLIST key : zset , value d , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:41:22  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:41:22  REDIS_ZSET_ZIPLIST key : zset , value e , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:41:22  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:41:22  the key zset from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:41:22  the key zset should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:41:22  malloc length 2 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:41:22  the key is ss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:41:22  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:22  REDIS_STRING  key : ss ,value is sdf,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:41:22  the key ss from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:41:22  the key ss should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:41:22  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:41:22  the key is ssd Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:41:22  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:22  REDIS_STRING  key : ssd ,value is sdf,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:41:22  the key ssd from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:41:22  the key ssd should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:41:22  malloc length 5 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:41:22  the key is name2 Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:41:22  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:41:22  REDIS_STRING  key : name2 ,value is aaa,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:41:22  the key name2 from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:41:22  the key name2 should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:41:22  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:41:22  the key is list Functon: loadPair Line: 467
+[DEBUG]2017/08/22 16:41:22  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:22  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:22  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:22  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:22  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:22  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:22  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:22  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:22  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:22  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:22  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:22  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:22  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:22  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:22  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:41:22  the key list from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:41:22  the key list should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:41:22  server 127.0.0.1:6379, processed 6 keys Functon: parseRdb Line: 988
+[NOTICE]2017/08/22 16:41:22  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[DEBUG]2017/08/22 16:41:49  the key sss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:41:49  the key sss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:41:50  the key sss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:41:50  the key sss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[NOTICE]2017/08/22 16:45:10  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 16:45:10   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 16:45:10  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 16:45:10  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 163 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 16:45:10  parse size from server 127.0.0.1:6379 ok, the size is 163 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 16:45:10  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 16:45:10  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:45:10  the key is set Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:45:10  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:10  REDIS_LIST/SET key is set , value bb , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:45:10  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:10  REDIS_LIST/SET key is set , value gg , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:45:10  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:10  REDIS_LIST/SET key is set , value ff , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:45:10  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:10  REDIS_LIST/SET key is set , value ee , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:45:10  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:10  REDIS_LIST/SET key is set , value ll , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:45:10  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:10  REDIS_LIST/SET key is set , value aa , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:45:10  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:10  REDIS_LIST/SET key is set , value dd , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:45:10  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:10  REDIS_LIST/SET key is set , value kk , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:45:10  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:10  REDIS_LIST/SET key is set , value cc , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[DEBUG]2017/08/22 16:45:10  the key set from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:45:10  the key set should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:45:10  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:45:10  the key is sss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:45:10  malloc length 1 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:10  REDIS_STRING  key : sss ,value is s,valuelength 1 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:45:10  the key sss from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:45:10  the key sss should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:45:10  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:45:10  the key is zset Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:45:10  malloc length 36 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:10  REDIS_ZSET_ZIPLIST key : zset , value a , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:45:10  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:45:10  REDIS_ZSET_ZIPLIST key : zset , value b , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:45:10  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:45:10  REDIS_ZSET_ZIPLIST key : zset , value c , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:45:10  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:45:10  REDIS_ZSET_ZIPLIST key : zset , value d , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:45:10  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:45:10  REDIS_ZSET_ZIPLIST key : zset , value e , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:45:10  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:45:10  the key zset from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:45:10  the key zset should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:45:10  malloc length 2 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:45:10  the key is ss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:45:10  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:10  REDIS_STRING  key : ss ,value is sdf,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:45:10  the key ss from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:45:10  the key ss should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:45:10  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:45:10  the key is ssd Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:45:10  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:10  REDIS_STRING  key : ssd ,value is sdf,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:45:10  the key ssd from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:45:10  the key ssd should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:45:10  malloc length 5 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:45:10  the key is name2 Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:45:10  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:10  REDIS_STRING  key : name2 ,value is aaa,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:45:10  the key name2 from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:45:10  the key name2 should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:45:10  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:45:10  the key is list Functon: loadPair Line: 467
+[DEBUG]2017/08/22 16:45:10  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:10  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:10  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:10  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:10  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:10  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:10  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:10  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:10  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:10  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:10  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:10  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:10  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:10  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:10  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:10  the key list from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:45:10  the key list should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:45:10  server 127.0.0.1:6379, processed 7 keys Functon: parseRdb Line: 988
+[NOTICE]2017/08/22 16:45:10  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[DEBUG]2017/08/22 16:45:14  the key sss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:45:14  the key sss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:45:15  the key sss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:45:15  the key sss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[NOTICE]2017/08/22 16:45:35  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 16:45:35   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 16:45:35  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 16:45:35  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 163 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 16:45:35  parse size from server 127.0.0.1:6379 ok, the size is 163 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 16:45:35  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 16:45:35  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:45:35  the key is set Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:45:35  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:35  REDIS_LIST/SET key is set , value bb , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:45:35  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:35  REDIS_LIST/SET key is set , value gg , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:45:35  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:35  REDIS_LIST/SET key is set , value ff , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:45:35  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:35  REDIS_LIST/SET key is set , value ee , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:45:35  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:35  REDIS_LIST/SET key is set , value ll , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:45:35  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:35  REDIS_LIST/SET key is set , value aa , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:45:35  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:35  REDIS_LIST/SET key is set , value dd , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:45:35  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:35  REDIS_LIST/SET key is set , value kk , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[NOTICE]2017/08/22 16:45:35  malloc length 2 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:35  REDIS_LIST/SET key is set , value cc , server 127.0.0.1:6379 Functon: loadPair Line: 642
+[DEBUG]2017/08/22 16:45:35  the key set from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:45:35  the key set should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:45:35  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:45:35  the key is sss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:45:35  malloc length 1 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:35  REDIS_STRING  key : sss ,value is s,valuelength 1 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:45:35  the key sss from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:45:35  the key sss should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:45:35  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:45:35  the key is zset Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:45:35  malloc length 36 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:35  REDIS_ZSET_ZIPLIST key : zset , value a , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:45:35  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:45:35  REDIS_ZSET_ZIPLIST key : zset , value b , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:45:35  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:45:35  REDIS_ZSET_ZIPLIST key : zset , value c , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:45:35  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:45:35  REDIS_ZSET_ZIPLIST key : zset , value d , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:45:35  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:45:35  REDIS_ZSET_ZIPLIST key : zset , value e , server 127.0.0.1:6379 Functon: loadPair Line: 570
+[DEBUG]2017/08/22 16:45:35  REDIS_ZSET_ZIPLIST key : zset , score 1.000000 , server 127.0.0.1:6379 Functon: loadPair Line: 575
+[DEBUG]2017/08/22 16:45:35  the key zset from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:45:35  the key zset should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:45:35  malloc length 2 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:45:35  the key is ss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:45:35  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:35  REDIS_STRING  key : ss ,value is sdf,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:45:35  the key ss from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:45:35  the key ss should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:45:35  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:45:35  the key is ssd Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:45:35  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:35  REDIS_STRING  key : ssd ,value is sdf,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:45:35  the key ssd from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:45:35  the key ssd should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:45:35  malloc length 5 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:45:35  the key is name2 Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:45:35  malloc length 3 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:45:35  REDIS_STRING  key : name2 ,value is aaa,valuelength 3 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:45:35  the key name2 from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:45:35  the key name2 should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:45:35  malloc length 4 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:45:35  the key is list Functon: loadPair Line: 467
+[DEBUG]2017/08/22 16:45:35  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:35  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:35  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:35  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:35  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:35  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:35  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:35  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:35  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:35  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:35  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:35  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:35  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:35  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:35  REDIS_LIST_ZIPLIST key: list ,value aa , server 127.0.0.1:6379 Functon: loadPair Line: 522
+[DEBUG]2017/08/22 16:45:35  the key list from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:45:35  the key list should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:45:35  server 127.0.0.1:6379, processed 7 keys Functon: parseRdb Line: 988
+[NOTICE]2017/08/22 16:45:35  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[NOTICE]2017/08/22 16:46:40  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 16:46:40   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 16:46:40  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 16:46:40  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 18 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 16:46:40  parse size from server 127.0.0.1:6379 ok, the size is 18 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 16:46:40  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 16:46:40  server 127.0.0.1:6379, processed 0 keys Functon: parseRdb Line: 988
+[NOTICE]2017/08/22 16:46:40  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[DEBUG]2017/08/22 16:46:58  the key , from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:46:58  the key  should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:47:07  the key sss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:47:07  the key sss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:47:18  the key sss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:47:18  the key sss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:47:22  the key sss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:47:22  the key sss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:47:23  the key sss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:47:23  the key sss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:47:24  the key sss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:47:24  the key sss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:47:25  the key sss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:47:25  the key sss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:48:02  the key sss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:48:02  the key sss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:48:20  the key sss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:48:20  the key sss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:48:21  the key sss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:48:21  the key sss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:48:21  the key sss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:48:21  the key sss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:48:24  the key sss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:48:24  the key sss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[NOTICE]2017/08/22 16:48:56  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 16:48:56   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 16:48:56  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 16:48:56  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 34 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 16:48:56  parse size from server 127.0.0.1:6379 ok, the size is 34 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 16:48:56  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 16:48:56  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:48:56  the key is sss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:48:56  malloc length 8 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:48:56  REDIS_STRING  key : sss ,value is ssssfsfs,valuelength 8 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:48:56  the key sss from 127.0.0.1:6379 Functon: processPair Line: 924
+[DEBUG]2017/08/22 16:48:56  the key sss should goto 127.0.0.1:6380 Functon: processPair Line: 925
+[NOTICE]2017/08/22 16:48:56  server 127.0.0.1:6379, processed 1 keys Functon: parseRdb Line: 988
+[NOTICE]2017/08/22 16:48:56  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[DEBUG]2017/08/22 16:48:59  the key sss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:48:59  the key sss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:48:59  the key sss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:48:59  the key sss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:49:00  the key sss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:49:00  the key sss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:49:01  the key sss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:49:01  the key sss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:49:04  the key sss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:49:04  the key sss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:49:47  the key sss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:49:47  the key sss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 16:51:16  the key sss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:51:16  the key sss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[NOTICE]2017/08/22 16:51:58  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 16:51:58   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 16:51:58  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 16:51:58  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 42 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 16:51:58  parse size from server 127.0.0.1:6379 ok, the size is 42 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 16:51:58  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 16:51:58  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:51:58  the key is sss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:51:58  malloc length 16 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:51:58  REDIS_STRING  key : sss ,value is ssssfsfssdfsadfd,valuelength 16 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:51:58  the key sss from 127.0.0.1:6379 Functon: processPair Line: 925
+[DEBUG]2017/08/22 16:51:58  the key sss should goto 127.0.0.1:6380 Functon: processPair Line: 926
+[NOTICE]2017/08/22 16:51:58  server 127.0.0.1:6379, processed 1 keys Functon: parseRdb Line: 989
+[NOTICE]2017/08/22 16:51:58  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[NOTICE]2017/08/22 16:52:17  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 16:52:17   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 16:52:17  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 16:52:17  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 51 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 16:52:17  parse size from server 127.0.0.1:6379 ok, the size is 51 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 16:52:17  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 16:52:17  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:52:17  the key is sss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:52:17  malloc length 16 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:52:17  REDIS_STRING  key : sss ,value is ssssfsfssdfsadfd,valuelength 16 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:52:17  the key sss from 127.0.0.1:6379 Functon: processPair Line: 925
+[DEBUG]2017/08/22 16:52:17  the key sss should goto 127.0.0.1:6380 Functon: processPair Line: 926
+[NOTICE]2017/08/22 16:52:17  server 127.0.0.1:6379, processed 1 keys Functon: parseRdb Line: 989
+[NOTICE]2017/08/22 16:52:17  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[NOTICE]2017/08/22 16:53:29  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 16:53:29   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 16:53:29  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 16:53:29  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 51 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 16:53:29  parse size from server 127.0.0.1:6379 ok, the size is 51 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 16:53:29  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 16:53:29  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:53:29  the key is sss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:53:29  malloc length 16 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:53:29  REDIS_STRING  key : sss ,value is ssssfsfssdfsadfd,valuelength 16 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:53:29  the key sss from 127.0.0.1:6379 Functon: processPair Line: 927
+[DEBUG]2017/08/22 16:53:29  the key sss should goto 127.0.0.1:6380 Functon: processPair Line: 928
+[NOTICE]2017/08/22 16:53:29  server 127.0.0.1:6379, processed 1 keys Functon: parseRdb Line: 991
+[NOTICE]2017/08/22 16:53:29  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[DEBUG]2017/08/22 16:53:47  the key sss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:53:47  the key sss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[NOTICE]2017/08/22 16:53:50  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 16:53:50   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 16:53:50  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 16:53:50  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 42 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 16:53:50  parse size from server 127.0.0.1:6379 ok, the size is 42 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 16:53:50  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 16:53:50  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:53:50  the key is sss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:53:50  malloc length 16 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:53:50  REDIS_STRING  key : sss ,value is ssssfsfssdfsadfd,valuelength 16 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:53:50  the key sss from 127.0.0.1:6379 Functon: processPair Line: 927
+[DEBUG]2017/08/22 16:53:50  the key sss should goto 127.0.0.1:6380 Functon: processPair Line: 928
+[NOTICE]2017/08/22 16:53:50  server 127.0.0.1:6379, processed 1 keys Functon: parseRdb Line: 991
+[NOTICE]2017/08/22 16:53:50  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[NOTICE]2017/08/22 16:56:33  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 16:56:33   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 16:56:33  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 16:56:33  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 42 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 16:56:33  parse size from server 127.0.0.1:6379 ok, the size is 42 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 16:56:33  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 16:56:33  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:56:33  the key is sss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:56:33  malloc length 16 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:56:33  REDIS_STRING  key : sss ,value is ssssfsfssdfsadfd,valuelength 16 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:56:33  the key sss from 127.0.0.1:6379 Functon: processPair Line: 927
+[DEBUG]2017/08/22 16:56:33  the key sss should goto 127.0.0.1:6380 Functon: processPair Line: 928
+[NOTICE]2017/08/22 16:56:33  server 127.0.0.1:6379, processed 1 keys Functon: parseRdb Line: 991
+[NOTICE]2017/08/22 16:56:33  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[DEBUG]2017/08/22 16:56:37  the key sss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 16:56:37  the key sss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[NOTICE]2017/08/22 16:56:40  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 16:56:40   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 16:56:40  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 16:56:40  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 51 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 16:56:40  parse size from server 127.0.0.1:6379 ok, the size is 51 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 16:56:40  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 16:56:40  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 16:56:40  the key is sss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 16:56:40  malloc length 16 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 16:56:40  REDIS_STRING  key : sss ,value is ssssfsfssdfsadfd,valuelength 16 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 16:56:40  the key sss from 127.0.0.1:6379 Functon: processPair Line: 927
+[DEBUG]2017/08/22 16:56:40  the key sss should goto 127.0.0.1:6380 Functon: processPair Line: 928
+[NOTICE]2017/08/22 16:56:40  server 127.0.0.1:6379, processed 1 keys Functon: parseRdb Line: 991
+[NOTICE]2017/08/22 16:56:40  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[NOTICE]2017/08/22 17:04:13  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 17:04:13   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 17:04:13  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 17:04:13  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 51 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 17:04:13  parse size from server 127.0.0.1:6379 ok, the size is 51 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 17:04:13  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 17:04:13  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 17:04:13  the key is sss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 17:04:13  malloc length 16 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 17:04:13  REDIS_STRING  key : sss ,value is ssssfsfssdfsadfd,valuelength 16 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 17:04:13  the key sss from 127.0.0.1:6379 Functon: processPair Line: 927
+[DEBUG]2017/08/22 17:04:13  the key sss should goto 127.0.0.1:6380 Functon: processPair Line: 928
+[NOTICE]2017/08/22 17:04:13  server 127.0.0.1:6379, processed 1 keys Functon: parseRdb Line: 991
+[NOTICE]2017/08/22 17:04:13  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[NOTICE]2017/08/22 17:05:56  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 17:05:56   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 17:05:56  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 17:05:56  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 51 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 17:05:56  parse size from server 127.0.0.1:6379 ok, the size is 51 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 17:05:56  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 17:05:56  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 17:05:56  the key is sss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 17:05:56  malloc length 16 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 17:05:56  REDIS_STRING  key : sss ,value is ssssfsfssdfsadfd,valuelength 16 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 17:05:56  the key sss from 127.0.0.1:6379 Functon: processPair Line: 925
+[DEBUG]2017/08/22 17:05:56  the key sss should goto 127.0.0.1:6380 Functon: processPair Line: 926
+[NOTICE]2017/08/22 17:05:56  server 127.0.0.1:6379, processed 1 keys Functon: parseRdb Line: 989
+[NOTICE]2017/08/22 17:05:56  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[NOTICE]2017/08/22 17:08:25  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 17:08:25   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 17:08:25  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 17:08:25  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 51 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 17:08:25  parse size from server 127.0.0.1:6379 ok, the size is 51 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 17:08:25  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 17:08:25  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 17:08:25  the key is sss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 17:08:25  malloc length 16 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 17:08:25  REDIS_STRING  key : sss ,value is ssssfsfssdfsadfd,valuelength 16 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 17:08:25  the key sss from 127.0.0.1:6379 Functon: processPair Line: 922
+[DEBUG]2017/08/22 17:08:25  the key sss should goto 127.0.0.1:6380 Functon: processPair Line: 923
+[NOTICE]2017/08/22 17:08:25  server 127.0.0.1:6379, processed 1 keys Functon: parseRdb Line: 986
+[NOTICE]2017/08/22 17:08:25  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[NOTICE]2017/08/22 17:10:17  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 17:10:17   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 17:10:17  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 17:10:17  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 51 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 17:10:17  parse size from server 127.0.0.1:6379 ok, the size is 51 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 17:10:17  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 17:10:17  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 17:10:17  the key is sss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 17:10:17  malloc length 16 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 17:10:17  REDIS_STRING  key : sss ,value is ssssfsfssdfsadfd,valuelength 16 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 17:10:17  the key sss from 127.0.0.1:6379 Functon: processPair Line: 923
+[DEBUG]2017/08/22 17:10:17  the key sss should goto 127.0.0.1:6380 Functon: processPair Line: 924
+[NOTICE]2017/08/22 17:10:17  server 127.0.0.1:6379, processed 1 keys Functon: parseRdb Line: 987
+[NOTICE]2017/08/22 17:10:17  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[NOTICE]2017/08/22 17:10:37  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 17:10:37   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 17:10:37  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 17:10:37  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 51 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 17:10:37  parse size from server 127.0.0.1:6379 ok, the size is 51 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 17:10:37  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 17:10:37  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 17:10:37  the key is sss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 17:10:37  malloc length 16 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 17:10:37  REDIS_STRING  key : sss ,value is ssssfsfssdfsadfd,valuelength 16 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 17:10:37  the key sss from 127.0.0.1:6379 Functon: processPair Line: 923
+[DEBUG]2017/08/22 17:10:37  the key sss should goto 127.0.0.1:6380 Functon: processPair Line: 924
+[NOTICE]2017/08/22 17:10:37  server 127.0.0.1:6379, processed 1 keys Functon: parseRdb Line: 987
+[NOTICE]2017/08/22 17:10:37  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[NOTICE]2017/08/22 17:11:04  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 17:11:04   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 17:11:04  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 17:11:04  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 51 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 17:11:04  parse size from server 127.0.0.1:6379 ok, the size is 51 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 17:11:04  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 17:11:04  malloc length 3 Functon: loadStringObject Line: 410
+[NOTICE]2017/08/22 17:11:04  the key is sss Functon: loadPair Line: 467
+[NOTICE]2017/08/22 17:11:04  malloc length 16 Functon: loadStringObject Line: 410
+[DEBUG]2017/08/22 17:11:04  REDIS_STRING  key : sss ,value is ssssfsfssdfsadfd,valuelength 16 , server 127.0.0.1:6379 Functon: loadPair Line: 628
+[DEBUG]2017/08/22 17:11:04  the key sss from 127.0.0.1:6379 Functon: processPair Line: 923
+[DEBUG]2017/08/22 17:11:04  the key sss should goto 127.0.0.1:6380 Functon: processPair Line: 924
+[NOTICE]2017/08/22 17:11:04  server 127.0.0.1:6379, processed 1 keys Functon: parseRdb Line: 987
+[NOTICE]2017/08/22 17:11:04  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[DEBUG]2017/08/22 17:16:57  the key sss, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 17:16:57  the key sss should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 17:17:14  the key lololili, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 17:17:14  the key lololili should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[NOTICE]2017/08/22 17:19:14  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 17:19:14   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 17:19:14  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[ERROR]2017/08/22 17:19:14  Bad protocol from MASTER 127.0.0.1:6379, the first byte is not '$' (we received '29') Functon: parseSize Line: 170
+[ERROR]2017/08/22 17:19:14  parse size error from server 127.0.0.1:6379 Functon: transferFromServer Line: 227
+[NOTICE]2017/08/22 17:20:13  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 17:20:13   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 17:20:13  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[ERROR]2017/08/22 17:20:13  Bad protocol from MASTER 127.0.0.1:6379, the first byte is not '$' (we received '29') Functon: parseSize Line: 170
+[ERROR]2017/08/22 17:20:13  parse size error from server 127.0.0.1:6379 Functon: transferFromServer Line: 227
+[NOTICE]2017/08/22 17:21:59  config file parse ok  Functon: main Line: 142
+[NOTICE]2017/08/22 17:21:59   connetToServer 127.0.0.1:6379 ok  Functon: transferFromServer Line: 213
+[NOTICE]2017/08/22 17:21:59  send sync to server 127.0.0.1:6379 ok Functon: transferFromServer Line: 220
+[NOTICE]2017/08/22 17:21:59  MASTER 127.0.0.1:6379 <-> SLAVE sync: receiving 18 bytes from master Functon: parseSize Line: 183
+[NOTICE]2017/08/22 17:21:59  parse size from server 127.0.0.1:6379 ok, the size is 18 Functon: transferFromServer Line: 230
+[NOTICE]2017/08/22 17:21:59  redis version is 6, server 127.0.0.1:6379 Functon: processHeader Line: 210
+[NOTICE]2017/08/22 17:21:59  server 127.0.0.1:6379, processed 0 keys Functon: parseRdb Line: 986
+[NOTICE]2017/08/22 17:21:59  receive rdb from the master 127.0.0.1:6379 done Functon: transferFromServer Line: 246
+[DEBUG]2017/08/22 17:22:10  the key name, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 17:22:10  the key name should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149
+[DEBUG]2017/08/22 17:22:38  the key name, from 127.0.0.1:6379 Functon: replicationWithServer Line: 148
+[DEBUG]2017/08/22 17:22:38  the key name should goto 127.0.0.1:6380 Functon: replicationWithServer Line: 149

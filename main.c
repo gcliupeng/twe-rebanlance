@@ -122,13 +122,13 @@ int main(int argc, char const *argv[])
 	for (i = 1; i < argc; ++i){
 
 		if(!strcmp(argv[i],"-o")){
-			oldConf = argv[++i];
+			oldConf = argv[i++];
 		}
 		if(!strcmp(argv[i],"-n")){
-			newConf = argv[++i];
+			newConf = argv[i++];
 		}
 		if(!strcmp(argv[i],"-c")){
-			loadConfig(argv[++i]);
+			loadConfig(argv[i++]);
 		}
 	}
 
@@ -163,6 +163,7 @@ int main(int argc, char const *argv[])
 	//wait signal
 	sigset_t		set;
 	sigemptyset(&set);
+	sigaddset(&set,SIGPIPE);
     sigsuspend(&set);
 
 	return 0;

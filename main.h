@@ -62,8 +62,8 @@ struct thread_contex_s{
 	long value_length;
 	int type;
 	int buffed;
-	int32_t expiretime;
-	int64_t expiretimeM;
+	time_t expiretime;
+	long long expiretimeM;
 
 	int inputMode;
 	int step;

@@ -235,7 +235,7 @@ int loadType(int fd) {
     return t;
 }
 
-int processTime(int fd,int type,int32_t* expiretime, int64_t* expiretimeM) {
+int processTime(int fd,int type,time_t * expiretime, long long * expiretimeM) {
 
     int i;
     if(type == REDIS_EXPIRETIME_MS){
@@ -761,10 +761,10 @@ void formatResponse(thread_contex *th, buf_t * out){
 			break;
 	}
 
-    //del
+    //ttl
     if(th->expiretime != -1 || th->expiretimeM != -1){
         //*3\r\n$8\r\nexpireat\r\n$n\r\nkey\r\n
-        out->position += sprintf(out->position,"*3\r\n$8pexpireat\r\n");
+        out->position += sprintf(out->position,"*3\r\n$9\r\npexpireat\r\n");
         out->position+=formatStr(out->position,th->key);
         out->position += sprintf(out->position,"$%lld\r\n%lld\r\n",lengthSize(th->expiretimeM),th->expiretimeM);
     }
