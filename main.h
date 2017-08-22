@@ -55,6 +55,7 @@ struct thread_contex_s{
 	event *read;
 	event *write;
 	long transfer_size;
+	long transfer_read;
 	int usemark;
 	int version;
 	int close;
