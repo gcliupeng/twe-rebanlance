@@ -115,7 +115,7 @@ int main(int argc, char const *argv[])
 	const char* newConf = "new.yml";
 	//const char* log = "twe-rebanlance.log";
 	server.logfile = "twe-rebanlance.log";
-	server.loglevel = LOG_DEBUG;
+	server.loglevel = LOG_NOTICE;
 	server.prefix = "";
 	server.filter = "";
 	int i;
