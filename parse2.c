@@ -96,10 +96,10 @@ int sdsll2str(char *s, long long value) {
     return l;
 }
 
-int readBytes(int fd, char * p,int max){
+int readBytes(int rdbfd, char * p,int max){
 	int n ,m =0;
 	while(max >0){
-		n = read(fd, p+m, max);
+		n = read(rdbfd, p+m, max);
 		if(n == 0){
 			return 0;
 		}
@@ -109,12 +109,12 @@ int readBytes(int fd, char * p,int max){
 	return m;
 }
 
-int readLine(int fd, char * ptr, int max){
+int readLine(int rdbfd, char * ptr, int max){
     int nread = 0;
     while(max) {
         char c;
 
-        if (read(fd,&c,1) == -1) {
+        if (read(rdbfd,&c,1) == -1) {
         	//printf("read -1 !!\n");
         	return -1;
         }
@@ -135,7 +135,7 @@ int readLine(int fd, char * ptr, int max){
 
 int sendSync(thread_contex * th){
     
-	int fd = th->fd;
+	int rdbfd = th->rdbfd;
 	char *sync = "*1\r\n$4\r\nsync\r\n";
 	if(!sendToServer(th->fd,sync,strlen(sync))){
 		return 0;
@@ -187,11 +187,11 @@ int parseSize(thread_contex *th){
 }
 
 int processHeader(thread_contex * th) {
-    int fd = th->fd;
+    int rdbfd = th->rdbfd;
     char buf[10] = "_________";
     int dump_version;
 
-    if (!readBytes(fd,buf, 9)) {
+    if (!readBytes(rdbfd,buf, 9)) {
         Log(LOG_ERROR, "Cannot read header, server %s:%d, errno %s",th->sc->pname,th->sc->port,strerror(errno));
         return 0;
     }
@@ -220,10 +220,10 @@ int checkType(unsigned char t) {
         t >= REDIS_EXPIRETIME_MS;
 }
 
-int loadType(int fd) {
+int loadType(int rdbfd) {
     /* this byte needs to qualify as type */
     unsigned char t;
-    if (!readBytes(fd,&t, 1)) {
+    if (!readBytes(rdbfd,&t, 1)) {
         Log(LOG_ERROR, "cannot read type");
         return -1;
     }
@@ -236,31 +236,31 @@ int loadType(int fd) {
     return t;
 }
 
-int processTime(int fd,int type,time_t * expiretime, long long * expiretimeM) {
+int processTime(int rdbfd,int type,time_t * expiretime, long long * expiretimeM) {
 
     int i;
     if(type == REDIS_EXPIRETIME_MS){
-    	if(!readBytes(fd,(char*)expiretimeM,8))
+    	if(!readBytes(rdbfd,(char*)expiretimeM,8))
     		return 0;
     	else{
 
     		return 8;
         }
     }else{
-    	if(!readBytes(fd,(char*)expiretime,4))
+    	if(!readBytes(rdbfd,(char*)expiretime,4))
     		return 0;
     	else
     		return 4;
     }
 }
 
-uint32_t loadLength(int fd, int *isencoded) {
+uint32_t loadLength(int rdbfd, int *isencoded) {
     unsigned char buf[2];
     uint32_t len;
     int type;
 
     if (isencoded) *isencoded = 0;
-    if (!readBytes(fd, buf, 1)) return REDIS_RDB_LENERR;
+    if (!readBytes(rdbfd, buf, 1)) return REDIS_RDB_LENERR;
     type = (buf[0] & 0xC0) >> 6;
     if (type == REDIS_RDB_6BITLEN) {
         /* Read a 6 bit len */
@@ -271,25 +271,25 @@ uint32_t loadLength(int fd, int *isencoded) {
         return buf[0] & 0x3F;
     } else if (type == REDIS_RDB_14BITLEN) {
         /* Read a 14 bit len */
-        if (!readBytes(fd,buf+1,1)) return REDIS_RDB_LENERR;
+        if (!readBytes(rdbfd,buf+1,1)) return REDIS_RDB_LENERR;
         return ((buf[0] & 0x3F) << 8) | buf[1];
     } else {
         /* Read a 32 bit len */
-        if (!readBytes(fd, (char*)&len, 4)) return REDIS_RDB_LENERR;
+        if (!readBytes(rdbfd, (char*)&len, 4)) return REDIS_RDB_LENERR;
         return (unsigned int)ntohl(len);
     }
 }
 
-char* loadLzfStringObject(int fd) {
+char* loadLzfStringObject(int rdbfd) {
     unsigned int slen, clen;
     char *c, *s;
 
-    if ((clen = loadLength(fd,NULL)) == REDIS_RDB_LENERR) return NULL;
-    if ((slen = loadLength(fd,NULL)) == REDIS_RDB_LENERR) return NULL;
+    if ((clen = loadLength(rdbfd,NULL)) == REDIS_RDB_LENERR) return NULL;
+    if ((slen = loadLength(rdbfd,NULL)) == REDIS_RDB_LENERR) return NULL;
 
     c = malloc(clen);
 
-    if (!readBytes(fd,c, clen)) {
+    if (!readBytes(rdbfd,c, clen)) {
         free(c);
         return NULL;
     }
@@ -307,23 +307,23 @@ char* loadLzfStringObject(int fd) {
     return s;
 }
 
-char *loadIntegerObject(int fd, int enctype) {
+char *loadIntegerObject(int rdbfd, int enctype) {
     unsigned char enc[4];
     long long val;
 
     if (enctype == REDIS_RDB_ENC_INT8) {
         uint8_t v;
-        if (!readBytes(fd, enc, 1)) return NULL;
+        if (!readBytes(rdbfd, enc, 1)) return NULL;
         v = enc[0];
         val = (int8_t)v;
     } else if (enctype == REDIS_RDB_ENC_INT16) {
         uint16_t v;
-        if (!readBytes(fd, enc, 2)) return NULL;
+        if (!readBytes(rdbfd, enc, 2)) return NULL;
         v = enc[0]|(enc[1]<<8);
         val = (int16_t)v;
     } else if (enctype == REDIS_RDB_ENC_INT32) {
         uint32_t v;
-        if (!readBytes(fd,enc, 4)) return NULL;
+        if (!readBytes(rdbfd,enc, 4)) return NULL;
         v = enc[0]|(enc[1]<<8)|(enc[2]<<16)|(enc[3]<<24);
         val = (int32_t)v;
     } else {
@@ -339,7 +339,7 @@ char *loadIntegerObject(int fd, int enctype) {
     return buf;
 }
 
-double* loadDoubleValue(int fd) {
+double* loadDoubleValue(int rdbfd) {
 	double R_Zero = 0.0;
 	double R_PosInf = 1.0/R_Zero;
 	double R_NegInf = -1.0/R_Zero;
@@ -349,7 +349,7 @@ double* loadDoubleValue(int fd) {
     unsigned char len;
     double* val;
 
-    if (!readBytes(fd,&len,1)) return NULL;
+    if (!readBytes(rdbfd,&len,1)) return NULL;
 
     val = malloc(sizeof(double));
 
@@ -358,7 +358,7 @@ double* loadDoubleValue(int fd) {
     case 254: *val = R_PosInf;  return val;
     case 253: *val = R_Nan;     return val;
     default:
-        if (!readBytes(fd,buf, len)) {
+        if (!readBytes(rdbfd,buf, len)) {
             free(val);
             return NULL;
         }
@@ -369,8 +369,8 @@ double* loadDoubleValue(int fd) {
 }
 
 
-int processDoubleValue(int fd, double* store) {
-    double *val = loadDoubleValue(fd);
+int processDoubleValue(int rdbfd, double* store) {
+    double *val = loadDoubleValue(rdbfd);
     if (val == NULL) {
         Log(LOG_ERROR, "Error reading double value");
         return 0;
@@ -385,11 +385,11 @@ int processDoubleValue(int fd, double* store) {
     return 1;
 }
 
-char* loadStringObject(int fd) {
+char* loadStringObject(int rdbfd) {
     int isencoded;
     uint32_t len;
 
-    len = loadLength(fd, &isencoded);
+    len = loadLength(rdbfd, &isencoded);
     //printf("%d\n",len );
     //Log(LOG_NOTICE,"length %d",len);
     if (isencoded) {
@@ -397,9 +397,9 @@ char* loadStringObject(int fd) {
         case REDIS_RDB_ENC_INT8:
         case REDIS_RDB_ENC_INT16:
         case REDIS_RDB_ENC_INT32:
-            return loadIntegerObject(fd,len);
+            return loadIntegerObject(rdbfd,len);
         case REDIS_RDB_ENC_LZF:
-            return loadLzfStringObject(fd);
+            return loadLzfStringObject(rdbfd);
         default:
             /* unknown encoding */
             Log(LOG_ERROR, "Unknown string encoding (0x%02x)", len);
@@ -416,15 +416,15 @@ char* loadStringObject(int fd) {
     if(len == 0){
         return buf;
     }
-    if (!readBytes(fd,buf, len)) {
+    if (!readBytes(rdbfd,buf, len)) {
         free(buf);
         return NULL;
     }
     return buf;
 }
 
-int processStringObject(int fd, char** store) {
-    char *key = loadStringObject(fd);
+int processStringObject(int rdbfd, char** store) {
+    char *key = loadStringObject(rdbfd);
     if (key == NULL) {
         Log(LOG_ERROR, "Error reading string object");
         //free(key);
@@ -458,7 +458,7 @@ int loadPair(thread_contex * th) {
     char * buf;
     intset *is;
 
-    if (processStringObject(th->fd, &key)) {
+    if (processStringObject(th->rdbfd, &key)) {
         th->key = key;
     } else {
         Log(LOG_ERROR,"Error reading entry key, server %s:%d",th->sc->pname,th->sc->port);
@@ -471,7 +471,7 @@ int loadPair(thread_contex * th) {
         th->type == REDIS_SET  ||
         th->type == REDIS_ZSET ||
         th->type == REDIS_HASH) {
-        if ((length = loadLength(th->fd,NULL)) == REDIS_RDB_LENERR) {
+        if ((length = loadLength(th->rdbfd,NULL)) == REDIS_RDB_LENERR) {
             Log(LOG_ERROR ,"Error reading %d length, server %s:%d", th->type,th->sc->pname,th->sc->port);
             return 0;
 
@@ -480,7 +480,7 @@ int loadPair(thread_contex * th) {
 
     switch(th->type) {
     case REDIS_HASH_ZIPMAP:
-    	if (!processStringObject(th->fd, (char **)&zl)) {
+    	if (!processStringObject(th->rdbfd, (char **)&zl)) {
             Log(LOG_ERROR, "Error reading entry value, type is %d ,server %s:%d",th->type,th->sc->pname,th->sc->port);
             return 0;
         }
@@ -501,7 +501,7 @@ int loadPair(thread_contex * th) {
         	break;
 
     case REDIS_LIST_ZIPLIST:
-    	if (!processStringObject(th->fd, (char **)&zl)) {
+    	if (!processStringObject(th->rdbfd, (char **)&zl)) {
             Log(LOG_ERROR, "Error reading entry value , type %d, server %s:%d",th->type,th->sc->pname,th->sc->port);
             return 0;
         }
@@ -528,7 +528,7 @@ int loadPair(thread_contex * th) {
         break;
 
     case REDIS_SET_INTSET:
-    	 if (!processStringObject(th->fd, (char **)&is)) {
+    	 if (!processStringObject(th->rdbfd, (char **)&is)) {
             Log(LOG_ERROR, "Error reading entry value , type %d, server %s:%d",th->type,th->sc->pname,th->sc->port);
             return 0;
         }
@@ -548,7 +548,7 @@ int loadPair(thread_contex * th) {
         break;
 
     case REDIS_ZSET_ZIPLIST:
-    	if (!processStringObject(th->fd, (char **)&zl)) {
+    	if (!processStringObject(th->rdbfd, (char **)&zl)) {
             Log(LOG_ERROR, "Error reading entry value , type %d, server %s:%d",th->type,th->sc->pname,th->sc->port);
             return 0;
         }
@@ -580,7 +580,7 @@ int loadPair(thread_contex * th) {
         return 1;
         break;
     case REDIS_HASH_ZIPLIST:
-    	if (!processStringObject(th->fd, (char **)&zl)) {
+    	if (!processStringObject(th->rdbfd, (char **)&zl)) {
             Log(LOG_ERROR, "Error reading entry value , type %d, server %s:%d",th->type,th->sc->pname,th->sc->port);
             return 0;
         }
@@ -621,7 +621,7 @@ int loadPair(thread_contex * th) {
     	return 1;
     	break;
     case REDIS_STRING:
-    if (!processStringObject(th->fd,&key)) {
+    if (!processStringObject(th->rdbfd,&key)) {
             Log(LOG_ERROR, "Error reading entry value , type %d, server %s:%d",th->type,th->sc->pname,th->sc->port);
             return 0;
         }
@@ -636,7 +636,7 @@ int loadPair(thread_contex * th) {
     th->value->listset = newListSet();
     for (i = 0; i < length; i++) {
     	lnode = listSetAdd(th->value->listset); 
-        if (!processStringObject(th->fd,&lnode->str)) {
+        if (!processStringObject(th->rdbfd,&lnode->str)) {
                 Log(LOG_ERROR, "Error reading element at index %d (length: %d), server %s:%d", i, length, th->sc->pname,th->sc->port);
                 return 0;
             }
@@ -650,13 +650,13 @@ int loadPair(thread_contex * th) {
     	th->value->zset = newZset();
         for (i = 0; i < length; i++) {
         	znode = zsetAdd(th->value->zset);
-            if (!processStringObject(th->fd,&znode->str)) {
+            if (!processStringObject(th->rdbfd,&znode->str)) {
                 Log(LOG_ERROR, "Error reading element at index %d (length: %d), server %s:%d", i, length, th->sc->pname,th->sc->port);
                 return 0;
             }
             Log(LOG_DEBUG,"REDIS_ZSET key : %s , value %s , server %s:%d",th->key, znode->str, th->sc->pname,th->sc->port);
 
-            if (!processDoubleValue(th->fd,&znode->score)) {
+            if (!processDoubleValue(th->rdbfd,&znode->score)) {
                 Log(LOG_ERROR, "Error reading element at index %d (length: %d), server %s:%d", i, length, th->sc->pname,th->sc->port);
                 return 0;
             }
@@ -669,13 +669,13 @@ int loadPair(thread_contex * th) {
     	th->value->hash = newHash();
         for (i = 0; i < length; i++) {
         	hnode = hashAdd(th->value->hash);
-            if (!processStringObject(th->fd,&hnode->field)) {
+            if (!processStringObject(th->rdbfd,&hnode->field)) {
                 Log(LOG_ERROR, "Error reading element at index %d (length: %d), server %s:%d", i, length, th->sc->pname,th->sc->port);
                 return 0;
             }
             Log(LOG_DEBUG, "REDIS_HASH  key : %s , field %s ,server %s:%d",th->key,hnode->field,th->sc->pname,th->sc->port);
 
-            if (!processStringObject(th->fd,&hnode->value)) {
+            if (!processStringObject(th->rdbfd,&hnode->value)) {
                 Log(LOG_ERROR, "Error reading element at index %d (length: %d), server %s:%d", i, length, th->sc->pname,th->sc->port);
                 return 0;
             }
@@ -949,7 +949,7 @@ void processPair(thread_contex *th){
 }
 
 int parseRdb(thread_contex * th){
-	int fd = th->fd;
+	int rdbfd = th->rdbfd;
 	int type;
 	int n;
 	char buf[1024];
@@ -966,7 +966,7 @@ int parseRdb(thread_contex * th){
     	th->expiretime = th->expiretimeM = -1;
 
     	//parse type
-    	th->type = loadType(fd);
+    	th->type = loadType(rdbfd);
     	if(th->type == -1){
             Log(LOG_ERROR,"loadType error");
     		return 0;
@@ -976,8 +976,8 @@ int parseRdb(thread_contex * th){
     	//printf("type is %d\n",type );
     	if (th->type == REDIS_SELECTDB) {
     		//printf("here \n");
-    		loadLength(fd,NULL);
-    		th->type = loadType(fd);
+    		loadLength(rdbfd,NULL);
+    		th->type = loadType(rdbfd);
     		//do nothing
         }
 
@@ -986,19 +986,19 @@ int parseRdb(thread_contex * th){
         		//Log("Unexpected EOF");
         		Log(LOG_NOTICE, "server %s:%d, processed %ld keys",th->sc->pname,th->sc->port, th->processed);
         		//skip 8 byte checksum
-        		readBytes(fd,buf,8);
+        		readBytes(rdbfd,buf,8);
         		return 1;
         }else{
         	if (th->type == REDIS_EXPIRETIME ||th->type == REDIS_EXPIRETIME_MS) {
         		//Log(LOG_NOTICE,"the type %d",th->type);
 
-                if (n = processTime(fd,th->type,&th->expiretime,&th->expiretimeM) ==0) {
+                if (n = processTime(rdbfd,th->type,&th->expiretime,&th->expiretimeM) ==0) {
                     Log(LOG_ERROR,"processTime error");
                     return 0;
                 };
                 //Log(LOG_NOTICE,"time is %ld",expiretimeM);
         		nread+=n;
-        		if ((th->type = loadType(fd) )== -1){
+        		if ((th->type = loadType(rdbfd) )== -1){
                     //Log(LOG_NOTICE,"type 2 %d",th->type);
                     Log(LOG_ERROR,"loadType error");
                     return 0;

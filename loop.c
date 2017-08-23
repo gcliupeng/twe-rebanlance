@@ -13,6 +13,10 @@
 
 extern rebance_server server;
 
+static pthread_cond_t sync_cond = PTHREAD_COND_INITIALIZER;
+static pthread_mutex_t sync_mutex = PTHREAD_MUTEX_INITIALIZER;
+static int sync_ok;
+
 int processMulti(thread_contex * th){
 	int num = 0;
 	long long ll;
@@ -198,6 +202,28 @@ int  saveRdb(thread_contex * th){
 	return 1;
 }
 
+void * parseRdbThread(void *data){
+	thread_contex *th = data;
+	server_conf * sc = th->sc;
+	th->rdbfd = open(th->rdbfile,O_RDWR);
+	if(!processHeader(th)){
+
+		Log(LOG_ERROR, "parse header error from server %s:%d",sc->pname,sc->port);
+		exit(1);
+	}
+
+	if(!parseRdb(th)){
+		//printf("parse the rdb error");
+		Log(LOG_ERROR, "parse rdb error from server %s:%d",sc->pname,sc->port);
+		//Log(LOG_NOTICE, "redo with the server %s:%d in 10s ",sc->pname,sc->port);
+
+		exit(1);
+	}
+
+	Log(LOG_NOTICE, "parse rdb from the master %s:%d done,processed %ld",sc->pname,sc->port,th->processed);
+	close(th->rdbfd);
+	unlink(th->rdbfile);
+}
 
 void * transferFromServer(void * data){
 	thread_contex * th = data;
@@ -257,29 +283,21 @@ void * transferFromServer(void * data){
 		exit(1);
 	}
 	
-	int backfd = th->fd;
-	th->fd = open(th->rdbfile,O_RDWR);
-	if(!processHeader(th)){
-
-		Log(LOG_ERROR, "parse header error from server %s:%d",sc->pname,sc->port);
-		exit(1);
+	//同步
+	pthread_mutex_lock(&sync_mutex);
+	sync_ok++;
+	if(sync_ok == array_n(server.old_config->servers)){
+		pthread_cond_broadcast(&sync_cond);
 	}
-
-	if(!parseRdb(th)){
-		//printf("parse the rdb error");
-		Log(LOG_ERROR, "parse rdb error from server %s:%d",sc->pname,sc->port);
-		//Log(LOG_NOTICE, "redo with the server %s:%d in 10s ",sc->pname,sc->port);
-
-		exit(1);
+	while(sync_ok < array_n(server.old_config->servers)){
+		pthread_cond_wait(&sync_cond,&sync_mutex);
 	}
+	pthread_mutex_unlock(&sync_mutex);
 
-	Log(LOG_NOTICE, "parse rdb from the master %s:%d done,processed %ld",sc->pname,sc->port,th->processed);
-	close(th->fd);
-	unlink(th->rdbfile);
-	//sync done, next is relication 
+	pthread_t rdbthread;
+	
+	pthread_create(&rdbthread,NULL,parseRdbThread,th);
 
-	th->fd = backfd;
-	// change to nonblocking
 	nonBlock(th->fd);
 
 	r->type = EVENT_READ;
