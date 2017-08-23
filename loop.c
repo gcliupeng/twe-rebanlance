@@ -4,6 +4,12 @@
 #include <unistd.h>
 #include <malloc.h>
 #include <fcntl.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netinet/ip.h>
+#include <netinet/tcp.h>
+
 #include "network.h"
 #include "config.h"
 #include "main.h"
@@ -194,6 +200,10 @@ int  saveRdb(thread_contex * th){
 	th->transfer_read = 0;
 	while(th->transfer_size > th->transfer_read){
 		n = read(fd,buf,1024);
+		if(n ==0){
+			Log(LOG_ERROR, "socket closed %s:%d",sc->pname,sc->port);
+			//todo
+		}
 		write(filefd,buf,n);
 		th->transfer_read += n;
 	}
@@ -300,8 +310,18 @@ void * transferFromServer(void * data){
 	//pthread_create(&rdbthread,NULL,parseRdbThread,th);
 	parseRdbThread(th);
 
-	nonBlock(th->fd);
+	
 
+	//检查是否server已经把连接关闭
+	struct tcp_info info; 
+  	int len=sizeof(info); 
+  	getsockopt(th->fd, IPPROTO_TCP, TCP_INFO, &info, (socklen_t *)&len); 
+  	if(info.tcpi_state != TCP_ESTABLISHED){
+  		Log(LOG_ERROR, "socket closed %s:%d",sc->pname,sc->port);
+  		//todo 
+  	}
+	nonBlock(th->fd);
+	
 	r->type = EVENT_READ;
 	r->fd = th->fd;
 	r->rcall = replicationWithServer;
