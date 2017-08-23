@@ -294,9 +294,11 @@ void * transferFromServer(void * data){
 	}
 	pthread_mutex_unlock(&sync_mutex);
 
-	pthread_t rdbthread;
+
+	//pthread_t rdbthread;
 	
-	pthread_create(&rdbthread,NULL,parseRdbThread,th);
+	//pthread_create(&rdbthread,NULL,parseRdbThread,th);
+	parseRdbThread(th);
 
 	nonBlock(th->fd);
 
