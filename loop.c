@@ -271,6 +271,18 @@ void * transferFromServer(void * data){
 
 	Log(LOG_NOTICE, " connetToServer %s:%d ok ",sc->pname,sc->port);
 
+	//auth
+	if(strlen(server.old_config->auth)>0){
+		char auth[100];
+		int n;
+		n = sprintf(auth,"*2\r\n$4\r\nauth\r\n$%d\r\n%s\r\n",strlen(server.old_config->auth),server.old_config->auth);
+		auth[n] = '\0';
+		if(!sendToServer(th->fd,auth,strlen(auth))){
+			Log(LOG_ERROR,"can't send auth:%s to server %s:%p",server.old_config->auth, sc->pname,sc->port);
+			exit(1);
+		}
+	}
+
 	if(!sendSync(th)){
 		Log(LOG_ERROR,"can't send sync to server %s:%p",sc->pname,sc->port);
 		exit(1);
@@ -387,6 +399,19 @@ void * outPutLoop(void * data){
 		Log(LOG_ERROR, "can't connetToServer %s:%d",sc->pname,sc->port);
 		exit(1);
 	}
+
+	//auth
+	if(strlen(server.new_config->auth)>0){
+		char auth[100];
+		int n;
+		n = sprintf(auth,"*2\r\n$4\r\nauth\r\n$%d\r\n%s\r\n",strlen(server.new_config->auth),server.new_config->auth);
+		auth[n] = '\0';
+		if(!sendToServer(th->fd,auth,strlen(auth))){
+			Log(LOG_ERROR,"can't send auth:%s to server %s:%p",server.new_config->auth, sc->pname,sc->port);
+			exit(1);
+		}
+	}
+
 
 	//create eventLoop;
 	eventLoop * loop = eventLoopCreate();

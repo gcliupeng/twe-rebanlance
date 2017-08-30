@@ -47,6 +47,7 @@ typedef struct{
 	array * servers;
     continuum * con;
     int ncontinuum;
+    char auth[100];
 }config;
 
 typedef struct{

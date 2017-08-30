@@ -122,13 +122,13 @@ int main(int argc, char const *argv[])
 	for (i = 1; i < argc; ++i){
 
 		if(!strcmp(argv[i],"-o")){
-			oldConf = argv[i++];
+			oldConf = argv[++i];
 		}
 		if(!strcmp(argv[i],"-n")){
-			newConf = argv[i++];
+			newConf = argv[++i];
 		}
 		if(!strcmp(argv[i],"-c")){
-			loadConfig(argv[i++]);
+			loadConfig(argv[++i]);
 		}
 	}
 
@@ -145,6 +145,7 @@ int main(int argc, char const *argv[])
 	*/
 	// printf("the hash type is %d\n",server.old_config->hashType);
 	// printf("the dist type is %d\n",server.old_config->distType);
+	// printf("the auth is %s\n",server.old_config->auth);
 	// for (int i = 0; i < array_n(server.old_config->servers); ++i)
 	// {
 	// 	server_conf * sc = array_get(server.old_config->servers, i);

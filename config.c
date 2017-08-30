@@ -92,6 +92,7 @@ config * loadFromFile(const char * file){
 	}
 	config * c = malloc(sizeof(*c));
 	c->servers = array_create(20,sizeof(server_conf));
+	memset(c->auth,0,100);
 
 	int hashT = -1;
 	int distT = -1;
@@ -180,6 +181,16 @@ config * loadFromFile(const char * file){
 			}else{
 				continue;
 			}
+		}
+
+		p = strstr(buf,"redis_auth:");
+		if(p){
+			p+=11;
+			while(*p==' ')p++;
+			q=p;
+			while(*q!='\r'&&*q!='\n'&&*q!=' ')q++;
+			*q='\0';
+			memcpy(c->auth,p,strlen(p));
 		}
 
 		p = strstr(buf,"distribution:");
