@@ -73,10 +73,18 @@ int processMulti(thread_contex * th){
 			th->key = th->replicationBufPos;
 			//加前缀，移动数据
 			if(strlen(server.prefix) >0){
+				//
+				int gap = lengthSize(th->lineSize+strlen(server.prefix)) - lengthSize(th->lineSize);
+				int back = lengthSize(th->lineSize)+2;
+
 				int left = th->replicationBufSize-(th->replicationBufLast - th->replicationBuf);
-				if(left >= strlen(server.prefix)){
+				if(left >= strlen(server.prefix) + gap){
 					//直接移动
-					memmove(th->replicationBufPos+strlen(server.prefix),th->replicationBufPos,th->replicationBufLast-th->replicationBufPos);
+					//printf("gap %d\n", gap);
+
+					memmove(th->replicationBufPos+strlen(server.prefix)+gap,th->replicationBufPos,th->replicationBufLast-th->replicationBufPos);
+					th->replicationBufPos += gap;
+					sprintf(th->replicationBufPos-back-gap,"%d\r\n",th->lineSize+strlen(server.prefix));
 					memcpy(th->replicationBufPos,server.prefix,strlen(server.prefix));
 				}else{
 					int used = th->replicationBufPos - th->replicationBuf;
@@ -85,13 +93,15 @@ int processMulti(thread_contex * th){
 					th->replicationBufPos = th->replicationBuf +used;
 					th->replicationBufLast = th->replicationBuf+usedL;
 					th->replicationBufSize *=2;
-					memmove(th->replicationBufPos+strlen(server.prefix),th->replicationBufPos,th->replicationBufLast-th->replicationBufPos);
+					memmove(th->replicationBufPos+strlen(server.prefix)+gap,th->replicationBufPos,th->replicationBufLast-th->replicationBufPos);
+					th->replicationBufPos += gap;
+					sprintf(th->replicationBufPos-back-gap,"%d\r\n",th->lineSize+strlen(server.prefix));
 					memcpy(th->replicationBufPos,server.prefix,strlen(server.prefix));
 				}
 				th->key_length+=strlen(server.prefix);
 				th->key = th->replicationBufPos;
 				th->replicationBufPos += strlen(server.prefix);
-				th->replicationBufLast+=strlen(server.prefix);
+				th->replicationBufLast+=( strlen(server.prefix)+gap);
 			}
 
 		}
@@ -201,6 +211,7 @@ void  replicationWithServer(void * data){
 			memcpy(output->start, th->replicationBuf, th->replicationBufPos-th->replicationBuf);
             output->start[th->replicationBufPos-th->replicationBuf] = '\0';
             output->position = output->start+(th->replicationBufPos - th->replicationBuf);
+            //printf("%s", output->start);
 
 			appendToOutBuf(to->contex, output);
 			resetState(th);
