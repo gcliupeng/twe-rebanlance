@@ -74,7 +74,7 @@ void loadConfig(const char * file){
 			server.filter = p;
 			int i=0;
 			while(*(p+i) !='\r' && *(p+i) !='\n' && *(p+i) !='\0') i++;
-			server.logfile[i]=0;
+			server.filter[i]=0;
 			char * c = malloc(strlen(server.filter)+1);
 			memcpy(c,server.filter,strlen(server.filter));
 			server.filter = c;
@@ -86,7 +86,7 @@ void loadConfig(const char * file){
 			server.prefix = p;
 			int i=0;
 			while(*(p+i) !='\r' && *(p+i) !='\n' && *(p+i) !='\0') i++;
-			server.logfile[i]=0;
+			server.prefix[i]=0;
 			char * c = malloc(strlen(server.prefix)+1);
 			memcpy(c,server.prefix,strlen(server.prefix));
 			server.prefix = c;
