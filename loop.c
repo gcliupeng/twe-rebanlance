@@ -71,6 +71,29 @@ int processMulti(thread_contex * th){
 		if(th->step == 2){
 			th->key_length = th->lineSize;
 			th->key = th->replicationBufPos;
+			//加前缀，移动数据
+			if(strlen(server.prefix) >0){
+				int left = th->replicationBufSize-(th->replicationBufLast - th->replicationBuf);
+				if(left >= strlen(server.prefix)){
+					//直接移动
+					memmove(th->replicationBufPos+strlen(server.prefix),th->replicationBufPos,th->replicationBufLast-th->replicationBufPos);
+					memcpy(th->replicationBufPos,server.prefix,strlen(server.prefix));
+				}else{
+					int used = th->replicationBufPos - th->replicationBuf;
+					int usedL = th->replicationBufLast - th->replicationBuf;
+					th->replicationBuf = realloc(th->replicationBuf,th->replicationBufSize*2);
+					th->replicationBufPos = th->replicationBuf +used;
+					th->replicationBufLast = th->replicationBuf+usedL;
+					th->replicationBufSize *=2;
+					memmove(th->replicationBufPos+strlen(server.prefix),th->replicationBufPos,th->replicationBufLast-th->replicationBufPos);
+					memcpy(th->replicationBufPos,server.prefix,strlen(server.prefix));
+				}
+				th->key_length+=strlen(server.prefix);
+				th->key = th->replicationBufPos;
+				th->replicationBufPos += strlen(server.prefix);
+				th->replicationBufLast+=strlen(server.prefix);
+			}
+
 		}
 		th->replicationBufPos = th->replicationBufPos+th->lineSize+2;
 		th->lineSize =-1;
@@ -112,8 +135,10 @@ void  replicationWithServer(void * data){
 		left = th->replicationBufSize-(th->replicationBufLast - th->replicationBuf);
 		if(left == 0){
 			//large
+			int used = th->replicationBufPos - th->replicationBuf;
 			th->replicationBuf = realloc(th->replicationBuf,th->replicationBufSize*2);
-			th->replicationBufPos = th->replicationBufLast = th->replicationBuf+th->replicationBufSize;
+			th->replicationBufPos = th->replicationBuf +used;
+			th->replicationBufLast = th->replicationBuf+th->replicationBufSize;
 			th->replicationBufSize *=2;
 		}
 		n = read(fd, th->replicationBufLast ,left);
