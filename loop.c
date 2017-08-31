@@ -124,7 +124,7 @@ int processSingle(thread_contex * th){
 void resetState(thread_contex * th){
 	int n;
 	n = th->replicationBufLast-th->replicationBufPos;
-	memcpy(th->replicationBuf,th->replicationBufPos,n);
+	memmove(th->replicationBuf,th->replicationBufPos,n);
 	th->replicationBufLast =th->replicationBuf +n;
 	th->replicationBufPos = th->replicationBuf;
 	memset(th->replicationBufLast,0,th->replicationBufSize-n);
@@ -201,7 +201,7 @@ void  replicationWithServer(void * data){
 			}
 
 			//send to new
-			buf_t * output = getBuf(th->replicationBufPos - th->replicationBuf);
+			buf_t * output = getBuf(th->replicationBufPos - th->replicationBuf+10);
 			if(!output){
 				//printf("getBuf error\n");
 				Log(LOG_ERROR,"get buf error");
