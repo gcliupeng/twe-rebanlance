@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <errno.h>
 #include "main.h"
 #include "dist.h"
 #include <signal.h>  
@@ -70,7 +71,32 @@ void initConf(){
 }
 
 void initThreads(){
+	//改版；对每一个old_config->servers，起一个进程；解决经常dump问题
+
+	int count = array_n(server.old_config->servers);
+	while(count){
+		int r = fork();
+		if(r<0){
+			Log(LOG_ERROR,"fork error, errno:%d",errno);
+			exit;
+		}
+		//child
+		if(r ==0){
+			array * servers = array_create(2,sizeof(server_conf));
+			server_conf *sct = array_push(servers);
+			server_conf *sctt = array_get(server.old_config->servers, count-1);
+			*sct = *sctt;
+			server.old_config->servers = servers;
+			break;
+		}else{
+			//father
+			count--;
+		}
+	}
+
 	int n = array_n(server.old_config->servers);
+
+
 	int i;
 	thread_contex * th;
 	server_conf * sc;
@@ -143,6 +169,8 @@ int main(int argc, char const *argv[])
 	
 	/*dump
 	*/
+	//printf("filter is %s\n",server.filter);
+	//printf("prefix is %s\n",server.prefix);
 	// printf("the hash type is %d\n",server.old_config->hashType);
 	// printf("the dist type is %d\n",server.old_config->distType);
 	// printf("the auth is %s\n",server.old_config->auth);
