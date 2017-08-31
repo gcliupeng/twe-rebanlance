@@ -40,42 +40,56 @@ void loadConfig(const char * file){
 	while(fgets(buf,201,fp) != NULL){
 		p = strstr(buf,"logfile=");
 		if(p!=NULL){
-			server.logfile = p+8;
-			server.logfile[strlen(server.logfile)-1]=0;
-			if(server.logfile[strlen(server.logfile)] == '\r'){
-				server.logfile[strlen(server.logfile)-1]=0;
-			}
+			p+=8;
+			while(*p==' ')p++;
+			server.logfile = p;
+			int i=0;
+			while(*(p+i) !='\r' && *(p+i) !='\n' && *(p+i) !='\0') i++;
+			server.logfile[i]=0;
+			char * c = malloc(strlen(server.logfile)+1);
+			memcpy(c,server.logfile,strlen(server.logfile));
+			server.logfile = c;
 		}
 		p=strstr(buf,"loglevel=");
 		if(p!=NULL){
-			if(strncmp(p+9,"DEBUG",5)==0){
+			p+=9;
+			while(*p==' ')p++;
+			if(strncmp(p,"DEBUG",5)==0){
 				server.loglevel = LOG_DEBUG;
 			};
-			if(strncmp(p+9,"NOTICE",6)==0){
+			if(strncmp(p,"NOTICE",6)==0){
 				server.loglevel = LOG_NOTICE;
 			};
-			if(strncmp(p+9,"WARNING",7)==0){
+			if(strncmp(p,"WARNING",7)==0){
 				server.loglevel = LOG_WARNING;
 			};
-			if(strncmp(p+9,"ERROR",5)==0){
+			if(strncmp(p,"ERROR",5)==0){
 				server.loglevel = LOG_ERROR;
 			};
 		}
 		p = strstr(buf,"filter=");
 		if(p !=NULL){
-			server.filter = p+7;
-			server.filter[strlen(server.filter)-1]=0;
-			if(server.filter[strlen(server.filter)] == '\r'){
-				server.filter[strlen(server.filter)-1]=0;
-			}
+			p+=7;
+			while(*p==' ')p++;
+			server.filter = p;
+			int i=0;
+			while(*(p+i) !='\r' && *(p+i) !='\n' && *(p+i) !='\0') i++;
+			server.logfile[i]=0;
+			char * c = malloc(strlen(server.filter)+1);
+			memcpy(c,server.filter,strlen(server.filter));
+			server.filter = c;
 		}
 		p=strstr(buf,"prefix=");
 		if(p !=NULL){
-			server.prefix = p+7;
-			server.prefix[strlen(server.prefix)-1]=0;
-			if(server.prefix[strlen(server.prefix)] == '\r'){
-				server.prefix[strlen(server.prefix)-1]=0;
-			}
+			p+=7;
+			while(*p==' ')p++;
+			server.prefix = p;
+			int i=0;
+			while(*(p+i) !='\r' && *(p+i) !='\n' && *(p+i) !='\0') i++;
+			server.logfile[i]=0;
+			char * c = malloc(strlen(server.prefix)+1);
+			memcpy(c,server.prefix,strlen(server.prefix));
+			server.prefix = c;
 		}
 	}
 }

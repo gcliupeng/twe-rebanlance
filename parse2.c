@@ -915,7 +915,17 @@ void freeMem(thread_contex * th){
 				return;
 }
 void processPair(thread_contex *th){
-	 
+	
+    //加上前缀
+    if(strlen(server.prefix)>0){
+        char * c = malloc(strlen(server.prefix)+strlen(th->key)+1);
+        memcpy(c,server.prefix,strlen(server.prefix));
+        memcpy(c+strlen(server.prefix),th->key,strlen(th->key));
+        c[strlen(server.prefix)+strlen(th->key)]='\0';
+        free(th->key);
+        th->key = c;
+    }
+
 	uint32_t hash = server_hash(server.new_config, th->key, strlen(th->key));
 	int index = dispatch(server.new_config,hash);
 	server_conf * from = th->sc;
