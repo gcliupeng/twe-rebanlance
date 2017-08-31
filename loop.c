@@ -281,6 +281,12 @@ void * transferFromServer(void * data){
 			Log(LOG_ERROR,"can't send auth:%s to server %s:%p",server.old_config->auth, sc->pname,sc->port);
 			exit(1);
 		}
+
+		//read +OK\r\n
+		if(readBytes(th->fd,auth,5)==0){
+			Log(LOG_ERROR,"can't read auth:%s response, server %s:%p",server.old_config->auth, sc->pname,sc->port);
+			exit(1);
+		}
 	}
 
 	if(!sendSync(th)){
@@ -408,6 +414,11 @@ void * outPutLoop(void * data){
 		auth[n] = '\0';
 		if(!sendToServer(th->fd,auth,strlen(auth))){
 			Log(LOG_ERROR,"can't send auth:%s to server %s:%p",server.new_config->auth, sc->pname,sc->port);
+			exit(1);
+		}
+		//read +OK\r\n
+		if(readBytes(th->fd,auth,5)==0){
+			Log(LOG_ERROR,"can't read auth:%s response, server %s:%p",server.new_config->auth, sc->pname,sc->port);
 			exit(1);
 		}
 	}
