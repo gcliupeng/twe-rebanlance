@@ -433,7 +433,7 @@ void * transferFromServer(void * data){
 
 	//create aof
 	memset(th->aoffile,0,100);
-    sprintf(th->aoffile,"aof-%d-%p.rdb",getpid(),pthread_self());
+    sprintf(th->aoffile,"aof-%d-%p.aof",getpid(),pthread_self());
     Log(LOG_NOTICE, "create the aof file  from server %s:%d , the file is %s",sc->pname,sc->port ,th->aoffile);
     int filefd = open(th->aoffile,O_RDWR|O_CREAT,0644);
     if(filefd <0){
