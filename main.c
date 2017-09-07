@@ -74,7 +74,6 @@ void initThreads(){
 	//改版；对每一个old_config->servers，起一个进程；解决经常dump问题
 
 	int count = array_n(server.old_config->servers);
-	int isFather = 0;
 	while(count){
 		int r = fork();
 		if(r<0){
@@ -88,17 +87,14 @@ void initThreads(){
 			server_conf *sctt = array_get(server.old_config->servers, count-1);
 			*sct = *sctt;
 			server.old_config->servers = servers;
-			isFather = 0;
 			break;
 		}else{
 			//father
 			count--;
-			isFather = 1;
+			if(!count){
+				exit(0);
+			}
 		}
-	}
-
-	if(isFather){
-		return;
 	}
 
 	int n = array_n(server.old_config->servers);

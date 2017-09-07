@@ -45,6 +45,8 @@ struct thread_contex_s{
 	int fd;
 	int rdbfd;
 	char rdbfile[100];
+	char aoffile[100];
+	int aoffd;
 	char * key;
 	rvalue * value;
 	long processed;

@@ -220,6 +220,90 @@ void  replicationWithServer(void * data){
 
 }
 
+void replicationAof(thread_contex *th){
+	int fd = th->aoffd;
+	int n , i;
+	int left;
+	int extra;
+	while(1){
+		left = th->replicationBufSize-(th->replicationBufLast - th->replicationBuf);
+		if(left == 0){
+			//large
+			int used = th->replicationBufPos - th->replicationBuf;
+			th->replicationBuf = realloc(th->replicationBuf,th->replicationBufSize*2);
+			th->replicationBufPos = th->replicationBuf +used;
+			th->replicationBufLast = th->replicationBuf+th->replicationBufSize;
+			th->replicationBufSize *=2;
+		}
+		n = read(fd, th->replicationBufLast ,left);
+		if(n <= 0){
+			return;
+		}
+	 	th->replicationBufLast+=n;
+		while(th->replicationBufPos != th->replicationBufLast){
+			if(th->inputMode == -1){
+				if(th->replicationBuf[0] == '*'){
+					th->inputMode = 1;//multi line
+				}else{ 
+					th->inputMode = 0; //single line
+				}
+			}
+
+			if(th->inputMode == 1){
+				n = processMulti(th);
+			}else{
+				//single mode 实现有问题，但2.8版本已经不用single mode，后续版本待验证
+				n = processSingle(th);
+			}
+			if(n == -1){
+				//not enough data
+				break;
+			}
+			// parse ok
+
+			if(th->type == REDIS_CMD_PING || th->type == REDIS_CMD_SELECTDB){
+				//printf("is ping or select\n");
+				resetState(th);
+				continue ;
+			}
+			
+			//send to new server
+			uint32_t hash = server_hash(server.new_config, th->key, th->key_length);
+			int index = dispatch(server.new_config,hash);
+			server_conf * from = th->sc;
+			server_conf * to = array_get(server.new_config->servers,index);
+			char t[1000];
+			snprintf(t,th->key_length+1 ,"%s",th->key );
+			Log(LOG_DEBUG, "the key %s, from %s:%d",t, from->pname,from->port);
+			Log(LOG_DEBUG, "the key %s should goto %s:%d",t, to->pname, to->port);
+
+			if(strcmp(from->pname,to->pname)==0 && from->port == to->port){
+					//printf("the key from is same to %s\n",t);
+				Log(LOG_DEBUG,"the key %s server not change ",t);
+				resetState(th);
+				continue;
+			}
+
+			//send to new
+			buf_t * output = getBuf(th->replicationBufPos - th->replicationBuf+10);
+			if(!output){
+				//printf("getBuf error\n");
+				Log(LOG_ERROR,"get buf error");
+				exit(1);
+			}
+			
+			memcpy(output->start, th->replicationBuf, th->replicationBufPos-th->replicationBuf);
+            output->start[th->replicationBufPos-th->replicationBuf] = '\0';
+            output->position = output->start+(th->replicationBufPos - th->replicationBuf);
+            //printf("%s", output->start);
+
+			appendToOutBuf(to->contex, output);
+			resetState(th);
+		}
+	}
+
+}
+
 int  saveRdb(thread_contex * th){
 	int fd = th->fd;
 	server_conf * sc = th->sc;
@@ -346,7 +430,17 @@ void * transferFromServer(void * data){
 		Log(LOG_ERROR, "save the rdb error %s:%d",sc->pname,sc->port);
 		exit(1);
 	}
-	
+
+	//create aof
+	memset(th->aoffile,0,100);
+    sprintf(th->aoffile,"aof-%d-%p.rdb",getpid(),pthread_self());
+    Log(LOG_NOTICE, "create the aof file  from server %s:%d , the file is %s",sc->pname,sc->port ,th->aoffile);
+    int filefd = open(th->aoffile,O_RDWR|O_CREAT,0644);
+    if(filefd <0){
+        return 0;
+   	}
+   	th->aoffd = filefd;
+
 	//同步
 	pthread_mutex_lock(&sync_mutex);
 	sync_ok++;
@@ -365,6 +459,17 @@ void * transferFromServer(void * data){
 	parseRdbThread(th);
 
 	
+	//处理保存的aof文件
+	//init
+	th->replicationBufSize = 1024;
+	th->replicationBuf = malloc(1024*sizeof(char));
+	th->replicationBufLast = th->replicationBufPos = th->replicationBuf;
+	th->bucknum = -1;
+	th->lineSize = -1;
+	th->inputMode = -1;
+	th->step = 0;
+	replicationAof(th);
+	close(th->aoffd);
 
 	//检查是否server已经把连接关闭
 	struct tcp_info info; 
@@ -381,15 +486,6 @@ void * transferFromServer(void * data){
 	r->rcall = replicationWithServer;
 	r->contex = th;
 	addEvent(th->loop,r,EVENT_READ);
-
-	//init
-	th->replicationBufSize = 1024;
-	th->replicationBuf = malloc(1024*sizeof(char));
-	th->replicationBufLast = th->replicationBufPos = th->replicationBuf;
-	th->bucknum = -1;
-	th->lineSize = -1;
-	th->inputMode = -1;
-	th->step = 0;
 
 	eventCycle(th->loop);
 }
