@@ -135,6 +135,11 @@ void initThreads(){
 // 	th->sc = sc;
 // 	dictAdd(map,sc->name,sc->name_length,)
 // }
+
+void func(){
+	Log(LOG_ERROR, "server close the connection error");
+}
+
 int main(int argc, char const *argv[])
 {
 	/* code */
@@ -191,6 +196,11 @@ int main(int argc, char const *argv[])
 	initThreads();
 
 	//wait signal
+	// struct sigaction act;  
+ // 	act.sa_handler = func;  
+ // 	sigemptyset(&act.sa_mask); 
+ // 	sigaction(SIGPIPE, &act, 0);
+
 	sigset_t		set;
 	sigemptyset(&set);
 	sigaddset(&set,SIGPIPE);

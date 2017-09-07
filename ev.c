@@ -38,7 +38,7 @@ int addEvent(eventLoop* loop,event *ev, int type){
 	}
 	//printf("come here\n");
 	struct epoll_event e;
-	long timeout ;
+	long long timeout ;
 	switch(type){
 		case EVENT_READ:
 				e.data.ptr = ev; 
@@ -57,6 +57,7 @@ int addEvent(eventLoop* loop,event *ev, int type){
 				struct timeval   tv;
 				gettimeofday(&tv, NULL);
 				timeout = timeout+tv.tv_sec*1000+tv.tv_usec/1000;
+				//printf("insert timeout %lld\n", timeout);
 				return listInsert(loop->timeoutList,timeout,ev);
 				break;
 	}
@@ -100,7 +101,7 @@ void eventCycle(eventLoop* loop){
 	int n,i;
 	int fd;
 	event * ev;
-	long minTimeout ,now;
+	long long minTimeout ,now;
 	while(1){
 		if(listLength(loop->timeoutList) == 0){
 			minTimeout = -1;
@@ -108,12 +109,15 @@ void eventCycle(eventLoop* loop){
 			struct timeval   tv;
 			gettimeofday(&tv, NULL);
 			minTimeout = loop->timeoutList->head->timeout;
+			//printf("timeoout %lld\n",minTimeout );
 			now = tv.tv_sec*1000+tv.tv_usec/1000;
 			minTimeout = minTimeout - now;
 			if(minTimeout < 0){
 				minTimeout = 0;
 			} 
 		}
+		//printf("%lld\n",minTimeout );
+		//printf("now %lld\n", now);
 		n = epoll_wait(loop->efd,loop->list,500,minTimeout);
 		if(n < 0){
 			Log(LOG_ERROR, "epoll_wait return %d",n);
@@ -135,6 +139,9 @@ void eventCycle(eventLoop* loop){
 			}
 		}
 		//timeout
+		struct timeval   tv;
+		gettimeofday(&tv, NULL);
+		now = tv.tv_sec*1000+tv.tv_usec/1000;
 		expireTimeout(loop->timeoutList,now);
 	}
 }

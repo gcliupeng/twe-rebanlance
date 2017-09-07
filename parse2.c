@@ -698,7 +698,7 @@ void formatResponse(thread_contex *th, buf_t * out){
 	struct rhash * hash;
     //del
     out->position += sprintf(out->position,"*2\r\n$3\r\ndel\r\n");
-    out->position+=formatStr(out->position,th->key);
+    out->position += formatStr(out->position,th->key);
 	switch(th->type){
 		case REDIS_STRING:
 			//*3\r\n
@@ -736,7 +736,7 @@ void formatResponse(thread_contex *th, buf_t * out){
 		case REDIS_ZSET_ZIPLIST:
 			zset = th->value->zset;
 			zset = zset->next;
-			out->position += sprintf(out->position,"*d\r\n$4\r\nzadd\r\n",th->bucknum+2);
+			out->position += sprintf(out->position,"*%d\r\n$4\r\nzadd\r\n",th->bucknum+2);
 			out->position+=formatStr(out->position,th->key);
 			//$4\r\nzadd\r\n;
 			while(zset){
@@ -922,7 +922,7 @@ void processPair(thread_contex *th){
         int n;
         n = read(th->fd,buf,1024*100);
         write(th->aoffd,buf,n);
-        Log(LOG_NOTICE, "write aof file %s %d byte ",th->rdbfile, n);
+        Log(LOG_NOTICE, "write aof file %s %d byte ",th->aoffile, n);
     }
     
 

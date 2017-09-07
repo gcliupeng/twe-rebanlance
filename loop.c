@@ -461,8 +461,8 @@ void * transferFromServer(void * data){
 	
 	//处理保存的aof文件
 	//init
-	th->replicationBufSize = 1024;
-	th->replicationBuf = malloc(1024*sizeof(char));
+	th->replicationBufSize = 1024*1024;
+	th->replicationBuf = malloc(1024*1024*sizeof(char));
 	th->replicationBufLast = th->replicationBufPos = th->replicationBuf;
 	th->bucknum = -1;
 	th->lineSize = -1;
@@ -472,7 +472,7 @@ void * transferFromServer(void * data){
 	close(th->aoffd);
 	Log(LOG_NOTICE, "process the aof file  done server %s:%d , the file is %s",sc->pname,sc->port ,th->aoffile);
 	unlink(th->aoffile);
-	
+
 	//检查是否server已经把连接关闭
 	struct tcp_info info; 
   	int len=sizeof(info); 
@@ -491,7 +491,6 @@ void * transferFromServer(void * data){
 
 	eventCycle(th->loop);
 }
-
 
 void  sendData(void * data){
 	event *ev = data;
@@ -527,6 +526,81 @@ void  sendData(void * data){
 		th->bufout = buf;
 		pthread_mutex_unlock(&th->mutex);
 	}
+}
+
+void reconnect(thread_contex * th){
+	server_conf * sc = th->sc;
+	th->fd = connetToServer(sc->port,sc->pname);
+	if(th->fd <= 0){
+		Log(LOG_ERROR, "can't connetToServer %s:%d",sc->pname,sc->port);
+		//exit(1);
+		return;
+	}
+
+	//auth
+	if(strlen(server.new_config->auth)>0){
+		char auth[100];
+		int n;
+		n = sprintf(auth,"*2\r\n$4\r\nauth\r\n$%d\r\n%s\r\n",strlen(server.new_config->auth),server.new_config->auth);
+		auth[n] = '\0';
+		if(!sendToServer(th->fd,auth,strlen(auth))){
+			Log(LOG_ERROR,"can't send auth:%s to server %s:%p",server.new_config->auth, sc->pname,sc->port);
+			//exit(1);
+			return;
+		}
+		//read +OK\r\n
+		if(readBytes(th->fd,auth,5)==0){
+			Log(LOG_ERROR,"can't read auth:%s response, server %s:%p",server.new_config->auth, sc->pname,sc->port);
+			//exit(1);
+			return;
+		}
+	}
+
+	event * w =malloc(sizeof(*w));
+	if(!w){
+		Log(LOG_ERROR, "create event error");
+		exit(1);
+	}
+	th->write = w;
+
+	event * r =malloc(sizeof(*r));
+	if(!r){
+		Log(LOG_ERROR, "create event error");
+		exit(1);
+	}
+	th->read = r;
+	w->type = EVENT_WRITE;
+	w->fd = th->fd;
+	w->wcall = sendData;
+	w->contex = th;
+	addEvent(th->loop,w,EVENT_WRITE);
+	
+}
+
+
+void checkConnect(void * data){
+	event *ev = data;
+	thread_contex * th = ev->contex;
+	int fd  = th->fd;
+	// char tmp[10];
+	// int n = read(fd,tmp,10);
+	// if(n ==0){
+	// 	Log(LOG_NOTICE, "closed");
+	// }
+	struct tcp_info info; 
+  	int len=sizeof(info); 
+  	getsockopt(th->fd, IPPROTO_TCP, TCP_INFO, &info, (socklen_t *)&len); 
+  	if(info.tcpi_state != TCP_ESTABLISHED){
+  		Log(LOG_ERROR, "socket closed %s:%d",th->sc->pname,th->sc->port);
+  		//todo 
+  		reconnect(th);
+  	}
+
+	Log(LOG_NOTICE, "checkConnect ");
+	ev->type  = EVENT_TIMEOUT;
+	ev->tcall = checkConnect;
+	ev->timeout = 1000;
+	addEvent(th->loop,ev,EVENT_TIMEOUT);
 }
 
 
@@ -584,5 +658,17 @@ void * outPutLoop(void * data){
 	w->wcall = sendData;
 	w->contex = th;
 	addEvent(th->loop,w,EVENT_WRITE);
+
+	//每10秒钟检查一下是否连接
+	event * t =malloc(sizeof(*t));
+	if(!t){
+		Log(LOG_ERROR, "create event error");
+		exit(1);
+	}
+	t->contex = th;
+	t->type  = EVENT_TIMEOUT;
+	t->tcall = checkConnect;
+	t->timeout = 1000;
+	addEvent(th->loop,t,EVENT_TIMEOUT);
 	eventCycle(th->loop);
 }

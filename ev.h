@@ -21,6 +21,7 @@ enum
 	EVENT_READ = 0,
 	EVENT_WRITE,
 	EVENT_TIMEOUT,
+	EVENT_CHECK,
 };
 typedef void (*callBack) (void *); 
 
