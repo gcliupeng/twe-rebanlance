@@ -470,7 +470,9 @@ void * transferFromServer(void * data){
 	th->step = 0;
 	replicationAof(th);
 	close(th->aoffd);
-
+	Log(LOG_NOTICE, "process the aof file  done server %s:%d , the file is %s",sc->pname,sc->port ,th->aoffile);
+	unlink(th->aoffile);
+	
 	//检查是否server已经把连接关闭
 	struct tcp_info info; 
   	int len=sizeof(info); 

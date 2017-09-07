@@ -537,11 +537,11 @@ int loadPair(thread_contex * th) {
         for (i = 0; i < length; ++i){
         	lnode = listSetAdd(th->value->listset);
      		intsetGet(is, i, &isvalue);
-     		printf("%ld\n",isvalue );
+     		//printf("%ld\n",isvalue );
      		buf = malloc(256);
             sdsll2str(buf,isvalue);
             lnode->str = buf;
-            Log(LOG_NOTICE, "REDIS_SET_INTSET key : %s ,value %s , server %s:%d",th->key, lnode->str,th->sc->pname,th->sc->port);
+            //Log(LOG_NOTICE, "REDIS_SET_INTSET key : %s ,value %s , server %s:%d",th->key, lnode->str,th->sc->pname,th->sc->port);
         }
         free(is);
         return 1;
@@ -918,9 +918,9 @@ void processPair(thread_contex *th){
 	
     //每次处理一万条数据，需要从老集群里读数据，防止主从同步中断
     if(th->processed % 10000 == 0){
-        char buf[1024];
+        char buf[1024*100];
         int n;
-        n = read(th->fd,buf,1024);
+        n = read(th->fd,buf,1024*100);
         write(th->aoffd,buf,n);
         Log(LOG_NOTICE, "write aof file %s %d byte ",th->rdbfile, n);
     }
