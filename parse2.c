@@ -180,8 +180,8 @@ int parseSize(thread_contex *th){
     } else{
         th->usemark = 0;
         th->transfer_size = strtol(buf+1,NULL,10);
-        Log(LOG_NOTICE,"MASTER %s:%d <-> SLAVE sync: receiving %lld bytes from master",th->sc->pname,th->sc->port,
-        	(long long) th->transfer_size);
+        //Log(LOG_NOTICE,"MASTER %s:%d <-> SLAVE sync: receiving %lld bytes from master",th->sc->pname,th->sc->port,
+        //	(long long) th->transfer_size);
         }
  	return 1;
 }
@@ -699,7 +699,9 @@ void formatResponse(thread_contex *th, buf_t * out){
     //del
     out->position += sprintf(out->position,"*2\r\n$3\r\ndel\r\n");
     out->position += formatStr(out->position,th->key);
-	switch(th->type){
+ //    int index = 0;
+	// long num;
+    switch(th->type){
 		case REDIS_STRING:
 			//*3\r\n
 			//memcpy(out->position, "*3\r\n$3\r\nset\r\n",12);
@@ -712,21 +714,21 @@ void formatResponse(thread_contex *th, buf_t * out){
 		case REDIS_LIST_ZIPLIST:
 			listset = th->value->listset;
 			listset = listset->next;
-			//$5\r\nrpush\r\n
-			out->position += sprintf(out->position,"*%d\r\n$5\r\nrpush\r\n",th->bucknum+2);
-			out->position+=formatStr(out->position,th->key);
-			while(listset){
+            while(listset){
+			    //$5\r\nrpush\r\n
+			    out->position += sprintf(out->position,"*3\r\n$5\r\nrpush\r\n");
+			    out->position+=formatStr(out->position,th->key);
 				out->position+=formatStr(out->position,listset->str);
 				listset = listset->next;
-			}
+			   }
 			break;
 		case REDIS_SET:
 		case REDIS_SET_INTSET:
 			listset = th->value->listset;
 			listset = listset->next;
-			out->position += sprintf(out->position,"*%d\r\n$4\r\nsadd\r\n",th->bucknum+2);
-			out->position+=formatStr(out->position,th->key);
 			while(listset){
+                out->position += sprintf(out->position,"*3\r\n$4\r\nsadd\r\n");
+                out->position+=formatStr(out->position,th->key);
 				line++;
 				out->position+=formatStr(out->position,listset->str);
 				listset = listset->next;
@@ -736,10 +738,10 @@ void formatResponse(thread_contex *th, buf_t * out){
 		case REDIS_ZSET_ZIPLIST:
 			zset = th->value->zset;
 			zset = zset->next;
-			out->position += sprintf(out->position,"*%d\r\n$4\r\nzadd\r\n",th->bucknum+2);
-			out->position+=formatStr(out->position,th->key);
 			//$4\r\nzadd\r\n;
 			while(zset){
+                out->position += sprintf(out->position,"*3\r\n$4\r\nzadd\r\n",th->bucknum+2);
+                out->position+=formatStr(out->position,th->key);
 				out->position += formatDouble(out->position,zset->score);
 				out->position+=formatStr(out->position,zset->str);
 				zset = zset->next;
@@ -807,49 +809,49 @@ int responseSize(thread_contex *th){
 		case REDIS_LIST_ZIPLIST:
 			listset = th->value->listset;
 			listset = listset->next;
-			//$5\r\nrpush\r\n
-			cmd_length += 11;
-			cmd_length += lengthSize(strlen(th->key))+5+strlen(th->key);
 			while(listset){
 				//printf("%s\n", listset->str);
+                //*3\r\n$5\r\nrpush\r\n
+                cmd_length += 15;
+                cmd_length += lengthSize(strlen(th->key))+5+strlen(th->key);
 				line++;
 				cmd_length += lengthSize(strlen(listset->str))+5+strlen(listset->str);
 				listset = listset->next;
 			}
 			th->bucknum = line;
-			cmd_length += lengthSize(line+2)+3;
+			//cmd_length += lengthSize(line+2)+3;
 			break;
 		case REDIS_SET:
 		case REDIS_SET_INTSET:
 			listset = th->value->listset;
 			listset = listset->next;
 			//$4\r\nsadd\r\n
-			cmd_length += 10;
-			cmd_length += lengthSize(strlen(th->key))+5+strlen(th->key);
 			while(listset){
 				line++;
+                cmd_length += 14;
+                cmd_length += lengthSize(strlen(th->key))+5+strlen(th->key);
 				cmd_length += lengthSize(strlen(listset->str))+5+strlen(listset->str);
 				listset = listset->next;
 			}
 			th->bucknum = line;
-			cmd_length += lengthSize(line+2)+3;
+			//cmd_length += lengthSize(line+2)+3;
 			break;
 		case REDIS_ZSET:
 		case REDIS_ZSET_ZIPLIST:
 			zset = th->value->zset;
 			zset = zset->next;
 			//$4\r\nzadd\r\n;
-			cmd_length += 10;
-			cmd_length += lengthSize(strlen(th->key))+5+strlen(th->key);
 			while(zset){
 				line++;
+                cmd_length += 14;
+                cmd_length += lengthSize(strlen(th->key))+5+strlen(th->key);
 				cmd_length += lengthSize(strlen(zset->str))+5+strlen(zset->str);
 				line++;
 				cmd_length += lengthSize(doubleSize(zset->score))+5+doubleSize(zset->score);
 				zset = zset->next;
 			}
 			th->bucknum = line;
-			cmd_length += lengthSize(line+2)+3;
+			//cmd_length += lengthSize(line+2)+3;
 			break;
 		case REDIS_HASH:
 		case REDIS_HASH_ZIPMAP:
@@ -885,6 +887,7 @@ void appendToOutBuf(thread_contex *th, buf_t * b){
 		th->bufoutLast = b;
 	}
 	addEvent(th->loop, th->write,EVENT_WRITE);
+    //Log(LOG_DEBUG,"after add addEvent");
 	pthread_mutex_unlock(&th->mutex);
 }
 void freeMem(thread_contex * th){
@@ -916,20 +919,10 @@ void freeMem(thread_contex * th){
 }
 void processPair(thread_contex *th){
 	
-    //每次处理一万条数据，需要从老集群里读数据，防止主从同步中断
-    
-    if(th->processed % 10000 == 0){
-        /*char buf[1024*100];
-        int n;
-        n = read(th->fd,buf,1024*100);
-        if(n>0){
-            write(th->aoffd,buf,n);
-            Log(LOG_NOTICE, "write aof file %s %d byte ",th->aoffile, n);
-        }*/
-        Log(LOG_NOTICE, "processed  rdb file %s %d keys ",th->rdbfile, th->processed);
+    if(th->processed % 1000 == 0){
+        Log(LOG_NOTICE, "processed  rdb file %s %d keys , %s",th->rdbfile, th->processed,th->key);
     }
     
-
     //加上前缀
     if(strlen(server.prefix)>0){
         char * c = malloc(strlen(server.prefix)+strlen(th->key)+1);
@@ -942,7 +935,7 @@ void processPair(thread_contex *th){
 
 	uint32_t hash = server_hash(server.new_config, th->key, strlen(th->key));
 	int index = dispatch(server.new_config,hash);
-	server_conf * from = th->sc;
+    server_conf * from = th->sc;
 	server_conf * to = array_get(server.new_config->servers,index);
 	Log(LOG_DEBUG ,"the key %s from %s:%d",th->key,from->pname,from->port);
 	Log(LOG_DEBUG, "the key %s should goto %s:%d",th->key, to->pname, to->port);
@@ -956,7 +949,8 @@ void processPair(thread_contex *th){
 
 	//send to new redis
     
-	int size = responseSize(th);
+	long size = responseSize(th);
+    //Log(LOG_DEBUG,"need size %ld",size);
 	buf_t *output = getBuf(size+20);
 	if(!output){
         Log(LOG_ERROR,"getBuf error , server %s:%d",th->sc->pname,th->sc->port);
@@ -964,6 +958,7 @@ void processPair(thread_contex *th){
 		//printf("getBuf error\n");
 	}
 	formatResponse(th, output);
+    //printf("%s",output->start );
 	appendToOutBuf(to->contex, output);
     //freeBuf(output);
 	freeMem(th);

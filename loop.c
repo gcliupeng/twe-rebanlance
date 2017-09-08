@@ -194,9 +194,11 @@ void  replicationWithServer(void * data){
 			
 			memset(t,0,1000);
 			memcpy(t,th->key,th->key_length);
-			Log(LOG_NOTICE, "the key %s, from %s:%d",t, from->pname,from->port);
-			Log(LOG_NOTICE, "the key %s should goto %s:%d",t, to->pname, to->port);
-
+			Log(LOG_DEBUG, "the key %s, from %s:%d",t, from->pname,from->port);
+			Log(LOG_DEBUG, "the key %s should goto %s:%d",t, to->pname, to->port);
+			if(th->processed %10000 ==0){
+				Log(LOG_NOTICE, "processed %lld key from output buf from %s:%d",th->processed,th->aoffile,from->pname,from->port);	
+			}
 			if(strcmp(from->pname,to->pname)==0 && from->port == to->port){
 					//printf("the key from is same to %s\n",t);
 				Log(LOG_DEBUG,"the key %s server not change ",t);
@@ -219,6 +221,7 @@ void  replicationWithServer(void * data){
 
 			appendToOutBuf(to->contex, output);
 			resetState(th);
+			th->processed++;
 		}
 	}
 
@@ -228,15 +231,16 @@ void replicationAof(thread_contex *th){
 	int fd ;
 	fd = open(th->aoffile,O_RDWR|O_CREAT,0644);
     if(fd <0){
+    	Log(LOG_ERROR,"can't open the aof file , %s ,errno %d",th->aoffile,errno);
         return;
    	}
-
+   	th->processed =0;
 	//off_t currpos;
 	//currpos = lseek(fd, 0, SEEK_SET);
 	int n , i;
 	int left;
 	int extra;
-	char t[1000];
+	static char t[1000];
 	while(1){
 		left = th->replicationBufSize-(th->replicationBufLast - th->replicationBuf);
 		if(left == 0){
@@ -249,12 +253,10 @@ void replicationAof(thread_contex *th){
 		}
 		//printf("left %d\n",left );
 		n = read(fd, th->replicationBufLast ,left);
-		Log(LOG_NOTICE, "aof read prcess %d byte",n);
-		//printf("read %d\n",n);
-		//printf("data %s", th->replicationBufPos);
+		//Log(LOG_NOTICE, "aof read prcess %d byte",n);
 		if(n <= 0){
 			//printf("aof read done %d\n",errno);
-			Log(LOG_NOTICE, "aof read done ,%s",th->aoffile);
+			//Log(LOG_NOTICE, "aof read done , %s",th->aoffile);
 			return;
 		}
 	 	th->replicationBufLast+=n;
@@ -285,19 +287,28 @@ void replicationAof(thread_contex *th){
 				continue ;
 			}
 			
+
 			//send to new server
+			
 			uint32_t hash = server_hash(server.new_config, th->key, th->key_length);
 			int index = dispatch(server.new_config,hash);
 			server_conf * from = th->sc;
 			server_conf * to = array_get(server.new_config->servers,index);
+			if(th->processed %10000 ==0){
+					Log(LOG_NOTICE, "processed %lld key in the aof file %s , from %s:%d",th->processed,th->aoffile,from->pname,from->port);	
+			}
 			
 			memset(t,0,1000);
 			memcpy(t,th->key,th->key_length);
+			//t[th->key_length]='\0';
+
 			//snprintf(t,th->key_length+1 ,"%s",th->key );
 			
-			//Log(LOG_NOTICE, "the key %s, from %s:%d",t, from->pname,from->port);
-			//Log(LOG_NOTICE, "the key %s should goto %s:%d",t, to->pname, to->port);
-
+			Log(LOG_DEBUG, "the key %s, from %s:%d",t, from->pname,from->port);
+			Log(LOG_DEBUG, "the key %s should goto %s:%d",t, to->pname, to->port);
+			if(th->processed %10000 ==0){
+					Log(LOG_NOTICE, "processed %lld key in the aof file %s , from %s:%d",th->processed,th->aoffile,from->pname,from->port);	
+			}
 			if(strcmp(from->pname,to->pname)==0 && from->port == to->port){
 					//printf("the key from is same to %s\n",t);
 				Log(LOG_DEBUG,"the key %s server not change ",t);
@@ -319,7 +330,9 @@ void replicationAof(thread_contex *th){
             //printf("%s", output->start);
 
 			appendToOutBuf(to->contex, output);
+			
 			resetState(th);
+			th->processed ++;
 		}
 	}
 
@@ -328,9 +341,8 @@ void replicationAof(thread_contex *th){
 int  saveRdb(thread_contex * th){
 	int fd = th->fd;
 	server_conf * sc = th->sc;
-	//char fileName [100]={0};
 	memset(th->rdbfile,0,100);
-	sprintf(th->rdbfile,"rdb-%d-%p.rdb",getpid(),pthread_self());
+	sprintf(th->rdbfile,"rdb-%s-%d.rdb",sc->pname,sc->port);
 	Log(LOG_NOTICE, "begin save the rdb from server %s:%d , the file is %s",sc->pname,sc->port ,th->rdbfile);
 	int filefd = open(th->rdbfile,O_RDWR|O_CREAT,0644);
 	if(filefd <0){
@@ -360,6 +372,7 @@ int  saveRdb(thread_contex * th){
 void * parseRdbThread(void *data){
 	thread_contex *th = data;
 	server_conf * sc = th->sc;
+	Log(LOG_NOTICE, "begin parse the rdb from server %s:%d, the rdbfile is %s",th->sc->pname,th->sc->port,th->rdbfile);
 	th->rdbfd = open(th->rdbfile,O_RDWR);
 	if(!processHeader(th)){
 
@@ -375,29 +388,37 @@ void * parseRdbThread(void *data){
 		exit(1);
 	}
 
-	Log(LOG_NOTICE, "parse rdb from the master %s:%d done,processed %ld",sc->pname,sc->port,th->processed);
+	Log(LOG_NOTICE, "parse the rdb from server %s:%d done , the rdbfile is %s ,processed %d",sc->pname,sc->port,th->rdbfile,th->processed);
 	close(th->rdbfd);
 	unlink(th->rdbfile);
 }
 
 void * saveAofThread(void *data){
-	aof_alive = 1;
 	thread_contex * th = data;
+	Log(LOG_NOTICE, "create the aof file  from server %s:%d , the file is %s",th->sc->pname,th->sc->port ,th->aoffile);
 	int filefd = open(th->aoffile,O_RDWR|O_CREAT,0644);
     if(filefd <0){
+    	Log(LOG_ERROR,"can't open the aof file , %s ,errno %d",th->aoffile,errno);
         return 0;
    	}
+   	int loop =0;
+   	long sum = 0;
 	while(!stop){
 		char buf[1024*100];
     	int n;
     	n = read(th->fd,buf,1024*100);
         if(n>0){
             write(filefd,buf,n);
-            Log(LOG_NOTICE, "write aof file %s %d byte ",th->aoffile, n);
+            sum+=n;
+            if(loop %100 ==0){
+            	Log(LOG_NOTICE, "write into aof file %s , %lld byte ",th->aoffile, sum);
+            }
+            loop++;
         }
     }
     close(filefd);
     aof_alive = 0;
+    Log(LOG_NOTICE, "write the aof file %s done ,total  %lld byte ",th->aoffile, sum);
     pthread_mutex_lock(&sync_mutex);
     pthread_cond_broadcast(&sync_cond);
     pthread_mutex_unlock(&sync_mutex);
@@ -437,7 +458,7 @@ void * transferFromServer(void * data){
 		exit(1);
 	}
 
-	Log(LOG_NOTICE, " connetToServer %s:%d ok ",sc->pname,sc->port);
+	Log(LOG_NOTICE, "connetToServer %s:%d ok ",sc->pname,sc->port);
 
 	//auth
 	if(strlen(server.old_config->auth)>0){
@@ -463,9 +484,6 @@ void * transferFromServer(void * data){
 
 	Log(LOG_NOTICE, "send sync to server %s:%d ok",sc->pname,sc->port);
 
-	//th->fd = open("/home/work/redis-limited/dump.rdb4",O_RDWR);
-	//th->fd = open("/home/work/twe-rebanlance/data",O_RDWR);
-
 	if(!parseSize(th)){
 		//printf("parse size error \n");
 		Log(LOG_ERROR, "parse size error from server %s:%d",sc->pname,sc->port);
@@ -480,38 +498,13 @@ void * transferFromServer(void * data){
 
 	//create aof
 	memset(th->aoffile,0,100);
-    sprintf(th->aoffile,"aof-%d-%p.aof",getpid(),pthread_self());
-    //sprintf(th->aoffile,"aof-14092-0x7f8f15189700.aof");
-    //th->aoffile = "aof-14092-0x7f8f15189700.aof";
-    Log(LOG_NOTICE, "create the aof file  from server %s:%d , the file is %s",sc->pname,sc->port ,th->aoffile);
-    // int filefd = open(th->aoffile,O_RDWR|O_CREAT,0644);
-    // if(filefd <0){
-    //     return 0;
-   	// }
-   	//th->aoffd = filefd;
-	
-	//同步
-	/*pthread_mutex_lock(&sync_mutex);
-	sync_ok++;
-	if(sync_ok == array_n(server.old_config->servers)){
-		pthread_cond_broadcast(&sync_cond);
-	}
-	while(sync_ok < array_n(server.old_config->servers)){
-		pthread_cond_wait(&sync_cond,&sync_mutex);
-	}
-	pthread_mutex_unlock(&sync_mutex);
-	*/
-
+    sprintf(th->aoffile,"aof-%s-%d.aof",sc->pname,sc->port);
 	pthread_t saveAofthread;
-	
-	//pthread_create(&rdbthread,NULL,parseRdbThread,th);
+	aof_alive = 1;
 	pthread_create(&saveAofthread,NULL,saveAofThread,th);
-	//sleep(50);
 	parseRdbThread(th);
+	sleep(20);
 	//处理保存的aof文件
-	//init
-	//sprintf(th->aoffile,"aof-14243-0x7fcce1185700.aof");
-	//缺少同步
 	stop = 1;
 	pthread_mutex_lock(&sync_mutex);
 
@@ -528,12 +521,11 @@ void * transferFromServer(void * data){
 	th->lineSize = -1;
 	th->inputMode = -1;
 	th->step = 0;
-	//printf("sdlfkjsaldfkjsalfjsalfkjsadlfjlaskjfdkl\n");
-	Log(LOG_NOTICE, "begin process the aof file server %s:%d , the file is %s",sc->pname,sc->port ,th->aoffile);
+	Log(LOG_NOTICE, "begin process the aof file from server %s:%d , the file is %s",sc->pname,sc->port ,th->aoffile);
 	replicationAof(th);
-	close(th->aoffd);
-	Log(LOG_NOTICE, "process the aof file  done server %s:%d , the file is %s",sc->pname,sc->port ,th->aoffile);
-	//unlink(th->aoffile);
+	//close(th->aoffd);
+	Log(LOG_NOTICE, "process the aof file  done server %s:%d , the file is %s , processed %lld",sc->pname,sc->port ,th->aoffile,th->processed);
+	unlink(th->aoffile);
 	//检查是否server已经把连接关闭
 	struct tcp_info info; 
   	int len=sizeof(info); 
@@ -542,7 +534,9 @@ void * transferFromServer(void * data){
   		Log(LOG_ERROR, "socket closed %s:%d",sc->pname,sc->port);
   		//todo 
   	}
+  	Log(LOG_NOTICE, "begin process the server output buf %s:%d ",sc->pname,sc->port);
 	nonBlock(th->fd);
+	th->processed = 0;
 	r->type = EVENT_READ;
 	r->fd = th->fd;
 	r->rcall = replicationWithServer;
@@ -583,7 +577,13 @@ void  sendData(void * data){
 	//send it
 	buf->last = buf->position; 
 	buf->position = buf->start;
+	//Log(LOG_DEBUG,"need write %d",buf->last-buf->position);
+	if(buf->last-buf->position ==0){
+		freeBuf(buf);
+		return;
+	}
 	n = write(fd, buf->position, buf->last-buf->position);
+	//Log(LOG_DEBUG,"after write %d",buf->last-buf->position);
 	if(n == buf->last - buf->position){
 		//printf("send %d\n", n);
 		freeBuf(buf);
@@ -737,6 +737,6 @@ void * outPutLoop(void * data){
 	t->type  = EVENT_TIMEOUT;
 	t->tcall = checkConnect;
 	t->timeout = 1000;
-	addEvent(th->loop,t,EVENT_TIMEOUT);
+	//addEvent(th->loop,t,EVENT_TIMEOUT);
 	eventCycle(th->loop);
 }

@@ -196,10 +196,10 @@ int main(int argc, char const *argv[])
 	initThreads();
 
 	//wait signal
-	// struct sigaction act;  
- // 	act.sa_handler = func;  
- // 	sigemptyset(&act.sa_mask); 
- // 	sigaction(SIGPIPE, &act, 0);
+	 struct sigaction act;  
+     act.sa_handler = func;  
+   	sigemptyset(&act.sa_mask); 
+  	sigaction(SIGPIPE, &act, 0);
 
 	sigset_t		set;
 	sigemptyset(&set);
