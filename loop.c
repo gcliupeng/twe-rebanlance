@@ -143,7 +143,7 @@ void  replicationWithServer(void * data){
 	int n , i;
 	int left;
 	int extra;
-	char t[1000];
+	static char t[1000];
 	while(1){
 		left = th->replicationBufSize-(th->replicationBufLast - th->replicationBuf);
 		if(left == 0){
@@ -502,8 +502,8 @@ void * transferFromServer(void * data){
 	
 	//pthread_create(&rdbthread,NULL,parseRdbThread,th);
 	pthread_create(&saveAofthread,NULL,saveAofThread,th);
-	sleep(10);
-	//parseRdbThread(th);
+	//sleep(50);
+	parseRdbThread(th);
 	//处理保存的aof文件
 	//init
 	//sprintf(th->aoffile,"aof-14243-0x7fcce1185700.aof");
