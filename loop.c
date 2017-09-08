@@ -337,10 +337,14 @@ int  saveRdb(thread_contex * th){
 		return 0;
 	}
 	char buf[1024];
-	int n;
+	int n ,left;
 	th->transfer_read = 0;
 	while(th->transfer_size > th->transfer_read){
-		n = read(fd,buf,1024);
+		left = th->transfer_size - th->transfer_read;
+		if(left > 1024){
+			left = 1024;
+		}
+		n = read(fd,buf,left);
 		if(n ==0){
 			Log(LOG_ERROR, "socket closed %s:%d",sc->pname,sc->port);
 			//todo
@@ -660,7 +664,7 @@ void checkConnect(void * data){
   		reconnect(th);
   	}
 
-	Log(LOG_NOTICE, "checkConnect ");
+	Log(LOG_DEBUG, "checkConnect ");
 	ev->type  = EVENT_TIMEOUT;
 	ev->tcall = checkConnect;
 	ev->timeout = 1000;
