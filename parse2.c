@@ -917,14 +917,18 @@ void freeMem(thread_contex * th){
 void processPair(thread_contex *th){
 	
     //每次处理一万条数据，需要从老集群里读数据，防止主从同步中断
+    /*
     if(th->processed % 10000 == 0){
         char buf[1024*100];
         int n;
         n = read(th->fd,buf,1024*100);
-        write(th->aoffd,buf,n);
-        Log(LOG_NOTICE, "write aof file %s %d byte ",th->aoffile, n);
+        if(n>0){
+            write(th->aoffd,buf,n);
+            Log(LOG_NOTICE, "write aof file %s %d byte ",th->aoffile, n);
+        }
+        Log(LOG_NOTICE, "processed  rdb file %s %d keys ",th->rdbfile, th->processed);
     }
-    
+    */
 
     //加上前缀
     if(strlen(server.prefix)>0){

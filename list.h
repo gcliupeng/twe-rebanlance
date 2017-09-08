@@ -8,7 +8,7 @@
 
 struct node{
 	void * data;
-	int timeout;
+	long long timeout;
 	struct node * next;
 };
 
@@ -35,7 +35,7 @@ static int listLength(list *l){
 	}
 	return length;
 }
-static int listInsert(list *l,long timeout,void *data){
+static int listInsert(list *l,long long timeout,void *data){
 	if(listLength(l) == 0){
 		struct node * n = malloc(sizeof(*n));
 		if(!n){
@@ -52,12 +52,13 @@ static int listInsert(list *l,long timeout,void *data){
 	if(!n){
 		return -1;
 	}
+	n->next = NULL;
 	n->data = data;
 	n->timeout = timeout;
 	h->next = n;
 	return 1;
 }
-void expireTimeout(list *l,long now){
+void expireTimeout(list *l,long long now){
 	if(listLength(l) == 0){
 		return;
 	}
