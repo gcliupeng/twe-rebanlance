@@ -30,14 +30,14 @@ int processMulti(thread_contex * th){
 	long long ll;
 	char *p;
 	if(th->bucknum == -1){
-		p = strstr(th->replicationBuf,"\r\n");
+		p = strstr(th->replicationBufPos,"\r\n");
 		
 		if(!p){
 			//not enough data
 			return -1;
 		}
 		//printf("%s\n",p+2);
-		string2ll(th->replicationBuf+1,p-(th->replicationBuf+1),&ll);
+		string2ll(th->replicationBufPos+1,p-(th->replicationBufPos+1),&ll);
 		th->bucknum = ll;
 		//printf("%d\n", th->bucknum);
 		th->replicationBufPos = p+2;
@@ -69,12 +69,20 @@ int processMulti(thread_contex * th){
 			if(strncmp(th->replicationBufPos,"SELECT",6)==0 || strncmp(th->replicationBufPos,"select",6)==0){
 				th->type = REDIS_CMD_SELECTDB;
 			}
+			/*
+			if(strncmp(th->replicationBufPos,"flushall",8)==0 || strncmp(th->replicationBufPos,"FLUSHALL",8)==0){
+				th->type = REDIS_CMD_SELECTDB;
+			}*/
 		}
 		if(th->step == 2){
 			th->key_length = th->lineSize;
 			th->key = th->replicationBufPos;
 			//加前缀，移动数据
+			/*
 			if(strlen(server.prefix) >0){
+				int gap = lengthSize(th->lineSize)+3;
+
+			
 				//
 				int gap = lengthSize(th->lineSize+strlen(server.prefix)) - lengthSize(th->lineSize);
 				int back = lengthSize(th->lineSize)+2;
@@ -91,9 +99,11 @@ int processMulti(thread_contex * th){
 				}else{
 					int used = th->replicationBufPos - th->replicationBuf;
 					int usedL = th->replicationBufLast - th->replicationBuf;
+					int used2 = th->replicationBufPosPre - th->replicationBuf;
 					th->replicationBuf = realloc(th->replicationBuf,th->replicationBufSize*2);
 					th->replicationBufPos = th->replicationBuf +used;
 					th->replicationBufLast = th->replicationBuf+usedL;
+					th->replicationBufPosPre = th->replicationBuf+used2;
 					th->replicationBufSize *=2;
 					memmove(th->replicationBufPos+strlen(server.prefix)+gap,th->replicationBufPos,th->replicationBufLast-th->replicationBufPos);
 					th->replicationBufPos += gap;
@@ -104,7 +114,8 @@ int processMulti(thread_contex * th){
 				th->key = th->replicationBufPos;
 				th->replicationBufPos += strlen(server.prefix);
 				th->replicationBufLast+=( strlen(server.prefix)+gap);
-			}
+				*/
+			//}
 
 		}
 		th->replicationBufPos = th->replicationBufPos+th->lineSize+2;
@@ -124,17 +135,29 @@ int processSingle(thread_contex * th){
 	return 1;
 }
 void resetState(thread_contex * th){
-	int n;
-	n = th->replicationBufLast-th->replicationBufPos;
-	memmove(th->replicationBuf,th->replicationBufPos,n);
-	th->replicationBufLast =th->replicationBuf +n;
-	th->replicationBufPos = th->replicationBuf;
-	memset(th->replicationBufLast,0,th->replicationBufSize-n);
+	th->replicationBufPosPre = th->replicationBufPos;
 	th->bucknum = -1;
 	th->lineSize = -1;
 	th->inputMode = -1;
 	th->type = -1;
 	th->step = 0;
+	th->key = NULL;
+}
+void moveBuf(thread_contex * th){
+	int n1,n2,nk;
+	n1 = th->replicationBufLast-th->replicationBufPosPre;
+	n2 = th->replicationBufPos-th->replicationBufPosPre;
+	if(th->key !=NULL){
+		nk = th->key - th->replicationBufPosPre;
+	}
+	memmove(th->replicationBuf,th->replicationBufPosPre,n1);
+	th->replicationBufLast =th->replicationBuf +n1;
+	th->replicationBufPos = th->replicationBuf + n2;
+	th->replicationBufPosPre = th->replicationBuf;
+	if(th->key != NULL){
+		th->key = th->replicationBuf + nk;
+	}
+	memset(th->replicationBufLast,0,th->replicationBufSize-n1);
 }
 void  replicationWithServer(void * data){
 	event *ev = data;
@@ -143,25 +166,41 @@ void  replicationWithServer(void * data){
 	int n , i;
 	int left;
 	int extra;
+	long readed = 0;
 	static char t[1000];
 	while(1){
 		left = th->replicationBufSize-(th->replicationBufLast - th->replicationBuf);
 		if(left == 0){
-			//large
-			int used = th->replicationBufPos - th->replicationBuf;
-			th->replicationBuf = realloc(th->replicationBuf,th->replicationBufSize*2);
-			th->replicationBufPos = th->replicationBuf +used;
-			th->replicationBufLast = th->replicationBuf+th->replicationBufSize;
-			th->replicationBufSize *=2;
+			if(th->replicationBufPos< th->replicationBuf + th->replicationBufSize/2){
+				int used = th->replicationBufPos - th->replicationBuf;
+				int used2 = th->replicationBufPosPre - th->replicationBuf;
+				int nk;
+				if(th->key != NULL){
+					nk = th->key - th->replicationBuf;
+				}
+				th->replicationBuf = realloc(th->replicationBuf,th->replicationBufSize*2);
+				th->replicationBufPos = th->replicationBuf +used;
+				th->replicationBufPosPre = th->replicationBuf +used2;
+				th->replicationBufLast = th->replicationBuf+th->replicationBufSize;
+				if(th->key != NULL){
+					th->key = th->replicationBuf + nk;
+				}
+				left = th->replicationBufSize;
+				th->replicationBufSize *=2;
+			}else{
+				moveBuf(th);
+				left = th->replicationBufSize-(th->replicationBufLast - th->replicationBuf);
+			}
 		}
 		n = read(fd, th->replicationBufLast ,left);
 		if(n < 0){
 			return;
 		}
+		readed +=n;
 	 	th->replicationBufLast+=n;
 		while(th->replicationBufPos != th->replicationBufLast){
 			if(th->inputMode == -1){
-				if(th->replicationBuf[0] == '*'){
+				if(th->replicationBufPos[0] == '*'){
 					th->inputMode = 1;//multi line
 				}else{ 
 					th->inputMode = 0; //single line
@@ -186,18 +225,27 @@ void  replicationWithServer(void * data){
 				continue ;
 			}
 			
+			if(strlen(server.prefix) >0){
+				int gap = lengthSize(th->key_length)+3;
+				memset(t,0,1000);
+				memcpy(t,server.prefix,strlen(server.prefix));
+				memcpy(t+strlen(server.prefix),th->key,th->key_length);
+			}else{
+				memset(t,0,1000);
+				memcpy(t,th->key,th->key_length);
+			}
+			
 			//send to new server
-			uint32_t hash = server_hash(server.new_config, th->key, th->key_length);
+			uint32_t hash = server_hash(server.new_config, t, th->key_length+strlen(server.prefix));
 			int index = dispatch(server.new_config,hash);
 			server_conf * from = th->sc;
 			server_conf * to = array_get(server.new_config->servers,index);
 			
-			memset(t,0,1000);
-			memcpy(t,th->key,th->key_length);
+			
 			Log(LOG_DEBUG, "the key %s, from %s:%d",t, from->pname,from->port);
 			Log(LOG_DEBUG, "the key %s should goto %s:%d",t, to->pname, to->port);
 			if(th->processed %10000 ==0){
-				Log(LOG_NOTICE, "processed %lld key from output buf from %s:%d",th->processed,th->aoffile,from->pname,from->port);	
+				Log(LOG_NOTICE, "processed %lld key  read %ld bytes from output buf from %s:%d",th->processed,readed, th->aoffile,from->pname,from->port);	
 			}
 			if(strcmp(from->pname,to->pname)==0 && from->port == to->port){
 					//printf("the key from is same to %s\n",t);
@@ -207,16 +255,39 @@ void  replicationWithServer(void * data){
 			}
 
 			//send to new
-			buf_t * output = getBuf(th->replicationBufPos - th->replicationBuf+10);
+			buf_t * output = getBuf(th->replicationBufPos - th->replicationBufPosPre+10+strlen(server.prefix));
 			if(!output){
 				//printf("getBuf error\n");
 				Log(LOG_ERROR,"get buf error");
 				exit(1);
 			}
 			
-			memcpy(output->start, th->replicationBuf, th->replicationBufPos-th->replicationBuf);
-            output->start[th->replicationBufPos-th->replicationBuf] = '\0';
-            output->position = output->start+(th->replicationBufPos - th->replicationBuf);
+			if(strlen(server.prefix) >0){
+				char * beforKey = th->key - lengthSize(th->key_length) -2;
+				long length,nn=0;
+
+				length = beforKey-th->replicationBufPosPre;
+				memcpy(output->start+nn, th->replicationBufPosPre, length);
+				nn += length;
+				
+				length = sprintf(output->start+nn,"%d\r\n",th->key_length+strlen(server.prefix));
+				nn += length;
+
+				length = strlen(server.prefix);
+				memcpy(output->start+nn,server.prefix,strlen(server.prefix));
+				nn += length;
+
+				length = th->replicationBufPos - th->key;
+				memcpy(output->start +nn ,th->key,length);
+				nn += length;
+				output->position = output->start + nn;
+			}else{
+				memcpy(output->start, th->replicationBufPosPre, th->replicationBufPos-th->replicationBufPosPre);
+				output->position = output->start+(th->replicationBufPos - th->replicationBufPosPre);
+			}
+			
+            //output->start[th->replicationBufPos-th->replicationBufPosPre] = '\0';
+            
             //printf("%s", output->start);
 
 			appendToOutBuf(to->contex, output);
@@ -244,12 +315,26 @@ void replicationAof(thread_contex *th){
 	while(1){
 		left = th->replicationBufSize-(th->replicationBufLast - th->replicationBuf);
 		if(left == 0){
-			//large
-			int used = th->replicationBufPos - th->replicationBuf;
-			th->replicationBuf = realloc(th->replicationBuf,th->replicationBufSize*2);
-			th->replicationBufPos = th->replicationBuf +used;
-			th->replicationBufLast = th->replicationBuf+th->replicationBufSize;
-			th->replicationBufSize *=2;
+			if(th->replicationBufPosPre< th->replicationBuf + th->replicationBufSize/2){
+				int used = th->replicationBufPos - th->replicationBuf;
+				int used2 = th->replicationBufPosPre - th->replicationBuf;
+				int nk;
+				if(th->key != NULL){
+					nk = th->key - th->replicationBuf;
+				}
+				th->replicationBuf = realloc(th->replicationBuf,th->replicationBufSize*2);
+				th->replicationBufPos = th->replicationBuf +used;
+				th->replicationBufPosPre = th->replicationBuf +used2;
+				th->replicationBufLast = th->replicationBuf+th->replicationBufSize;
+				if(th->key != NULL){
+					th->key = th->replicationBuf + nk;
+				}
+				left = th->replicationBufSize;
+				th->replicationBufSize *=2;
+			}else{
+				moveBuf(th);
+				left = th->replicationBufSize-(th->replicationBufLast - th->replicationBuf);
+			}
 		}
 		//printf("left %d\n",left );
 		n = read(fd, th->replicationBufLast ,left);
@@ -262,7 +347,7 @@ void replicationAof(thread_contex *th){
 	 	th->replicationBufLast+=n;
 		while(th->replicationBufPos != th->replicationBufLast){
 			if(th->inputMode == -1){
-				if(th->replicationBuf[0] == '*'){
+				if(th->replicationBufPos[0] == '*'){
 					th->inputMode = 1;//multi line
 				}else{ 
 					th->inputMode = 0; //single line
@@ -286,27 +371,36 @@ void replicationAof(thread_contex *th){
 				resetState(th);
 				continue ;
 			}
-			
+			if(th->key == NULL){
+				Log(LOG_NOTICE,"%p",th->key);
+				Log(LOG_NOTICE,"%s",th->replicationBufPosPre);
+			}
+			if(strlen(server.prefix) >0){
+				memset(t,0,1000);
+				memcpy(t,server.prefix,strlen(server.prefix));
+				memcpy(t+strlen(server.prefix),th->key,th->key_length);
+			}else{
+				memset(t,0,1000);
+				memcpy(t,th->key,th->key_length);
+			}
 
 			//send to new server
 			
-			uint32_t hash = server_hash(server.new_config, th->key, th->key_length);
+			uint32_t hash = server_hash(server.new_config, t, th->key_length);
 			int index = dispatch(server.new_config,hash);
 			server_conf * from = th->sc;
 			server_conf * to = array_get(server.new_config->servers,index);
-			if(th->processed %10000 ==0){
+			if(th->processed %1000 ==0){
 					Log(LOG_NOTICE, "processed %lld key in the aof file %s , from %s:%d",th->processed,th->aoffile,from->pname,from->port);	
 			}
 			
-			memset(t,0,1000);
-			memcpy(t,th->key,th->key_length);
 			//t[th->key_length]='\0';
 
 			//snprintf(t,th->key_length+1 ,"%s",th->key );
 			
 			Log(LOG_DEBUG, "the key %s, from %s:%d",t, from->pname,from->port);
 			Log(LOG_DEBUG, "the key %s should goto %s:%d",t, to->pname, to->port);
-			if(th->processed %10000 ==0){
+			if(th->processed %1000 ==0){
 					Log(LOG_NOTICE, "processed %lld key in the aof file %s , from %s:%d",th->processed,th->aoffile,from->pname,from->port);	
 			}
 			if(strcmp(from->pname,to->pname)==0 && from->port == to->port){
@@ -317,17 +411,36 @@ void replicationAof(thread_contex *th){
 			}
 			
 			//send to new
-			buf_t * output = getBuf(th->replicationBufPos - th->replicationBuf+10);
+			buf_t * output = getBuf(th->replicationBufPos - th->replicationBufPosPre+10);
 			if(!output){
 				//printf("getBuf error\n");
 				Log(LOG_ERROR,"get buf error");
 				exit(1);
 			}
 			
-			memcpy(output->start, th->replicationBuf, th->replicationBufPos-th->replicationBuf);
-            output->start[th->replicationBufPos-th->replicationBuf] = '\0';
-            output->position = output->start+(th->replicationBufPos - th->replicationBuf);
-            //printf("%s", output->start);
+			if(strlen(server.prefix) >0){
+				char * beforKey = th->key - lengthSize(th->key_length) -2;
+				long length,nn=0;
+
+				length = beforKey-th->replicationBufPosPre;
+				memcpy(output->start+nn, th->replicationBufPosPre, length);
+				nn += length;
+				
+				length = sprintf(output->start+nn,"%d\r\n",th->key_length+strlen(server.prefix));
+				nn += length;
+
+				length = strlen(server.prefix);
+				memcpy(output->start+nn,server.prefix,strlen(server.prefix));
+				nn += length;
+
+				length = th->replicationBufPos - th->key;
+				memcpy(output->start +nn ,th->key,length);
+				nn += length;
+				output->position = output->start + nn;
+			}else{
+				memcpy(output->start, th->replicationBufPosPre, th->replicationBufPos-th->replicationBufPosPre);
+				output->position = output->start+(th->replicationBufPos - th->replicationBufPosPre);
+			}
 
 			appendToOutBuf(to->contex, output);
 			
@@ -349,7 +462,7 @@ int  saveRdb(thread_contex * th){
 		return 0;
 	}
 	char buf[1024];
-	int n ,left;
+	long  n ,left;
 	th->transfer_read = 0;
 	while(th->transfer_size > th->transfer_read){
 		left = th->transfer_size - th->transfer_read;
@@ -410,7 +523,7 @@ void * saveAofThread(void *data){
         if(n>0){
             write(filefd,buf,n);
             sum+=n;
-            if(loop %100 ==0){
+            if(loop %1000 ==0){
             	Log(LOG_NOTICE, "write into aof file %s , %lld byte ",th->aoffile, sum);
             }
             loop++;
@@ -499,11 +612,12 @@ void * transferFromServer(void * data){
 	//create aof
 	memset(th->aoffile,0,100);
     sprintf(th->aoffile,"aof-%s-%d.aof",sc->pname,sc->port);
+	//sprintf(th->aoffile,"aof-127.0.0.1-6379.aof");
 	pthread_t saveAofthread;
 	aof_alive = 1;
 	pthread_create(&saveAofthread,NULL,saveAofThread,th);
 	parseRdbThread(th);
-	sleep(20);
+	//sleep(50);
 	//处理保存的aof文件
 	stop = 1;
 	pthread_mutex_lock(&sync_mutex);
@@ -513,7 +627,8 @@ void * transferFromServer(void * data){
 	}
 
 	pthread_mutex_unlock(&sync_mutex);
-
+	
+	//sprintf(th->aoffile,"aof-127.0.0.1-6379.aof");
 	th->replicationBufSize = 1024*1024;
 	th->replicationBuf = malloc(1024*1024*sizeof(char));
 	th->replicationBufLast = th->replicationBufPos = th->replicationBuf;

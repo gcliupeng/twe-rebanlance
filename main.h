@@ -75,6 +75,7 @@ struct thread_contex_s{
 	char * replicationBuf;
 	int replicationBufSize;
 	char * replicationBufPos;
+	char * replicationBufPosPre;
 	char * replicationBufLast;
 	int lineSize;
 };

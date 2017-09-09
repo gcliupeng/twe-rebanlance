@@ -919,7 +919,7 @@ void freeMem(thread_contex * th){
 }
 void processPair(thread_contex *th){
 	
-    if(th->processed % 1000 == 0){
+    if(th->processed % 10000 == 0){
         Log(LOG_NOTICE, "processed  rdb file %s %d keys , %s",th->rdbfile, th->processed,th->key);
     }
     
