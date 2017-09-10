@@ -386,7 +386,7 @@ void replicationAof(thread_contex *th){
 
 			//send to new server
 			
-			uint32_t hash = server_hash(server.new_config, t, th->key_length);
+			uint32_t hash = server_hash(server.new_config, t, th->key_length+strlen(server.prefix));
 			int index = dispatch(server.new_config,hash);
 			server_conf * from = th->sc;
 			server_conf * to = array_get(server.new_config->servers,index);
@@ -636,6 +636,7 @@ void * transferFromServer(void * data){
 	th->lineSize = -1;
 	th->inputMode = -1;
 	th->step = 0;
+	th->key = NULL;
 	Log(LOG_NOTICE, "begin process the aof file from server %s:%d , the file is %s",sc->pname,sc->port ,th->aoffile);
 	replicationAof(th);
 	//close(th->aoffd);
@@ -690,8 +691,8 @@ void  sendData(void * data){
 	pthread_mutex_unlock(&th->mutex);
 
 	//send it
-	buf->last = buf->position; 
-	buf->position = buf->start;
+	// buf->last = buf->position; 
+	// buf->position = buf->start;
 	//Log(LOG_DEBUG,"need write %d",buf->last-buf->position);
 	if(buf->last-buf->position ==0){
 		freeBuf(buf);
@@ -703,6 +704,7 @@ void  sendData(void * data){
 		//printf("send %d\n", n);
 		freeBuf(buf);
 	}else{
+		buf->position += n;
 		// put again
 		pthread_mutex_lock(&th->mutex);
 		buf->next = th->bufout;
@@ -852,6 +854,6 @@ void * outPutLoop(void * data){
 	t->type  = EVENT_TIMEOUT;
 	t->tcall = checkConnect;
 	t->timeout = 1000;
-	//addEvent(th->loop,t,EVENT_TIMEOUT);
+	addEvent(th->loop,t,EVENT_TIMEOUT);
 	eventCycle(th->loop);
 }

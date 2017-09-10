@@ -740,7 +740,7 @@ void formatResponse(thread_contex *th, buf_t * out){
 			zset = zset->next;
 			//$4\r\nzadd\r\n;
 			while(zset){
-                out->position += sprintf(out->position,"*3\r\n$4\r\nzadd\r\n",th->bucknum+2);
+                out->position += sprintf(out->position,"*4\r\n$4\r\nzadd\r\n");
                 out->position+=formatStr(out->position,th->key);
 				out->position += formatDouble(out->position,zset->score);
 				out->position+=formatStr(out->position,zset->str);
@@ -877,6 +877,8 @@ int responseSize(thread_contex *th){
 }
 
 void appendToOutBuf(thread_contex *th, buf_t * b){
+    b->last = b->position; 
+    b->position = b->start;
 	pthread_mutex_lock(&th->mutex);
 	if(!th->bufout){
 		//printf("aaa\n");
@@ -946,7 +948,6 @@ void processPair(thread_contex *th){
         freeMem(th);
 		return ;
 	}
-
 	//send to new redis
     
 	long size = responseSize(th);
