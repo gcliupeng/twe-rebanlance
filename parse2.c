@@ -925,6 +925,15 @@ void processPair(thread_contex *th){
         Log(LOG_NOTICE, "processed  rdb file %s %d keys , %s",th->rdbfile, th->processed,th->key);
     }
     
+    //是否需要过滤
+    if(strlen(server.filter)>0){
+        if(strncmp(th->key,server.filter,strlen(server.filter)) !=0){
+            freeMem(th);
+            return ;
+        }
+    }
+    
+
     //加上前缀
     if(strlen(server.prefix)>0){
         char * c = malloc(strlen(server.prefix)+strlen(th->key)+1);

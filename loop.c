@@ -224,6 +224,17 @@ void  replicationWithServer(void * data){
 				resetState(th);
 				continue ;
 			}
+
+			if(th->processed %10000 ==0){
+				Log(LOG_NOTICE, "processed %lld key  read %ld bytes from output buf from %s:%d",th->processed,readed, th->aoffile,from->pname,from->port);	
+			}
+			//是否需要过滤
+    		if(strlen(server.filter)>0){
+        		if(strncmp(th->key,server.filter,strlen(server.filter)) !=0){
+            		resetState(th);
+            		continue;
+        		}
+    		}
 			
 			if(strlen(server.prefix) >0){
 				int gap = lengthSize(th->key_length)+3;
@@ -244,9 +255,6 @@ void  replicationWithServer(void * data){
 			
 			Log(LOG_DEBUG, "the key %s, from %s:%d",t, from->pname,from->port);
 			Log(LOG_DEBUG, "the key %s should goto %s:%d",t, to->pname, to->port);
-			if(th->processed %10000 ==0){
-				Log(LOG_NOTICE, "processed %lld key  read %ld bytes from output buf from %s:%d",th->processed,readed, th->aoffile,from->pname,from->port);	
-			}
 			if(strcmp(from->pname,to->pname)==0 && from->port == to->port){
 					//printf("the key from is same to %s\n",t);
 				Log(LOG_DEBUG,"the key %s server not change ",t);
@@ -366,11 +374,24 @@ void replicationAof(thread_contex *th){
 			}
 			// parse ok
 
+			if(th->processed %1000 ==0){
+					Log(LOG_NOTICE, "processed %lld key in the aof file %s , from %s:%d",th->processed,th->aoffile,from->pname,from->port);	
+			}
+			
 			if(th->type == REDIS_CMD_PING || th->type == REDIS_CMD_SELECTDB){
 				//printf("is ping or select\n");
 				resetState(th);
 				continue ;
 			}
+			
+			//是否需要过滤
+    		if(strlen(server.filter)>0){
+        		if(strncmp(th->key,server.filter,strlen(server.filter)) !=0){
+            		resetState(th);
+            		continue;
+        		}
+    		}
+
 			if(th->key == NULL){
 				Log(LOG_NOTICE,"%p",th->key);
 				Log(LOG_NOTICE,"%s",th->replicationBufPosPre);
@@ -400,9 +421,7 @@ void replicationAof(thread_contex *th){
 			
 			Log(LOG_DEBUG, "the key %s, from %s:%d",t, from->pname,from->port);
 			Log(LOG_DEBUG, "the key %s should goto %s:%d",t, to->pname, to->port);
-			if(th->processed %1000 ==0){
-					Log(LOG_NOTICE, "processed %lld key in the aof file %s , from %s:%d",th->processed,th->aoffile,from->pname,from->port);	
-			}
+			
 			if(strcmp(from->pname,to->pname)==0 && from->port == to->port){
 					//printf("the key from is same to %s\n",t);
 				Log(LOG_DEBUG,"the key %s server not change ",t);
