@@ -224,7 +224,7 @@ void  replicationWithServer(void * data){
 				resetState(th);
 				continue ;
 			}
-
+			server_conf * from = th->sc;
 			if(th->processed %10000 ==0){
 				Log(LOG_NOTICE, "processed %lld key  read %ld bytes from output buf from %s:%d",th->processed,readed, th->aoffile,from->pname,from->port);	
 			}
@@ -249,7 +249,7 @@ void  replicationWithServer(void * data){
 			//send to new server
 			uint32_t hash = server_hash(server.new_config, t, th->key_length+strlen(server.prefix));
 			int index = dispatch(server.new_config,hash);
-			server_conf * from = th->sc;
+			
 			server_conf * to = array_get(server.new_config->servers,index);
 			
 			
@@ -373,7 +373,7 @@ void replicationAof(thread_contex *th){
 				break;
 			}
 			// parse ok
-
+			server_conf * from = th->sc;
 			if(th->processed %1000 ==0){
 					Log(LOG_NOTICE, "processed %lld key in the aof file %s , from %s:%d",th->processed,th->aoffile,from->pname,from->port);	
 			}
@@ -409,7 +409,7 @@ void replicationAof(thread_contex *th){
 			
 			uint32_t hash = server_hash(server.new_config, t, th->key_length+strlen(server.prefix));
 			int index = dispatch(server.new_config,hash);
-			server_conf * from = th->sc;
+			
 			server_conf * to = array_get(server.new_config->servers,index);
 			if(th->processed %1000 ==0){
 					Log(LOG_NOTICE, "processed %lld key in the aof file %s , from %s:%d",th->processed,th->aoffile,from->pname,from->port);	
