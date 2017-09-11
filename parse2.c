@@ -929,6 +929,7 @@ void processPair(thread_contex *th){
     if(strlen(server.filter)>0){
         if(strncmp(th->key,server.filter,strlen(server.filter)) !=0){
             freeMem(th);
+            th->processed ++;
             return ;
         }
     }
@@ -954,6 +955,7 @@ void processPair(thread_contex *th){
 	if(strcmp(from->pname,to->pname)==0 && from->port == to->port){
 		//printf("the key from is same to %s\n",th->key);
 		Log(LOG_DEBUG,"the key %s server is same",th->key);
+        th->processed ++;
         freeMem(th);
 		return ;
 	}
