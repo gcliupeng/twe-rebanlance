@@ -231,6 +231,7 @@ void  replicationWithServer(void * data){
 			//是否需要过滤
     		if(strlen(server.filter)>0){
         		if(strncmp(th->key,server.filter,strlen(server.filter)) !=0){
+        			th->processed ++;
             		resetState(th);
             		continue;
         		}
@@ -259,6 +260,7 @@ void  replicationWithServer(void * data){
 					//printf("the key from is same to %s\n",t);
 				Log(LOG_DEBUG,"the key %s server not change ",t);
 				resetState(th);
+				th->processed++;
 				continue;
 			}
 
@@ -388,6 +390,7 @@ void replicationAof(thread_contex *th){
     		if(strlen(server.filter)>0){
         		if(strncmp(th->key,server.filter,strlen(server.filter)) !=0){
             		resetState(th);
+            		th->processed++;
             		continue;
         		}
     		}
@@ -411,9 +414,6 @@ void replicationAof(thread_contex *th){
 			int index = dispatch(server.new_config,hash);
 			
 			server_conf * to = array_get(server.new_config->servers,index);
-			if(th->processed %1000 ==0){
-					Log(LOG_NOTICE, "processed %lld key in the aof file %s , from %s:%d",th->processed,th->aoffile,from->pname,from->port);	
-			}
 			
 			//t[th->key_length]='\0';
 
@@ -426,6 +426,7 @@ void replicationAof(thread_contex *th){
 					//printf("the key from is same to %s\n",t);
 				Log(LOG_DEBUG,"the key %s server not change ",t);
 				resetState(th);
+				th->processed ++;
 				continue;
 			}
 			
