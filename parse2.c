@@ -24,9 +24,13 @@
 uint32_t server_hash(config *conf, uint8_t *key, uint32_t keylen);
 uint32_t dispatch(config * sc, uint32_t hash);
 extern rebance_server server;
+static thread_contex * th_g;
 
-int formatStr(char *p,char * str){
-	sprintf(p,"$%ld\r\n%s\r\n",strlen(str),str);
+int formatStr(char *p,char * str,long str_length){
+	int length = sprintf(p,"$%ld\r\n",str_length);
+    memcpy(p+length,str,str_length);
+    memcpy(p+length+str_length,"\r\n",2);
+    return length+str_length+2;
 } 
 int formatDouble(char *p , double d){
     char dbuf[128], sbuf[128];
@@ -280,7 +284,7 @@ uint32_t loadLength(int rdbfd, int *isencoded) {
     }
 }
 
-char* loadLzfStringObject(int rdbfd) {
+char* loadLzfStringObject(int rdbfd,long* str_length) {
     unsigned int slen, clen;
     char *c, *s;
 
@@ -304,10 +308,11 @@ char* loadLzfStringObject(int rdbfd) {
     s[slen] = '\0';
 
     free(c);
+    *str_length = strlen(s);
     return s;
 }
 
-char *loadIntegerObject(int rdbfd, int enctype) {
+char *loadIntegerObject(int rdbfd, int enctype, long *key_length) {
     unsigned char enc[4];
     long long val;
 
@@ -336,6 +341,7 @@ char *loadIntegerObject(int rdbfd, int enctype) {
     buf = malloc(sizeof(char) * 128);
     int n = sprintf(buf, "%lld", val);
     buf[n] = '\0';
+    *key_length = strlen(buf);
     return buf;
 }
 
@@ -385,7 +391,7 @@ int processDoubleValue(int rdbfd, double* store) {
     return 1;
 }
 
-char* loadStringObject(int rdbfd) {
+char* loadStringObject(int rdbfd, long * key_length) {
     int isencoded;
     uint32_t len;
 
@@ -397,9 +403,9 @@ char* loadStringObject(int rdbfd) {
         case REDIS_RDB_ENC_INT8:
         case REDIS_RDB_ENC_INT16:
         case REDIS_RDB_ENC_INT32:
-            return loadIntegerObject(rdbfd,len);
+            return loadIntegerObject(rdbfd,len,key_length);
         case REDIS_RDB_ENC_LZF:
-            return loadLzfStringObject(rdbfd);
+            return loadLzfStringObject(rdbfd,key_length);
         default:
             /* unknown encoding */
             Log(LOG_ERROR, "Unknown string encoding (0x%02x)", len);
@@ -420,11 +426,12 @@ char* loadStringObject(int rdbfd) {
         free(buf);
         return NULL;
     }
+    *key_length = len;
     return buf;
 }
 
-int processStringObject(int rdbfd, char** store) {
-    char *key = loadStringObject(rdbfd);
+int processStringObject(int rdbfd, char** store, long* key_length) {
+    char *key = loadStringObject(rdbfd,key_length);
     if (key == NULL) {
         Log(LOG_ERROR, "Error reading string object");
         //free(key);
@@ -454,11 +461,12 @@ int loadPair(thread_contex * th) {
     unsigned char *fstr, *vstr;
     unsigned int flen, vlen;
     long long sval;
+    long temp;
     uint64_t isvalue;
     char * buf;
     intset *is;
 
-    if (processStringObject(th->rdbfd, &key)) {
+    if (processStringObject(th->rdbfd, &key,&th->key_length)) {
         th->key = key;
     } else {
         Log(LOG_ERROR,"Error reading entry key, server %s:%d",th->sc->pname,th->sc->port);
@@ -480,7 +488,7 @@ int loadPair(thread_contex * th) {
 
     switch(th->type) {
     case REDIS_HASH_ZIPMAP:
-    	if (!processStringObject(th->rdbfd, (char **)&zl)) {
+    	if (!processStringObject(th->rdbfd, (char **)&zl,&temp)) {
             Log(LOG_ERROR, "Error reading entry value, type is %d ,server %s:%d",th->type,th->sc->pname,th->sc->port);
             return 0;
         }
@@ -491,8 +499,10 @@ int loadPair(thread_contex * th) {
         		hnode->field = malloc(flen+1);
         		memcpy(hnode->field , fstr,flen);
         		hnode->field[flen] = '\0';
-        		hnode->value = malloc(vlen+1);
+        		hnode->field_length = flen;
+                hnode->value = malloc(vlen+1);
         		memcpy(hnode->value , vstr,vlen);
+                hnode->value_length = vlen;
         		hnode->value[vlen] = '\0';
         		Log(LOG_DEBUG,"REDIS_HASH_ZIPMAP key: %s , field %s , value %s , server %s:%d", th->key, hnode->field, hnode->value,th->sc->pname,th->sc->port);
         	}
@@ -501,7 +511,7 @@ int loadPair(thread_contex * th) {
         	break;
 
     case REDIS_LIST_ZIPLIST:
-    	if (!processStringObject(th->rdbfd, (char **)&zl)) {
+    	if (!processStringObject(th->rdbfd, (char **)&zl,&temp)) {
             Log(LOG_ERROR, "Error reading entry value , type %d, server %s:%d",th->type,th->sc->pname,th->sc->port);
             return 0;
         }
@@ -515,10 +525,13 @@ int loadPair(thread_contex * th) {
         		lnode->str = malloc(vlen+1);
         		memcpy(lnode->str,vstr,vlen);
         		lnode->str[vlen] = '\0';
+                lnode->str_length = vlen;
             } else {
             	buf = malloc(256);
             	sdsll2str(buf,sval);
+                lnode->str_length = strlen(buf);
             	lnode->str = buf;
+
             }
             Log(LOG_DEBUG, "REDIS_LIST_ZIPLIST key: %s ,value %s , server %s:%d",th->key, lnode->str,th->sc->pname,th->sc->port);
         	zi=ziplistNext(zl,zi);
@@ -528,7 +541,7 @@ int loadPair(thread_contex * th) {
         break;
 
     case REDIS_SET_INTSET:
-    	 if (!processStringObject(th->rdbfd, (char **)&is)) {
+    	 if (!processStringObject(th->rdbfd, (char **)&is, &temp)) {
             Log(LOG_ERROR, "Error reading entry value , type %d, server %s:%d",th->type,th->sc->pname,th->sc->port);
             return 0;
         }
@@ -541,6 +554,7 @@ int loadPair(thread_contex * th) {
      		buf = malloc(256);
             sdsll2str(buf,isvalue);
             lnode->str = buf;
+            lnode->str_length = strlen(buf);
             //Log(LOG_NOTICE, "REDIS_SET_INTSET key : %s ,value %s , server %s:%d",th->key, lnode->str,th->sc->pname,th->sc->port);
         }
         free(is);
@@ -548,7 +562,7 @@ int loadPair(thread_contex * th) {
         break;
 
     case REDIS_ZSET_ZIPLIST:
-    	if (!processStringObject(th->rdbfd, (char **)&zl)) {
+    	if (!processStringObject(th->rdbfd, (char **)&zl,&temp)) {
             Log(LOG_ERROR, "Error reading entry value , type %d, server %s:%d",th->type,th->sc->pname,th->sc->port);
             return 0;
         }
@@ -563,10 +577,12 @@ int loadPair(thread_contex * th) {
         		znode->str = malloc(vlen+1);
         		memcpy(znode->str,vstr,vlen);
         		znode->str[vlen] = '\0';
+                znode->str_length = vlen;
             } else {
             	buf = malloc(256);
             	sdsll2str(buf,sval);
             	znode->str = buf;
+                znode->str_length = strlen(buf);
             }
             Log(LOG_DEBUG, "REDIS_ZSET_ZIPLIST key : %s , value %s , server %s:%d",th->key, znode->str,th->sc->pname,th->sc->port);
 
@@ -580,7 +596,7 @@ int loadPair(thread_contex * th) {
         return 1;
         break;
     case REDIS_HASH_ZIPLIST:
-    	if (!processStringObject(th->rdbfd, (char **)&zl)) {
+    	if (!processStringObject(th->rdbfd, (char **)&zl,&temp)) {
             Log(LOG_ERROR, "Error reading entry value , type %d, server %s:%d",th->type,th->sc->pname,th->sc->port);
             return 0;
         }
@@ -595,10 +611,12 @@ int loadPair(thread_contex * th) {
         		hnode->field = malloc(vlen+1);
         		memcpy(hnode->field,vstr,vlen);
         		hnode->field[vlen] = '\0';
+                hnode->field_length = vlen;
             } else {
             	buf = malloc(256);
             	sdsll2str(buf,sval);
             	hnode->field = buf;
+                hnode->field_length = strlen(buf);
             }
             Log(LOG_DEBUG, "REDIS_HASH_ZIPLIST  key : %s , field %s , server %s:%d",th->key,hnode->field, th->sc->pname,th->sc->port);
             zi=ziplistNext(zl,zi);
@@ -609,10 +627,12 @@ int loadPair(thread_contex * th) {
         		hnode->value = malloc(vlen+1);
         		memcpy(hnode->value,vstr,vlen);
         		hnode->value[vlen] = '\0';
+                hnode->value_length = vlen;
             } else {
             	buf = malloc(256);
             	sdsll2str(buf,sval);
             	hnode->value = buf;
+                hnode->value_length = strlen(buf);
             }
             Log(LOG_DEBUG, "REDIS_HASH_ZIPLIST  key :%s , value %s , server %s:%d",th->key,hnode->value,th->sc->pname,th->sc->port);
             zi=ziplistNext(zl,zi);
@@ -621,7 +641,7 @@ int loadPair(thread_contex * th) {
     	return 1;
     	break;
     case REDIS_STRING:
-    if (!processStringObject(th->rdbfd,&key)) {
+    if (!processStringObject(th->rdbfd,&key,&th->value_length)) {
             Log(LOG_ERROR, "Error reading entry value , type %d, server %s:%d",th->type,th->sc->pname,th->sc->port);
             return 0;
         }
@@ -636,7 +656,7 @@ int loadPair(thread_contex * th) {
     th->value->listset = newListSet();
     for (i = 0; i < length; i++) {
     	lnode = listSetAdd(th->value->listset); 
-        if (!processStringObject(th->rdbfd,&lnode->str)) {
+        if (!processStringObject(th->rdbfd,&lnode->str,&lnode->str_length)) {
                 Log(LOG_ERROR, "Error reading element at index %d (length: %d), server %s:%d", i, length, th->sc->pname,th->sc->port);
                 return 0;
             }
@@ -650,7 +670,7 @@ int loadPair(thread_contex * th) {
     	th->value->zset = newZset();
         for (i = 0; i < length; i++) {
         	znode = zsetAdd(th->value->zset);
-            if (!processStringObject(th->rdbfd,&znode->str)) {
+            if (!processStringObject(th->rdbfd,&znode->str,&znode->str_length)) {
                 Log(LOG_ERROR, "Error reading element at index %d (length: %d), server %s:%d", i, length, th->sc->pname,th->sc->port);
                 return 0;
             }
@@ -669,13 +689,13 @@ int loadPair(thread_contex * th) {
     	th->value->hash = newHash();
         for (i = 0; i < length; i++) {
         	hnode = hashAdd(th->value->hash);
-            if (!processStringObject(th->rdbfd,&hnode->field)) {
+            if (!processStringObject(th->rdbfd,&hnode->field,&hnode->field_length)) {
                 Log(LOG_ERROR, "Error reading element at index %d (length: %d), server %s:%d", i, length, th->sc->pname,th->sc->port);
                 return 0;
             }
             Log(LOG_DEBUG, "REDIS_HASH  key : %s , field %s ,server %s:%d",th->key,hnode->field,th->sc->pname,th->sc->port);
 
-            if (!processStringObject(th->rdbfd,&hnode->value)) {
+            if (!processStringObject(th->rdbfd,&hnode->value,&hnode->value_length)) {
                 Log(LOG_ERROR, "Error reading element at index %d (length: %d), server %s:%d", i, length, th->sc->pname,th->sc->port);
                 return 0;
             }
@@ -698,7 +718,7 @@ void formatResponse(thread_contex *th, buf_t * out){
 	struct rhash * hash;
     //del
     out->position += sprintf(out->position,"*2\r\n$3\r\ndel\r\n");
-    out->position += formatStr(out->position,th->key);
+    out->position += formatStr(out->position,th->key,th->key_length);
  //    int index = 0;
 	// long num;
     switch(th->type){
@@ -707,8 +727,8 @@ void formatResponse(thread_contex *th, buf_t * out){
 			//memcpy(out->position, "*3\r\n$3\r\nset\r\n",12);
 			//out->position += 12;
 			out->position += sprintf(out->position,"*3\r\n$3\r\nset\r\n");
-			out->position+=formatStr(out->position,th->key);
-			out->position+=formatStr(out->position,th->value->str);
+			out->position+=formatStr(out->position,th->key,th->key_length);
+			out->position+=formatStr(out->position,th->value->str,th->value_length);
 				break;
 		case REDIS_LIST:
 		case REDIS_LIST_ZIPLIST:
@@ -717,8 +737,8 @@ void formatResponse(thread_contex *th, buf_t * out){
             while(listset){
 			    //$5\r\nrpush\r\n
 			    out->position += sprintf(out->position,"*3\r\n$5\r\nrpush\r\n");
-			    out->position+=formatStr(out->position,th->key);
-				out->position+=formatStr(out->position,listset->str);
+			    out->position+=formatStr(out->position,th->key,th->key_length);
+				out->position+=formatStr(out->position,listset->str,listset->str_length);
 				listset = listset->next;
 			   }
 			break;
@@ -728,9 +748,9 @@ void formatResponse(thread_contex *th, buf_t * out){
 			listset = listset->next;
 			while(listset){
                 out->position += sprintf(out->position,"*3\r\n$4\r\nsadd\r\n");
-                out->position+=formatStr(out->position,th->key);
+                out->position+=formatStr(out->position,th->key,th->key_length);
 				line++;
-				out->position+=formatStr(out->position,listset->str);
+				out->position+=formatStr(out->position,listset->str,listset->str_length);
 				listset = listset->next;
 			}
 			break;
@@ -741,9 +761,9 @@ void formatResponse(thread_contex *th, buf_t * out){
 			//$4\r\nzadd\r\n;
 			while(zset){
                 out->position += sprintf(out->position,"*4\r\n$4\r\nzadd\r\n");
-                out->position+=formatStr(out->position,th->key);
+                out->position+=formatStr(out->position,th->key,th->key_length);
 				out->position += formatDouble(out->position,zset->score);
-				out->position+=formatStr(out->position,zset->str);
+				out->position+=formatStr(out->position,zset->str,zset->str_length);
 				zset = zset->next;
 			}
 			break;
@@ -753,12 +773,14 @@ void formatResponse(thread_contex *th, buf_t * out){
 			hash = th->value->hash;
 			hash = hash->next;
 			//$5\r\nhmset\r\n;
-			out->position += sprintf(out->position,"*%d\r\n$5\r\nhmset\r\n",th->bucknum+2);
-			out->position+=formatStr(out->position,th->key);
+			//out->position += sprintf(out->position,"*%d\r\n$5\r\nhmset\r\n",th->bucknum+2);
+			//out->position+=formatStr(out->position,th->key);
 			while(hash){
+                out->position += sprintf(out->position,"*4\r\n$4\r\nhset\r\n");
+                out->position+=formatStr(out->position,th->key,th->key_length);
 				//printf("%s\n",hash->field);
-				out->position+=formatStr(out->position,hash->field);
-				out->position+=formatStr(out->position,hash->value);
+				out->position+=formatStr(out->position,hash->field,hash->field_length);
+				out->position+=formatStr(out->position,hash->value,hash->value_length);
 				hash = hash->next;
 			}
 			break;
@@ -768,7 +790,7 @@ void formatResponse(thread_contex *th, buf_t * out){
     if(th->expiretime != -1 || th->expiretimeM != -1){
         //*3\r\n$8\r\nexpireat\r\n$n\r\nkey\r\n
         out->position += sprintf(out->position,"*3\r\n$9\r\npexpireat\r\n");
-        out->position+=formatStr(out->position,th->key);
+        out->position+=formatStr(out->position,th->key,th->key_length);
         out->position += sprintf(out->position,"$%lld\r\n%lld\r\n",lengthSize(th->expiretimeM),th->expiretimeM);
     }
 }
@@ -782,7 +804,7 @@ int responseSize(thread_contex *th){
     //delete first
     // *2\r\n$3del\r\n
     cmd_length = 11;
-    cmd_length += lengthSize(strlen(th->key))+5+strlen(th->key);
+    cmd_length += lengthSize(th->key_length)+5+th->key_length;
 
     //expire
     if(th->expiretime != -1 || th->expiretimeM != -1){
@@ -791,7 +813,7 @@ int responseSize(thread_contex *th){
         }
         //*3\r\n$8\r\npexpireat\r\n$n\r\nkey\r\n
         cmd_length += 19;
-        cmd_length += lengthSize(strlen(th->key))+5+strlen(th->key);
+        cmd_length += lengthSize(th->key_length)+5+th->key_length;
         cmd_length += lengthSize(lengthSize(th->expiretimeM))+5+lengthSize(th->expiretimeM);
     }
 	switch(th->type){
@@ -801,9 +823,9 @@ int responseSize(thread_contex *th){
 			//$3\r\nset\r\n
 			cmd_length += 9;
 			//$keylength\r\nkey\r\n
-			cmd_length += lengthSize(strlen(th->key))+5+strlen(th->key);
+			cmd_length += lengthSize(th->key_length)+5+th->key_length;
 			//$valuelength\r\nvalue\r\n
-			cmd_length += lengthSize(strlen(th->value->str))+5+strlen(th->value->str);
+			cmd_length += lengthSize(th->value_length)+5+th->value_length;
 				break;
 		case REDIS_LIST:
 		case REDIS_LIST_ZIPLIST:
@@ -813,9 +835,9 @@ int responseSize(thread_contex *th){
 				//printf("%s\n", listset->str);
                 //*3\r\n$5\r\nrpush\r\n
                 cmd_length += 15;
-                cmd_length += lengthSize(strlen(th->key))+5+strlen(th->key);
+                cmd_length += lengthSize(th->key_length)+5+th->key_length;
 				line++;
-				cmd_length += lengthSize(strlen(listset->str))+5+strlen(listset->str);
+				cmd_length += lengthSize(listset->str_length)+5+listset->str_length;
 				listset = listset->next;
 			}
 			th->bucknum = line;
@@ -829,8 +851,8 @@ int responseSize(thread_contex *th){
 			while(listset){
 				line++;
                 cmd_length += 14;
-                cmd_length += lengthSize(strlen(th->key))+5+strlen(th->key);
-				cmd_length += lengthSize(strlen(listset->str))+5+strlen(listset->str);
+                cmd_length += lengthSize(th->key_length)+5+th->key_length;
+				cmd_length += lengthSize(listset->str_length)+5+listset->str_length;
 				listset = listset->next;
 			}
 			th->bucknum = line;
@@ -844,8 +866,8 @@ int responseSize(thread_contex *th){
 			while(zset){
 				line++;
                 cmd_length += 14;
-                cmd_length += lengthSize(strlen(th->key))+5+strlen(th->key);
-				cmd_length += lengthSize(strlen(zset->str))+5+strlen(zset->str);
+                cmd_length += lengthSize(th->key_length)+5+th->key_length;
+				cmd_length += lengthSize(zset->str_length)+5+zset->str_length;
 				line++;
 				cmd_length += lengthSize(doubleSize(zset->score))+5+doubleSize(zset->score);
 				zset = zset->next;
@@ -859,13 +881,15 @@ int responseSize(thread_contex *th){
 			hash = th->value->hash;
 			hash = hash->next;
 			//$5\r\nhmset\r\n;
-			cmd_length += 11;
-			cmd_length += lengthSize(strlen(th->key))+5+strlen(th->key);
+			//cmd_length += 11;
+			//cmd_length += lengthSize(strlen(th->key))+5+strlen(th->key);
 			while(hash){
+                cmd_length += 10;
+                cmd_length += lengthSize(th->key_length)+5+th->key_length;
 				line++;
-				cmd_length += lengthSize(strlen(hash->field))+5+strlen(hash->field);
+				cmd_length += lengthSize(hash->field_length)+5+hash->field_length;
 				line++;
-				cmd_length += lengthSize(strlen(hash->value))+5+strlen(hash->value);
+				cmd_length += lengthSize(hash->value_length)+5+hash->value_length;
 				hash = hash->next;
 			}
 			th->bucknum = line;
@@ -943,9 +967,10 @@ void processPair(thread_contex *th){
         c[strlen(server.prefix)+strlen(th->key)]='\0';
         free(th->key);
         th->key = c;
+        th->key_length = th->key_length+strlen(server.prefix);
     }
 
-	uint32_t hash = server_hash(server.new_config, th->key, strlen(th->key));
+	uint32_t hash = server_hash(server.new_config, th->key, th->key_length);
 	int index = dispatch(server.new_config,hash);
     server_conf * from = th->sc;
 	server_conf * to = array_get(server.new_config->servers,index);

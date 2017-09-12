@@ -49,7 +49,7 @@ int processHeader(thread_contex * th);
 int parseRdb(thread_contex * th);
 void appendToOutBuf(thread_contex *th, buf_t * b);
 int lengthSize(long long length);
-int formatStr(char *p,char * str);
+int formatStr(char *p,char * str,long str_length);
 int readBytes(int rdbfd, char * p,int max);
 
 static int string2ll(const char *s, size_t slen, long long *value) {

@@ -6,6 +6,7 @@
 
 struct rlistset{ // list or set
 	char * str;
+	long str_length;
 	struct rlistset * next;
 	struct rlistset * last;
 };
@@ -13,6 +14,7 @@ struct rlistset{ // list or set
 struct rzset{
 	double score;
 	char * str;
+	long str_length;
 	struct rzset * next;
 	struct rzset * last;
 };
@@ -20,6 +22,8 @@ struct rzset{
 struct rhash{
 	char * field;
 	char * value;
+	long field_length;
+	long value_length;
 	struct rhash * next;
 	struct rhash * last;
 };
