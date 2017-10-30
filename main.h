@@ -26,6 +26,7 @@ typedef struct{
 	config * old_config;
 	config * new_config;
 	char * prefix;
+	char * removePre;
 	char * filter;
 	char * logfile;
 	int loglevel;

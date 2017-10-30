@@ -149,6 +149,7 @@ int main(int argc, char const *argv[])
 	server.logfile = "twe-rebanlance.log";
 	server.loglevel = LOG_NOTICE;
 	server.prefix = "";
+	server.removePre = "";
 	server.filter = "";
 	int i;
 	for (i = 1; i < argc; ++i){

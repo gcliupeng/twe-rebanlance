@@ -237,18 +237,18 @@ void  replicationWithServer(void * data){
         		}
     		}
 			
-			if(strlen(server.prefix) >0){
+			if(strlen(server.prefix) >0 || strlen(server.removePre)>0 ){
 				int gap = lengthSize(th->key_length)+3;
 				memset(t,0,1000);
 				memcpy(t,server.prefix,strlen(server.prefix));
-				memcpy(t+strlen(server.prefix),th->key,th->key_length);
+				memcpy(t+strlen(server.prefix),th->key+strlen(server.removePre),th->key_length-strlen(server.removePre));
 			}else{
 				memset(t,0,1000);
 				memcpy(t,th->key,th->key_length);
 			}
 			
 			//send to new server
-			uint32_t hash = server_hash(server.new_config, t, th->key_length+strlen(server.prefix));
+			uint32_t hash = server_hash(server.new_config, t, th->key_length+strlen(server.prefix)-strlen(server.removePre));
 			int index = dispatch(server.new_config,hash);
 			
 			server_conf * to = array_get(server.new_config->servers,index);
@@ -272,7 +272,7 @@ void  replicationWithServer(void * data){
 				exit(1);
 			}
 			
-			if(strlen(server.prefix) >0){
+			if(strlen(server.prefix) >0 || strlen(server.removePre) >0){
 				char * beforKey = th->key - lengthSize(th->key_length) -2;
 				long length,nn=0;
 
@@ -280,15 +280,15 @@ void  replicationWithServer(void * data){
 				memcpy(output->start+nn, th->replicationBufPosPre, length);
 				nn += length;
 				
-				length = sprintf(output->start+nn,"%d\r\n",th->key_length+strlen(server.prefix));
+				length = sprintf(output->start+nn,"%d\r\n",th->key_length+strlen(server.prefix)-strlen(server.removePre));
 				nn += length;
 
 				length = strlen(server.prefix);
 				memcpy(output->start+nn,server.prefix,strlen(server.prefix));
 				nn += length;
 
-				length = th->replicationBufPos - th->key;
-				memcpy(output->start +nn ,th->key,length);
+				length = th->replicationBufPos - th->key - strlen(server.removePre);
+				memcpy(output->start +nn ,th->key+strlen(server.removePre),length);
 				nn += length;
 				output->position = output->start + nn;
 			}else{
@@ -387,7 +387,7 @@ void replicationAof(thread_contex *th){
 			}
 			
 			//是否需要过滤
-    		if(strlen(server.filter)>0){
+    		if(strlen(server.filter)>0 ){
         		if(strncmp(th->key,server.filter,strlen(server.filter)) !=0){
             		resetState(th);
             		th->processed++;
@@ -399,10 +399,10 @@ void replicationAof(thread_contex *th){
 				Log(LOG_NOTICE,"%p",th->key);
 				Log(LOG_NOTICE,"%s",th->replicationBufPosPre);
 			}
-			if(strlen(server.prefix) >0){
+			if(strlen(server.prefix) >0 || strlen(server.removePre)>0 ){
 				memset(t,0,1000);
 				memcpy(t,server.prefix,strlen(server.prefix));
-				memcpy(t+strlen(server.prefix),th->key,th->key_length);
+				memcpy(t+strlen(server.prefix),th->key+strlen(server.removePre),th->key_length-strlen(server.removePre));
 			}else{
 				memset(t,0,1000);
 				memcpy(t,th->key,th->key_length);
@@ -410,7 +410,7 @@ void replicationAof(thread_contex *th){
 
 			//send to new server
 			
-			uint32_t hash = server_hash(server.new_config, t, th->key_length+strlen(server.prefix));
+			uint32_t hash = server_hash(server.new_config, t, th->key_length+strlen(server.prefix)-strlen(server.removePre));
 			int index = dispatch(server.new_config,hash);
 			
 			server_conf * to = array_get(server.new_config->servers,index);
@@ -438,7 +438,7 @@ void replicationAof(thread_contex *th){
 				exit(1);
 			}
 			
-			if(strlen(server.prefix) >0){
+			if(strlen(server.prefix) >0 || strlen(server.removePre) > 0){
 				char * beforKey = th->key - lengthSize(th->key_length) -2;
 				long length,nn=0;
 
@@ -446,15 +446,15 @@ void replicationAof(thread_contex *th){
 				memcpy(output->start+nn, th->replicationBufPosPre, length);
 				nn += length;
 				
-				length = sprintf(output->start+nn,"%d\r\n",th->key_length+strlen(server.prefix));
+				length = sprintf(output->start+nn,"%d\r\n",th->key_length+strlen(server.prefix)-strlen(server.removePre));
 				nn += length;
 
 				length = strlen(server.prefix);
 				memcpy(output->start+nn,server.prefix,strlen(server.prefix));
 				nn += length;
 
-				length = th->replicationBufPos - th->key;
-				memcpy(output->start +nn ,th->key,length);
+				length = th->replicationBufPos - th->key - strlen(server.removePre);
+				memcpy(output->start +nn ,th->key+strlen(server.removePre),length);
 				nn += length;
 				output->position = output->start + nn;
 			}else{

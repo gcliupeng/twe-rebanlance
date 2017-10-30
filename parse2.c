@@ -1113,11 +1113,11 @@ void processPair(thread_contex *th){
     
 
     //¼ÓÉÏÇ°×º
-    if(strlen(server.prefix)>0){
-        char * c = malloc(strlen(server.prefix)+strlen(th->key)+1);
+    if(strlen(server.prefix)>0 || strlen(server.removePre) >0){
+        char * c = malloc(strlen(server.prefix)+strlen(th->key)-strlen(server.removePre)+1);
         memcpy(c,server.prefix,strlen(server.prefix));
-        memcpy(c+strlen(server.prefix),th->key,strlen(th->key));
-        c[strlen(server.prefix)+strlen(th->key)]='\0';
+        memcpy(c+strlen(server.prefix),th->key+strlen(server.removePre),strlen(th->key)-strlen(server.removePre));
+        c[strlen(server.prefix)+strlen(th->key)-strlen(server.removePre)]='\0';
         free(th->key);
         th->key = c;
     }

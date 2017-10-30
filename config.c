@@ -83,13 +83,25 @@ void loadConfig(const char * file){
 		if(p !=NULL){
 			p+=7;
 			while(*p==' ')p++;
-			server.prefix = p;
+			server.removePre = p;
 			int i=0;
 			while(*(p+i) !='\r' && *(p+i) !='\n' && *(p+i) !='\0') i++;
-			server.prefix[i]=0;
-			char * c = malloc(strlen(server.prefix)+1);
-			memcpy(c,server.prefix,strlen(server.prefix));
-			server.prefix = c;
+			server.removePre[i]=0;
+			char * c = malloc(strlen(server.removePre)+1);
+			memcpy(c,server.removePre,strlen(server.removePre));
+			server.removePre = c;
+		}
+		p=strstr(buf,"removePrefix=");
+		if(p !=NULL){
+			p+=7;
+			while(*p==' ')p++;
+			server.removePre = p;
+			int i=0;
+			while(*(p+i) !='\r' && *(p+i) !='\n' && *(p+i) !='\0') i++;
+			server.removePre[i]=0;
+			char * c = malloc(strlen(server.removePre)+1);
+			memcpy(c,server.removePre,strlen(server.removePre));
+			server.removePre = c;
 		}
 	}
 }
