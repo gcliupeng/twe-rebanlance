@@ -93,7 +93,7 @@ void loadConfig(const char * file){
 		}
 		p=strstr(buf,"removePrefix=");
 		if(p !=NULL){
-			p+=7;
+			p+=13;
 			while(*p==' ')p++;
 			server.removePre = p;
 			int i=0;
