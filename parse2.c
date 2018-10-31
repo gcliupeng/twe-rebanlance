@@ -1110,6 +1110,14 @@ void processPair(thread_contex *th){
             return ;
         }
     }
+
+    if(strlen(server.have)>0){
+        if(!strstr(th->key,server.have)){
+            freeMem(th);
+            th->processed ++;
+            return ;
+        }
+    }
     
 
     //¼ÓÉÏÇ°×º

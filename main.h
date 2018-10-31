@@ -28,6 +28,7 @@ typedef struct{
 	char * prefix;
 	char * removePre;
 	char * filter;
+	char * have;
 	char * logfile;
 	int loglevel;
 	//aeEventLoop *el;

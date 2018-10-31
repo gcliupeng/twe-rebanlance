@@ -151,6 +151,7 @@ int main(int argc, char const *argv[])
 	server.prefix = "";
 	server.removePre = "";
 	server.filter = "";
+	server.have = "";
 	int i;
 	for (i = 1; i < argc; ++i){
 

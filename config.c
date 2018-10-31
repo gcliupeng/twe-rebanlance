@@ -103,6 +103,18 @@ void loadConfig(const char * file){
 			memcpy(c,server.removePre,strlen(server.removePre));
 			server.removePre = c;
 		}
+		p=strstr(buf,"have=");
+		if(p !=NULL){
+			p+=5;
+			while(*p==' ')p++;
+			server.have = p;
+			int i=0;
+			while(*(p+i) !='\r' && *(p+i) !='\n' && *(p+i) !='\0') i++;
+			server.have[i]=0;
+			char * c = malloc(strlen(server.have)+1);
+			memcpy(c,server.have,strlen(server.have));
+			server.have = c;
+		}
 	}
 }
 
