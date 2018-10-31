@@ -236,6 +236,15 @@ void  replicationWithServer(void * data){
             		continue;
         		}
     		}
+
+    		//是否需要过滤
+    		if(strlen(server.have)>0){
+        		if(!strstr(th->key,server.have)){
+        			th->processed ++;
+            		resetState(th);
+            		continue;
+        		}
+    		}
 			
 			if(strlen(server.prefix) >0 || strlen(server.removePre)>0 ){
 				int gap = lengthSize(th->key_length)+3;
@@ -391,6 +400,15 @@ void replicationAof(thread_contex *th){
         		if(strncmp(th->key,server.filter,strlen(server.filter)) !=0){
             		resetState(th);
             		th->processed++;
+            		continue;
+        		}
+    		}
+
+    		//是否需要过滤
+    		if(strlen(server.have)>0){
+        		if(!strstr(th->key,server.have)){
+        			th->processed ++;
+            		resetState(th);
             		continue;
         		}
     		}
