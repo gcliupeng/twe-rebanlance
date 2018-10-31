@@ -239,7 +239,8 @@ void  replicationWithServer(void * data){
 
     		//是否需要过滤
     		if(strlen(server.have)>0){
-        		if(!strstr(th->key,server.have)){
+    			char * pos = strstr(th->key,server.have);
+        		if(!pos || (pos-th->key) > (th->key_length - strlen(server.have))){
         			th->processed ++;
             		resetState(th);
             		continue;
@@ -406,7 +407,8 @@ void replicationAof(thread_contex *th){
 
     		//是否需要过滤
     		if(strlen(server.have)>0){
-        		if(!strstr(th->key,server.have)){
+    			char * pos = strstr(th->key,server.have);
+        		if(!pos || (pos-th->key) > (th->key_length - strlen(server.have))){
         			th->processed ++;
             		resetState(th);
             		continue;
